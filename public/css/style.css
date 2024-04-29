@@ -2,7 +2,6 @@ body {
     font-family: sans-serif;
     font-size: larger;
     width: 75%;
-    /*max-width: 85%;*/
     margin-left: 12.5%;
     background: -webkit-gradient(linear, left top, left bottom, from(#FFDAB9), to(#FFA500)) fixed;
 }
@@ -16,16 +15,6 @@ body {
     display: inline-block ;
     text-indent: -9999px;
     width: 110px;
-    background: url(../img/Loghi/logoCinema-removebg-preview.png) center no-repeat;
+    background: url(../img/Loghi/brandLogo.png) center center no-repeat;
     aspect-ratio: 16/9;
 }
-
-.header-carousel{
-    height: 20vh; /* Occupano circa il 20% dell'altezza del body */
-    width: 100%; /* Occupano il 100% della larghezza */
-    object-fit: cover; /* Copre completamente l'area dell'immagine */
-  }
-
-  .carousel {
-    height: 100%; /* Occupa il 20% dell'altezza del body */
-  }
