@@ -48,7 +48,7 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="prices/prices.html"> Prezzi</a>
+                <a class="nav-link" href="{{route('price.index')}}"> Prezzi</a>
               </li>
 
                 <li class="nav-item">
@@ -66,9 +66,19 @@
         </div>
       </nav>
 
-      <div class="container-fluid">
-            @yield('body')
-        </div>
+      
+
+<div class="container-fluid">
+  <header class="header-sezione">
+    <h1>
+      @yield('title')
+    </h1>
+  </header>
+</div>
+
+<div class="container-fluid">
+   @yield('body')
+</div>
 
         
     </body>

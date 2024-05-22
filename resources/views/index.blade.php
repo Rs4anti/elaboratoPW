@@ -1,21 +1,15 @@
 @extends('layouts.master')
 
-@section('title','Multisale Garden Iride')
+@section('title','PROGRAMMAZIONE')
 
 @section('breadcrumb')
-<li class="breadcrumb-item active" aria-current="page">Home</li>
+<li class="breadcrumb-item" aria-current="page"><a href="{{ route('home') }}">Home</a></li>
+<li class="breadcrumb-item active" aria-current="page">Library</li>
+<li class="breadcrumb-item active" aria-current="page">Books</li>
 @endsection
 
 
 @section('body')
-<div class="row">
-              <div class="header-home text-center">
-                <h1>
-                  PROGRAMMAZIONE
-                </h1>
-              </div>
-          </div>
-
           <div class="row text-center">
               <h2>
                 Scegli il cinema
