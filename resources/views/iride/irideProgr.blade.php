@@ -101,4 +101,10 @@
 
     </div>
 
+    <div class="row justify">
+        <a href="{{route('home')}}" class="btn btn-primary">
+        <i class="bi bi-house"></i>    
+        Torna alla home</a>
+    </div>
+
 @endsection
