@@ -24,22 +24,24 @@
                             <div class="col-md-6 order-md-1 order-2">
                                 <div class="card-body">
                                     <h5 class="card-title">Ritorno al futuro</h5>
-                                    <p class="card-text"><strong>Trama:</strong>Un adolescente viaggia indietro nel tempo fino al 1955 con l'aiuto del Dr. Emmett "Doc" Brown. Deve assicurarsi che i suoi genitori si innamorino per garantire il proprio futuro, mentre cerca di tornare al suo tempo presente del 1985.</p>
+                                    <p class="card-text"><strong>Regia:</strong>Robert Zemeckis</p>
                                     <p class="card-text"><strong>Genere:</strong> Commedia, fantascienza, avventura</p>
                                     <p class="card-text"><strong>Data Uscita:</strong> 18 ottobre 1985</p>
+                                    <!-- Bottone per scheda film -->
+                                    <a href="#" class="btn btn-primary">Scheda film</a>
                                 </div>
                             </div>
                             <!-- Giorni e Orari di Programmazione -->
                             <div class="col-md-6 order-md-2 order-3">
                                 <div class="card-body">
                                     <h6 class="card-title">Orari:</h6>
-                                    <p class="card-text"><strong>Monday:</strong> 3:00 PM, 6:00 PM, 9:00 PM</p>
-                                    <p class="card-text"><strong>Tuesday:</strong> 3:00 PM, 6:00 PM, 9:00 PM</p>
-                                    <p class="card-text"><strong>Wednesday:</strong> 3:00 PM, 6:00 PM, 9:00 PM</p>
-                                    <p class="card-text"><strong>Thursday:</strong> 3:00 PM, 6:00 PM, 9:00 PM</p>
-                                    <p class="card-text"><strong>Friday:</strong> 3:00 PM, 6:00 PM, 9:00 PM</p>
-                                    <p class="card-text"><strong>Saturday:</strong> 1:00 PM, 4:00 PM, 7:00 PM, 10:00 PM</p>
-                                    <p class="card-text"><strong>Sunday:</strong> 1:00 PM, 4:00 PM, 7:00 PM, 10:00 PM</p>
+                                    <p class="card-text"><strong>Lunedì:</strong> 3:00 PM, 6:00 PM, 9:00 PM</p>
+                                    <p class="card-text"><strong>Martedì:</strong> 3:00 PM, 6:00 PM, 9:00 PM</p>
+                                    <p class="card-text"><strong>Mercoledì:</strong> 3:00 PM, 6:00 PM, 9:00 PM</p>
+                                    <p class="card-text"><strong>Giovedì:</strong> 3:00 PM, 6:00 PM, 9:00 PM</p>
+                                    <p class="card-text"><strong>Venerdì:</strong> 3:00 PM, 6:00 PM, 9:00 PM</p>
+                                    <p class="card-text"><strong>Sabato:</strong> 1:00 PM, 4:00 PM, 7:00 PM, 10:00 PM</p>
+                                    <p class="card-text"><strong>Domenica:</strong> 1:00 PM, 4:00 PM, 7:00 PM, 10:00 PM</p>
                                 </div>
                             </div>
                         </div>
@@ -68,22 +70,24 @@
                             <div class="col-md-6 order-md-1 order-2">
                                 <div class="card-body">
                                     <h5 class="card-title">Il Signore degli Anelli - La Compagnia dell'Anello</h5>
-                                    <p class="card-text"><strong>Trama:</strong> la storia di Frodo Baggins e della sua missione per distruggere un potente anello magico per sconfiggere il male. Accompagnato da un gruppo di alleati, affronta pericoli e avventure mentre viaggia attraverso la Terra di Mezzo.</p>
+                                    <p class="card-text"><strong>Regia:</strong>Peter Jackson</p>
                                     <p class="card-text"><strong>Genere:</strong> Fantastico, avventura, azione, epico, drammatico</p>
                                     <p class="card-text"><strong>Data Uscita:</strong> 18 gennaio 2002</p>
+                                    <!-- Bottone per scheda film -->
+                                    <a href="#" class="btn btn-primary">Scheda film</a>
                                 </div>
                             </div>
                             <!-- Giorni e Orari di Programmazione -->
                             <div class="col-md-6 order-md-2 order-3">
                                 <div class="card-body">
                                     <h6 class="card-title">Orari:</h6>
-                                    <p class="card-text"><strong>Monday:</strong> 3:00 PM, 6:00 PM, 9:00 PM</p>
-                                    <p class="card-text"><strong>Tuesday:</strong> 3:00 PM, 6:00 PM, 9:00 PM</p>
-                                    <p class="card-text"><strong>Wednesday:</strong> 3:00 PM, 6:00 PM, 9:00 PM</p>
-                                    <p class="card-text"><strong>Thursday:</strong> 3:00 PM, 6:00 PM, 9:00 PM</p>
-                                    <p class="card-text"><strong>Friday:</strong> 3:00 PM, 6:00 PM, 9:00 PM</p>
-                                    <p class="card-text"><strong>Saturday:</strong> 1:00 PM, 4:00 PM, 7:00 PM, 10:00 PM</p>
-                                    <p class="card-text"><strong>Sunday:</strong> 1:00 PM, 4:00 PM, 7:00 PM, 10:00 PM</p>
+                                    <p class="card-text"><strong>Lunedì:</strong> 3:00 PM, 6:00 PM, 9:00 PM</p>
+                                    <p class="card-text"><strong>Martedì:</strong> 3:00 PM, 6:00 PM, 9:00 PM</p>
+                                    <p class="card-text"><strong>Mercoledì:</strong> 3:00 PM, 6:00 PM, 9:00 PM</p>
+                                    <p class="card-text"><strong>Giovedì:</strong> 3:00 PM, 6:00 PM, 9:00 PM</p>
+                                    <p class="card-text"><strong>Venerdì:</strong> 3:00 PM, 6:00 PM, 9:00 PM</p>
+                                    <p class="card-text"><strong>Sabato:</strong> 1:00 PM, 4:00 PM, 7:00 PM, 10:00 PM</p>
+                                    <p class="card-text"><strong>Domenica:</strong> 1:00 PM, 4:00 PM, 7:00 PM, 10:00 PM</p>
                                 </div>
                             </div>
                         </div>

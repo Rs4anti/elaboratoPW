@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class GardenController extends Controller
+class IrideProgrController extends Controller
 {
     public function index(){
-        return view('garden.garden');
+        return view('iride.irideProgr');
     }
 }

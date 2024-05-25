@@ -41,9 +41,9 @@
                     Rassegne
                 </a>
                     <ul class="dropdown-menu">       
-                        <li><a class="dropdown-item" href="#">Garden Multivision</a></li>
+                        <li><a class="dropdown-item" href="{{route('gardenRassegne.index')}}">Garden Multivision</a></li>
                                                       
-                        <li><a class="dropdown-item" href="#">Iride</a></li>
+                        <li><a class="dropdown-item" href="{{route('irideRassegne.index')}}">Iride</a></li>
                     </ul>
               </li>
 
