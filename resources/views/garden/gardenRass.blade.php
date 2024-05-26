@@ -4,6 +4,16 @@
 
 @section('body')
 
+<div class="row ">
+        <div class="col-6 align-items-center d-flex justify-content-center">
+            <a href="#" class="btn btn-primary">Vedi rassegne salvate</a>
+        </div>
+        
+        <div class="col-6 align-items-center d-flex justify-content-center">
+            <a href="#" class="btn btn-success">Inserisci nuova rassegna</a>
+        </div>
+</div>
+
 <div class="container mt-5">
         <div class="row">
             <!-- Inizio Card -->
@@ -30,6 +40,7 @@
                         <div class="col-12 col-md-4 d-flex align-items-center justify-content-center">
                             <div class="card-body text-center">
                                 <a href="#" class="btn btn-primary">Dettaglio Rassegna</a>
+                                <a href="#" class="btn btn-danger">Modifica Rassegna</a>
                             </div>
                         </div>
                     </div>

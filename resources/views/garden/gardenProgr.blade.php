@@ -4,6 +4,17 @@
 
 @section('body')
 
+<div class="row">
+    <div class="col-6 align-items-center d-flex justify-content-center">
+        <a href="#" class="btn btn-primary">Vedi film salvati</a>
+    </div>
+    
+    <div class="col-6 align-items-center d-flex justify-content-center">
+        <a href="#" class="btn btn-success">Inserisci programmazione</a>
+    </div>
+
+</div>
+
     <div class="row">
         <!-- Inizio Card -->
         <div class="col-12 mb-4">
@@ -29,6 +40,16 @@
                                     <p class="card-text"><strong>Data Uscita:</strong> 20 Aprile 1984</p>
                                     <!-- Bottone per scheda film -->
                                     <a href="#" class="btn btn-primary">Scheda film</a>
+
+                                    <!-- Bottone per modifica programmazione -->
+                                    <a href="#" class="btn btn-secondary">Modifica programmazione</a>
+
+                                    <!-- Bottone per modifica orari (?) -->
+                                    <a href="#" class="btn btn-warning">Modifica orari</a>
+
+                                    
+                                    <!-- Bottone per eliminare programmazione -->
+                                    <a href="#" class="btn btn-danger">Elimina programmazione</a>
                                 </div>
                             </div>
 
