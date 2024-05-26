@@ -40,7 +40,8 @@
                         <div class="col-12 col-md-4 d-flex align-items-center justify-content-center">
                             <div class="card-body text-center">
                                 <a href="#" class="btn btn-primary">Dettaglio Rassegna</a>
-                                <a href="#" class="btn btn-danger">Modifica Rassegna</a>
+                                <a href="#" class="btn btn-secondary">Modifica Rassegna</a>                                
+                                <a href="#" class="btn btn-danger">Elimina Rassegna</a>
                             </div>
                         </div>
                     </div>
