@@ -13,11 +13,13 @@ class Sala extends Model
 
     protected $fillabe = ['nome', 'n_posti'];
 
+    // Relazione uno a molti con Proiezioni
     public function proiezioni(){
-        return $this->hasMany(Proiezione::class, 'sala_id');
+        return $this->hasMany(Proiezione::class, 'sala_id', 'id');
     }
 
+    // Relazione molti a uno con Cinema
     public function cinema(){
-        return $this->belongsTo(Cinema::class, 'cinema_id');
+        return $this->belongsTo(Cinema::class, 'cinema_id', 'id');
     }
 }

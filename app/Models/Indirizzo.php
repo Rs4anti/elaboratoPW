@@ -13,7 +13,8 @@ class Indirizzo extends Model
 
     protected $fillable = ['nazione', 'regione', 'provincia', 'citta', 'via', 'civico', 'CAP'];
 
+     // Relazione uno a uno con Cinema
     public function cinema(){
-        return $this->hasOne(Cinema::class, 'indirizzo_id');
+        return $this->belongsTo(Cinema::class, 'indirizzo_id', 'id');
     }
 }

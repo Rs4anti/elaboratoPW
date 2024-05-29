@@ -13,6 +13,7 @@ class Proiezione extends Model
 
     protected $fillable=['data', 'ora'];
 
+    // in una sala proietto un fiilm
     public function film(){
         return $this->belongsTo(Film::class, 'film_id');
     }

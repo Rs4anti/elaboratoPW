@@ -15,7 +15,7 @@ class Film extends Model
 
 
     public function proiezioni(){
-        return $this->hasMany(Proiezione::class, 'film_id');
+        return $this->hasMany(Proiezione::class, 'film_id', 'id');
     }
     public function registi(){
         return $this->belongsToMany(Regista::class, 'regista_film', 'film_id', 'regista_id');

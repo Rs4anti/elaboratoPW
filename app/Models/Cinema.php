@@ -13,11 +13,14 @@ class Cinema extends Model
 
     protected $fillable = ['nome'];
 
+
+    //relazione uno a molti con le sale
     public function sale(){
-        return $this->hasMany(Sala::class, 'cinema_id');
+        return $this->hasMany(Sala::class, 'cinema_id' , 'id');
     }
 
+    //relazione uno a uno con indirizzo
     public function indirizzo(){
-        return $this->belongsTo(Indirizzo::class, 'indirizzo_id');
+        return $this->hasOne(Indirizzo::class, 'indirizzo_id', 'id');
     }
 }
