@@ -9,15 +9,12 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class RegistaFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = Regista::class;
     public function definition(): array
     {
         return [
-            //
+            'nome' => $this->faker->firstName(),
+            'cognome' => $this->faker->lastName
         ];
     }
 }

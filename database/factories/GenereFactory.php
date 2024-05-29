@@ -9,15 +9,12 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class GenereFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+   
+    protected $model = Genere::class;
     public function definition(): array
     {
         return [
-            //
+            'nome' => $this->faker->word
         ];
     }
 }

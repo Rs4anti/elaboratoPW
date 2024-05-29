@@ -9,15 +9,14 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class FilmFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = Film::class;
     public function definition(): array
     {
         return [
-            //
+            'titolo' => $this->faker->sentence(rand(1,10)),
+            'trama'  => $this->faker->paragraph(),
+            'anno_uscita' => $this->faker->year(),
+            'durata' => $this->faker->numberBetween(50, 250)
         ];
     }
 }

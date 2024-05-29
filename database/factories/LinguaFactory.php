@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Lingua;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,15 +10,12 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class LinguaFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = Lingua::class;
+
     public function definition(): array
     {
         return [
-            //
+            'lingua' => $this->faker->languageCode
         ];
     }
 }

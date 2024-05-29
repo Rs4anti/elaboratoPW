@@ -9,15 +9,12 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class SalaFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = Sala::class;
     public function definition(): array
     {
         return [
-            //
+            'nome'=> $this->faker->name,
+            'n_posti' => $this->faker->numberBetween(50, 500)
         ];
     }
 }
