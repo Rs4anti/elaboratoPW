@@ -16,7 +16,7 @@ return new class extends Migration
             $table -> string('titolo');
             $table -> text('trama');
             $table -> integer('anno_uscita');
-            $table -> time('durata');
+            $table -> integer('durata');
             $table -> timestamps();
        });
 
@@ -83,7 +83,6 @@ return new class extends Migration
         Schema::create('cinema', function (Blueprint $table){
             $table -> id();
             $table -> string('nome');
-            $table -> unsignedBigInteger('indirizzo_id');
             $table -> timestamps();
         });
 
@@ -164,10 +163,6 @@ return new class extends Migration
         //Per 'sala'
         Schema::table('sale', function(Blueprint $table) {
             $table->foreign('cinema_id')->references('id')->on('cinema');
-        });
-
-        Schema::table('cinema', function(Blueprint $table){
-            $table->foreign('indirizzo_id')->references('id')->on('indirizzo');
         });
 
         Schema::table('locandina_film', function(Blueprint $table){

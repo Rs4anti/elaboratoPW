@@ -15,6 +15,6 @@ class Indirizzo extends Model
 
      // Relazione uno a uno con Cinema
     public function cinema(){
-        return $this->belongsTo(Cinema::class, 'indirizzo_id', 'id');
+        return $this->belongsTo(Cinema::class, 'cinema_id', 'id');
     }
 }

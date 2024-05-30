@@ -25,12 +25,12 @@ class Film extends Model
         return $this->belongsToMany(Genere::class, 'genere_film', 'film_id', 'genere_id' );
     }
 
-    public function lingue(){
+    public function lingueAudio(){
         return $this->belongsToMany(Lingua::class, 'lingua_audio', 'film_id', 'lingua_id');
     }
 
-    public function sottotioli(){
-        return $this->belongsToMany(Lingua::class, 'lingua_sottotioli', 'film_id', 'lingua_id');
+    public function sottotitoli(){
+        return $this->belongsToMany(Lingua::class, 'lingua_sottotitoli', 'film_id', 'lingua_id');
     }
 
     public function locandinaFilm(){

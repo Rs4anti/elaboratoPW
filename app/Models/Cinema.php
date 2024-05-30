@@ -21,6 +21,6 @@ class Cinema extends Model
 
     //relazione uno a uno con indirizzo
     public function indirizzo(){
-        return $this->hasOne(Indirizzo::class, 'indirizzo_id', 'id');
+        return $this->hasOne(Indirizzo::class, 'cinema_id', 'id');
     }
 }

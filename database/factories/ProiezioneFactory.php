@@ -14,7 +14,7 @@ class ProiezioneFactory extends Factory
     public function definition(): array
     {
         return [
-            'data' => $this->faker->date('d_m_Y'),
+            'data' => $this->faker->date(),
             'ora' =>  $this->faker->time
         ];
     }
