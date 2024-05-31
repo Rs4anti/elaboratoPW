@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
 
         // Crea film e associa casualmente da 1 a 3 registi per ogni film
         Film::factory()->count(75)->create()->each(function ($film) use ($registi) {
-            // Prendi un subset casuale di registi (da 1 a 3)
+            // Prendo un subset casuale di registi (da 1 a 3)
             $randomRegisti = $registi->random(rand(1, 3));
             $film->registi()->attach($randomRegisti);
         });
@@ -56,8 +56,7 @@ class DatabaseSeeder extends Seeder
             Sala::factory()->count(4)->create(['cinema_id' => $cinema->id]);
         });
         
-         // Ottieni tutti i film e le sale
-         //$films = Film::all();
+         // Recupero tutte le sale
          $sale = Sala::all();
  
          // Itera sui film
