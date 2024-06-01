@@ -13,4 +13,15 @@ class FilmController extends Controller
 
         return view('film.films')->with('films_list', $films);
     }
+
+    public function show(string $id){
+        $dl = new DataLayer();
+        $film = $dl->findFilmById($id);
+
+        if($film !== null){
+            return view('film.details')->with('film', $film);
+        }else{
+            return view('errors.404'); //->with('messagge', 'FILM ID SBAGLIATO!')
+        }
+    }
 }
