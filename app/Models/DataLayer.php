@@ -39,12 +39,39 @@ class DataLayer
         else return null;
     }
 
+    public function sottotitoliFilm($filmId){
+        $film = Film::fin($filmId);
+
+        if($film){
+            return $film->sottotitoli();
+        }
+        else return null;
+    }
+
     public function listLingue(){
         return Genere::orderBy('lingua', 'asc');
     }
 
     public function listProiezioni(){
         return Proiezione::orderBy('data', 'asc')->orderBy('ora', 'asc')->get();
+    }
+
+    public function findRegistaFilm($filmId){
+        $film = Film::find($filmId);
+
+        if($film){
+            return $film->registi;
+        }
+        else null;
+    }
+
+    public function findFilmRegista($registaId){
+        $regista = Regista::find($registaId);
+
+        if($regista){
+            return $regista->films;
+        }
+        else null;
     }
 
     //TODO: aggiungere altri function per proiezioni?
@@ -67,5 +94,31 @@ class DataLayer
         //se voglio solo la prima occorrenza
         //return Proiezione::where( 'data', $date)->where('ora', $time)->first();
     }
+
+    public function findProiezioniFilm($filmId){
+        return Proiezione::where('film_id', $filmId)->orderBy('data', 'asc')->get();
+    }
+
+    public function findProiezioneFilmSala($filmId, $salaId){
+        return Proiezione::where('film_id', $filmId)
+                            ->where('sala_id', $salaId)
+                            ->orderBy('data', 'asc')
+                            ->orderBy('ora', 'asc')
+                            ->get(); //->first(); se voglio solo prima occorennza
+    }
+
+    public function findProiezioneFilmCinema($filmId, $cinemaId){
+        //CHECK se è giusta e serve
+        return Proiezione::where('film_id', $filmId)
+                ->whereHas('sala', function ($query)use ($cinemaId){
+                    $query->where('cinema_id', $cinemaId);
+                })
+                ->get();
+    }
+
+    //trovare proiezioni di registi?
+
+
+    
 
 }
