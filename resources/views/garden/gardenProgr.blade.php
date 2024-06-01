@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-6 align-items-center d-flex justify-content-center">
-        <a href="#" class="btn btn-primary">Vedi film salvati</a>
+        <a href="{{route('film.index')}}" class="btn btn-primary">Vedi film salvati</a>
     </div>
     
     <div class="col-6 align-items-center d-flex justify-content-center">
