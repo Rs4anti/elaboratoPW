@@ -16,115 +16,37 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        <table class="table table-stripe table-hover">
-            <col width="30%">
-            <col width="20%">
-            <col width="10%">
-            <col width="10%">
-            <col width="10%">
-            <col width="10%">
-            <col width="10%">
-            <thead>
-                <tr>
-                    <th>Titolo</th>
-                    <th>Regista</th>
-                    <th>Genere</th>
-                    <th>Anno</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-
-            <tbody>
-                @foreach ($films_list as $film)
-                    <tr>
-                        <td>{{ $film -> titolo}}</td>
-                        <td> 
+<div class="container">
+    <div class="row">
+        @foreach ($films_list as $film)
+            <!-- Inizio card per un film -->
+            <div class="col-md-4 mb-4">
+                <!--TODO: gestire locandine-->
+                <div class="card h-100" style="background-image: url('/img/Locandine/scarfaceLocandina.jpg'); background-size: cover; background-position: center;">
+                    <div class="card-body text-white" style="background: rgba(0, 0, 0, 0.5);">
+                        <h4 class="card-title film-title">{{ $film->titolo }}</h4>
+                        <h5 class="card-subtitle mb-2 regia">Regia:
                             @foreach ($film->registi as $regista)
-                                <div>{{ $regista->nome}} {{$regista->cognome}}</div>
+                                <div>{{ $regista->nome }} {{ $regista->cognome }}</div>
                             @endforeach
-                        </td>
-                        
-                        <td>
+                        </h5>
+                        <h5 class="card-text genere">Genere:
                             @foreach ($film->genere as $gen)
-                            <div>{{$gen->nome}}</div>
-                            
+                                <div>{{$gen->nome}}</div>
                             @endforeach
-                        </td>
-
-                        <td>{{ $film-> anno_uscita}}</td>
-
-                        <td>
-                            <a class="btn btn-secondary"
-                                href="#">Scheda film</a>
-                        </td>
-                        <td>
-                            <a class="btn btn-primary"
-                                href="#">Modifica</a>
-                        </td>
-                        <td>
-                            <a class="btn btn-danger"
-                                href="#">Elimina</a>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+                        </h5>
+                        <p class="card-text anno-uscita">Anno: {{ $film->anno_uscita }}</p>
+                        <p class="class-text durata-film">Durata: {{$film->durata}} min</p>
+                        <a href="#" class="btn btn-primary">Dettagli</a>
+                        <a href="#" class="btn btn-secondary">Modifica</a>
+                        <a href="#" class="btn btn-danger">Elimina</a>
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
 </div>
 
 
-<!-- Inizio Card 
-@foreach ($films_list as $film)
-    <div class="col-12 mb-4">
-                <div class="card">
-                    <div class="row g-0"> <!-- classe di utilità di Bootstrap che rimuove tutte le spaziature (gutter) tra le colonne all'interno della riga-->
 
-                        <!-- Locandina del Film -->
-                        <div class="col-md-4">
-                            <img src="/img/Locandine/scarfaceLocandina.jpg" class="img-fluid rounded-start" alt="Locandina Scarface">
-                        </div> 
-
-
-                        <!-- Informazioni del Film -->
-                        <div class="col-md-8">
-                            <div class="row">
-
-                                <!-- Central Info -->
-                                <div class="col-md-6 order-md-1 order-2">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Titolo: {{ $film -> titolo}}</h5>
-
-                                        <p class="card-text"><strong>Regia:</strong> 
-                                            @foreach ($film->registi as $regista)
-                                                <div>{{ $regista->nome}} {{$regista->cognome}}</div>
-                                            @endforeach
-                                        </p>
-
-                                        <p class="card-text"><strong>Genere: </strong> 
-                                            @foreach ($film->genere as $gen)
-                                                <div>{{$gen->nome}}</div>
-                                            @endforeach
-                                        </p>
-
-                                        <p class="card-text"><strong>Anno Uscita:</strong> {{ $film-> anno_uscita}}</p>
-                                        <!-- Bottone per scheda film -->
-                                        <a href="#" class="btn btn-primary">Scheda film</a>
-
-                                        <a href="#" class="btn btn-secondary">Modifica</a>
-                                        
-                                        <!-- Bottone per eliminare film -->
-                                        <a href="#" class="btn btn-danger">Elimina film</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </div>
-    @endforeach
-    -->
 @endsection
