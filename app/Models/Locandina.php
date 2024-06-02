@@ -11,7 +11,7 @@ class Locandina extends Model
 
     protected $table = 'locandina_film';
 
-    protected $fillable = ['file_locandina'];
+    protected $fillable = ['film_id','file_locandina'];
 
     public function locandinaFilm(){
         return $this->belongsTo(Film::class, 'film_id', 'id');

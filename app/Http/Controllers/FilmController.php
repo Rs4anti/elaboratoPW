@@ -30,6 +30,7 @@ class FilmController extends Controller
 
         $registi = $dl->listRegisti();
         $film = $dl->findFilmById($id);
+        $locandina = $dl->locandinaFilm($id);
         $generi = $dl->listGeneri();
         $linguaAudio = $dl -> lingueAudioFilm($id);
         $sottotitoli = $dl -> lingueSubFilm($id);
@@ -38,6 +39,7 @@ class FilmController extends Controller
             //VIEW per modifica $film
             return view('film.editFilm')
                         ->with('film', $film)
+                        ->with('locandina', $locandina)
                         ->with('registi', $registi)
                         ->with('generi', $generi)
                         ->with('audio', $linguaAudio)

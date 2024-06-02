@@ -18,6 +18,16 @@ class DataLayer
         return Film::find($id);
     }
 
+    public function locandinaFilm($filmId){
+        $film = Film::find($filmId);
+
+        if($film){
+            return $film->locandinaFilm();
+        }else{
+            return null;
+        }
+    }
+
     public function listRegisti(){
         return Regista::orderBy('nome', 'asc')->orderBy('cognome', 'asc')->get();
     }

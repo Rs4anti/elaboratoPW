@@ -2,7 +2,7 @@
 
 @section('title')
 @if(isset($film->id))
-    MODIFICA {{$film->titolo}}
+    MODIFICA:: {{$film->titolo}}
 @else
     Aggiunta di un nuovo film
 @endif
@@ -20,6 +20,27 @@
             <form class="form-horizontal" name="film" method="post" action="#">
         @endif
         @csrf
+
+
+        <!--gestione locandina-->
+    <div class="form-group row mb-3">
+        <label for="locandina" class="col-md-2 col-form-label">Locandina</label>
+        <div class="col-md-10">
+            @if(isset($film->locandina))
+                <div class="mb-2">
+                    <img src="{{ asset('storage/' . $film->locandina->file_locandina) }}" alt="Locandina" style="width: 150px;">
+                </div>
+                <div>
+                    <input type="file" class="form-control" name="locandina" id="locandina">
+                </div>
+                <div class="mt-2">
+                    <a href="{{ route('films.removeLocandina', $film->id) }}" class="btn btn-danger">Elimina Locandina</a>
+                </div>
+            @else
+                <input type="file" class="form-control" name="locandina" id="locandina">
+            @endif
+        </div>
+    </div>
 
         <div class="form-group row mb-3">
                 <div class="col-md-2">
@@ -42,9 +63,9 @@
                     <select class="form-control" multiple="multiple" name="registi[]">
                     @foreach($registi as $regista)
                         @if((isset($film->id))&&($film->registi->contains($regista)))
-                            <option value="{{ $regista->id }}" selected="selected">{{ $regista->nome }}</option>
+                            <option value="{{ $regista->id }}" selected="selected">{{ $regista->nome}} {{$regista->cognome}}</option>
                         @else
-                            <option value="{{ $regista->id }}">{{ $regista->nome }}</option>
+                            <option value="{{ $regista->id }}">{{ $regista->nome }} {{$regista->cognome}}</option>
                         @endif
                     @endforeach                    
                     </select>
@@ -89,6 +110,18 @@
     </div>
 </div>
 
+            <div class="form-group row mb-3">
+                <div class="col-md-2">
+                    <label for="durata">Durata [minuti]</label>
+                </div>
+                <div class="col-md-10">
+                    @if(isset($film->id))
+                        <input class="form-control" type="text" name="durata" value="{{ $film->durata }}"/>
+                    @else
+                        <input class="form-control" type="text" name="durata"/>
+                    @endif
+                </div>
+            </div>            
 
             <div class="form-group row mb-3">
                 <div class="col-md-2">
@@ -98,7 +131,7 @@
                     @if(isset($film->id))
                         <input class="form-control" type="text" name="anno" value="{{ $film->anno_uscita }}"/>
                     @else
-                        <input class="form-control" type="text" name="title"/>
+                        <input class="form-control" type="text" name="durata"/>
                     @endif
                 </div>
             </div>

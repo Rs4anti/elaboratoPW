@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Programmazione Multisale Garden')
+@section('title', 'Programmazione Multisala  Garden')
 
 @section('body')
 
