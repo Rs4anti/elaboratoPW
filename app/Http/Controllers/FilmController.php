@@ -48,4 +48,40 @@ class FilmController extends Controller
             //VIEW di errore se $id errato! 
         }
     }
+
+    public function create(){
+        $dl = new DataLayer();
+        $registi = $dl->listRegisti();
+        $generi = $dl->listGeneri();
+
+        return view('film.editFilm')->with('listaRegisti', $registi)->with('generi', $generi);
+    }
+
+    public function store(Request $request){
+
+        //TODO: Gestire validazione request?
+        $generiSelezionati = $request->input('generi', []);
+        $registiScelti = $request->input();
+
+        $dl = new DataLayer();
+
+        $dl->addFilm($request->input('titolo'), 
+                    $request->input('anno_uscita'), 
+                    $request->input('trama'),
+                    $request->input('durata'),
+                    $generiSelezionati,
+                    $registiScelti);
+
+        if ($request->hasFile('locandina')) {
+                    $imageName = time().'.'.$request->locandina->extension();
+                    $path = $request->locandina->storeAs('locandine', $imageName, 'public');
+                
+                    LocandinaFilm::create([
+                           'film_id' => $film->id,
+                            'file_locandina' => $path,
+                        ]);
+        }
+
+        return Redirect::to(route('film.films'));
+    }
 }

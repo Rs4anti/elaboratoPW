@@ -28,6 +28,63 @@ class DataLayer
         }
     }
 
+    public function addFilm($titolo, $annoUscita, $trama, $durata, $registi, $generi){
+            $film = new Film;
+            $film->titolo = $titolo;
+            $film->anno_uscita = $annoUscita;
+            $film->durata = $durata;
+            $film->trama = $trama;
+
+            $film->save();
+
+            foreach($registi as $regista){
+                $film->listRegisti()->attach($regista);
+            }
+
+            foreach($generi as $genere){
+                $film->listGeneri()->attach($genere);
+            }
+
+    }
+
+    public function editFilm($id, $titolo, $annoUscita, $trama, $durata, $registi, $generi){
+        $film = Film::find($id);
+
+        $film->titolo = $titolo;
+        $film->anno_uscita = $annoUscita;
+        $film->durata = $durata;
+        $film->trama = $trama;
+
+        $film->save();
+
+        //cancello la lista di registi
+        $prevRegisti = $film->registi;
+        foreach($prevRegisti as $prevRegista){
+            $film->registi()->detach($prevRegista->id);
+        }
+
+        //aggiorno la lista di registi
+        foreach($registi as $regista){
+            $film->registi()->attach($regista);
+        }
+
+        //cancello i generi associati al film
+        $prevGeneri = $film->generi;
+        foreach($prevGeneri as $prevGenere){
+            $film->generi()->detach($prevGenere->id);
+        }
+
+        //aggiorno la lista di generi del film
+        foreach($generi as $genere){
+            $film->generi()->attach($genere);
+        }
+
+    }
+
+    //add regista
+
+    //edit regista
+
     public function listRegisti(){
         return Regista::orderBy('nome', 'asc')->orderBy('cognome', 'asc')->get();
     }

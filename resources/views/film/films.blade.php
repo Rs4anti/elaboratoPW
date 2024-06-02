@@ -22,7 +22,7 @@
             <!-- Inizio card per un film -->
             <div class="col-md-4 mb-4">
                 <!--TODO: gestire locandine-->
-                <div class="card h-100" style="background-image: url('/img/Locandine/scarfaceLocandina.jpg'); background-size: cover; background-position: center;">
+                <div class="card h-100" style="background-image: url('{{$film->locandina}}'); background-size: cover; background-position: center;">
                     <div class="card-body text-white" style="background: rgba(0, 0, 0, 0.5);">
                         <h4 class="card-title film-title"><strong>{{ $film->titolo }}</strong></h4>
                         <h5 class="card-subtitle mb-2 regia">Regia:

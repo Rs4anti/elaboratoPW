@@ -44,7 +44,7 @@
 
         <div class="form-group row mb-3">
                 <div class="col-md-2">
-                    <label for="title">Titolo</label>
+                    <label for="titolo">Titolo</label>
                 </div>
                 <div class="col-md-10">
                     @if(isset($film->id))
@@ -57,7 +57,7 @@
 
             <div class="form-group row mb-3">
                 <div class="col-md-2">
-                    <label for="author_id">Regia</label>
+                    <label for="registi">Regia</label>
                 </div>
                 <div class="col-md-10">
                     <select class="form-control" multiple="multiple" name="registi[]">
@@ -74,7 +74,7 @@
 
             <div class="form-group row mb-3">
                 <div class="col-md-2">
-                    <label for="tama">Trama</label>
+                    <label for="trama">Trama</label>
                 </div>
                 <div class="col-md-10">
                     @if(isset($film->id))
