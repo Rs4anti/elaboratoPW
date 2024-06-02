@@ -21,24 +21,7 @@
         @endif
         @csrf
 
-            <div class="form-group row mb-3">
-                <div class="col-md-2">
-                    <label for="categories">Generi</label>
-                </div>
-                <div class="col-md-10">
-                    <select class="form-control" multiple="multiple" name="generi[]">
-                    @foreach($generi as $genere)
-                        @if((isset($film->id))&&($film->generi->contains($genere)))
-                            <option value="{{ $genere->id }}" selected="selected">{{ $genere->nome }}</option>
-                        @else
-                            <option value="{{ $genere->id }}">{{ $genere->nome }}</option>
-                        @endif
-                    @endforeach                    
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group row mb-3">
+        <div class="form-group row mb-3">
                 <div class="col-md-2">
                     <label for="title">Titolo</label>
                 </div>
@@ -67,6 +50,59 @@
                     </select>
                 </div>
             </div>
+
+            <div class="form-group row mb-3">
+                <div class="col-md-2">
+                    <label for="tama">Trama</label>
+                </div>
+                <div class="col-md-10">
+                    @if(isset($film->id))
+                        <textarea class="form-control" name="trama" rows="5">{{ $film->trama }}</textarea>
+                    @else
+                        <input class="form-control" type="text" name="trama"/>
+                    @endif
+                </div>
+            </div>
+
+
+            <div class="form-group row mb-3">
+    <div class="col-md-2">
+        <label for="generi">Generi</label>
+    </div>
+    <div class="col-md-10">
+        <div class="row">
+            @foreach($generi as $genere)
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="generi[]" value="{{ $genere->id }}" id="genere_{{ $genere->id }}"
+                        @if((isset($film->id)) && ($film->generi->contains($genere)))
+                            checked
+                        @endif
+                        >
+                        <label class="form-check-label" for="genere_{{ $genere->id }}">
+                            {{ $genere->nome }}
+                        </label>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+
+
+            <div class="form-group row mb-3">
+                <div class="col-md-2">
+                    <label for="anno">Anno</label>
+                </div>
+                <div class="col-md-10">
+                    @if(isset($film->id))
+                        <input class="form-control" type="text" name="anno" value="{{ $film->anno_uscita }}"/>
+                    @else
+                        <input class="form-control" type="text" name="title"/>
+                    @endif
+                </div>
+            </div>
+
 
             <div class="form-group row mb-3">
                 <div class="col-md-10 offset-md-2">
