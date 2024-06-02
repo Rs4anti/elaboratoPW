@@ -27,10 +27,10 @@ class DataLayer
     }
 
     public function listGeneri(){
-        return Genere::orderBy('nome', 'asc');
+        return Genere::orderBy('nome', 'asc')->get();
     }
 
-    public function lingueFilm($filmId){
+    public function lingueAudioFilm($filmId){
         $film = Film::find($filmId);
 
         if($film){
@@ -39,8 +39,8 @@ class DataLayer
         else return null;
     }
 
-    public function sottotitoliFilm($filmId){
-        $film = Film::fin($filmId);
+    public function lingueSubFilm($filmId){
+        $film = Film::find($filmId);
 
         if($film){
             return $film->sottotitoli();

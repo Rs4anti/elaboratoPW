@@ -21,7 +21,7 @@ class Film extends Model
         return $this->belongsToMany(Regista::class, 'regista_film', 'film_id', 'regista_id');
     }
 
-    public function genere(){
+    public function generi(){
         return $this->belongsToMany(Genere::class, 'genere_film', 'film_id', 'genere_id' );
     }
 

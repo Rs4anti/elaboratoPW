@@ -1,6 +1,8 @@
 @extends('layouts.master')
 
-@section('title', 'Dettaglio film')
+@section('title')
+    Scheda dettaglio: <strong>{{$film->titolo}}</strong>
+@endsection
 
 @section('body')
 <div class="card mb-3" style="max-width: 100%;">
@@ -12,15 +14,32 @@
       <div class="card-body">
         <h1 class="card-title text-center"><strong>{{$film->titolo}} [{{$film->anno_uscita}}]</strong></h1>
         <h5 class="card-title"><strong>Durata:</strong> {{$film->durata}}'</h5>
+
         <p class="card-text"><strong>Genere:</strong> 
-                                    @foreach ($film->genere as $gen)
+                                    @foreach ($film->generi as $gen)
                                     {{$gen->nome}}
                                     @endforeach
+
         <p class="card-text"><strong>Trama:</strong> {{$film->trama}}</p>
+
         <p class="card-text"><strong>Regia:</strong> 
                                     @foreach ($film->registi as $regista)
                                     <div>{{$regista->nome}} {{$regista->cognome}}</div>
                                     @endforeach
+        </p>
+
+        <p class="card-text"><strong>Lingua audio:</strong> 
+                                    @foreach ($film->lingueAudio as $audio)
+                                    <div>{{$audio->lingua}}</div>
+                                    @endforeach
+        </p>
+
+        <p class="card-text"><strong>Lingua sottotioli:</strong> 
+                                    @foreach ($film->sottotitoli as $sub)
+                                    <div>{{$sub->lingua}}</div>
+                                    @endforeach
+        </p>
+          
         <a class="btn btn-primary" href="https://www.youtube.com/watch?v=azNl5JJtaWY"> Vedi trailer</a>
       </div>
     </div>

@@ -93,7 +93,7 @@ class DatabaseSeeder extends Seeder
          foreach($films as $film){
             $numeroGeneri = rand(1,5);
             $generiScelti = $generi->random($numeroGeneri);
-            $film->genere()->attach($generiScelti);
+            $film->generi()->attach($generiScelti);
          }
          
 

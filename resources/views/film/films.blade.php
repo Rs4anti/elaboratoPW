@@ -31,7 +31,7 @@
                             @endforeach
                         </h5>
                         <h5 class="card-text genere">Genere:
-                            @foreach ($film->genere as $gen)
+                            @foreach ($film->generi as $gen)
                                 <div>{{$gen->nome}}</div>
                             @endforeach
                         </h5>
@@ -42,7 +42,10 @@
                                 href="{{ route('film.show', ['film' => $film->id]) }}">
                                 Scheda film</a>
 
-                        <a href="#" class="btn btn-secondary">Modifica</a>
+                        <a class="btn btn-secondary"
+                                href="{{ route('film.edit', ['film' => $film->id]) }}">
+                                Modifica</a>
+
                         <a href="#" class="btn btn-danger">Elimina</a>
                     </div>
                 </div>
