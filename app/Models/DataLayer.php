@@ -38,11 +38,11 @@ class DataLayer
             $film->save();
 
             foreach($registi as $regista){
-                $film->listRegisti()->attach($regista);
+                $film->registi()->attach($regista);
             }
 
             foreach($generi as $genere){
-                $film->listGeneri()->attach($genere);
+                $film->generi()->attach($genere);
             }
 
     }

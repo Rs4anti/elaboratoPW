@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Scheda dettaglio: <strong>{{$film->titolo}}</strong>
+    Scheda dettaglio: {{$film->titolo}}
 @endsection
 
 @section('body')

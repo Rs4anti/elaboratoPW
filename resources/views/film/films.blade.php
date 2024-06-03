@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-xs-6 d-flex justify-content-end">
         <p>
-            <a class="btn btn-success" href="#">
+            <a class="btn btn-success" href="{{route('film.create')}}">
                 <i class="bi bi-database-add"></i> 
                  Inserisci nuovo film
             </a>

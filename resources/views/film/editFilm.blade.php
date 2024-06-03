@@ -11,24 +11,22 @@
 @section('body')
 <div class="row">
     <div class="col-md-12">
-        @if(isset($film->id)) <!--SONO IN MODIFICA DI UN FILM!!-->
-            <form class="form-horizontal" name="film" method="post" action="#"> <!--FARE ROUTE 'film.update' (metodo update nel filmController)-->
-            
-            <!--<input type="hidden" name="_method" value="PUT">-->
-            @method('PUT')
-        @else  <!--SONO IN AGGIUNTA DI UN FILM!!--> <!--FARE ROUTE 'film.store' (metodo store nel filmController)-->
-            <form class="form-horizontal" name="film" method="post" action="#">
-        @endif
+    @if(isset($film->id))
+        <form class="form-horizontal" name="film" method="post" action="{{ route('film.update', ['film' => $film->id]) }}">
+        @method('PUT')
+    @else
+        <form class="form-horizontal" name="film" method="post" action="{{ route('film.store') }}">
+    @endif
         @csrf
 
 
-        <!--gestione locandina-->
+        <!--gestione locandina
     <div class="form-group row mb-3">
         <label for="locandina" class="col-md-2 col-form-label">Locandina</label>
         <div class="col-md-10">
             @if(isset($film->locandina))
                 <div class="mb-2">
-                    <img src="{{ asset('storage/' . $film->locandina->file_locandina) }}" alt="Locandina" style="width: 150px;">
+                    <img src="#" alt="Locandina" style="width: 150px;">
                 </div>
                 <div>
                     <input type="file" class="form-control" name="locandina" id="locandina">
@@ -41,6 +39,7 @@
             @endif
         </div>
     </div>
+    -->
 
         <div class="form-group row mb-3">
                 <div class="col-md-2">
@@ -48,9 +47,9 @@
                 </div>
                 <div class="col-md-10">
                     @if(isset($film->id))
-                        <input class="form-control" type="text" name="title" value="{{ $film->titolo }}"/>
+                        <input class="form-control" type="text" name="titolo" value="{{ $film->titolo }}"/>
                     @else
-                        <input class="form-control" type="text" name="title"/>
+                        <input class="form-control" type="text" name="titolo"/>
                     @endif
                 </div>
             </div>
@@ -80,35 +79,35 @@
                     @if(isset($film->id))
                         <textarea class="form-control" name="trama" rows="5">{{ $film->trama }}</textarea>
                     @else
-                        <input class="form-control" type="text" name="trama"/>
+                        <textarea class="form-control" name="trama" rows="5"></textarea>
                     @endif
                 </div>
             </div>
 
 
             <div class="form-group row mb-3">
-    <div class="col-md-2">
-        <label for="generi">Generi</label>
-    </div>
-    <div class="col-md-10">
-        <div class="row">
-            @foreach($generi as $genere)
-                <div class="col-md-4 col-sm-12">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="generi[]" value="{{ $genere->id }}" id="genere_{{ $genere->id }}"
-                        @if((isset($film->id)) && ($film->generi->contains($genere)))
-                            checked
-                        @endif
-                        >
-                        <label class="form-check-label" for="genere_{{ $genere->id }}">
-                            {{ $genere->nome }}
-                        </label>
+            <div class="col-md-2">
+                <label for="generi">Generi</label>
+            </div>
+                <div class="col-md-10">
+                    <div class="row">
+                        @foreach($generi as $genere)
+                            <div class="col-md-4 col-sm-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="generi[]" value="{{ $genere->id }}" id="genere_{{ $genere->id }}"
+                                    @if((isset($film->id)) && ($film->generi->contains($genere)))
+                                        checked
+                                    @endif
+                                    >
+                                    <label class="form-check-label" value="genere_{{ $genere->id }}">
+                                        {{ $genere->nome }}
+                                    </label>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
-            @endforeach
-        </div>
-    </div>
-</div>
+            </div>
 
             <div class="form-group row mb-3">
                 <div class="col-md-2">
@@ -125,13 +124,13 @@
 
             <div class="form-group row mb-3">
                 <div class="col-md-2">
-                    <label for="anno">Anno</label>
+                    <label for="anno_uscita">Anno</label>
                 </div>
                 <div class="col-md-10">
                     @if(isset($film->id))
-                        <input class="form-control" type="text" name="anno" value="{{ $film->anno_uscita }}"/>
+                        <input class="form-control" type="text" name="anno_uscita" value="{{ $film->anno_uscita }}"/>
                     @else
-                        <input class="form-control" type="text" name="durata"/>
+                        <input class="form-control" type="text" name="anno_uscita"/>
                     @endif
                 </div>
             </div>

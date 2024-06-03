@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\DataLayer;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class FilmController extends Controller
 {
@@ -12,6 +13,32 @@ class FilmController extends Controller
         $films = $dl->listFilms();
 
         return view('film.films')->with('films_list', $films);
+    }
+
+    public function create(){
+        $dl = new DataLayer();
+        $listaRegisti = $dl->listRegisti();
+        $generi = $dl->listGeneri();
+
+        return view('film.editFilm')->with('registi', $listaRegisti)->with('generi', $generi);
+    }
+
+    public function store(Request $request){
+
+        //TODO: Gestire validazione request?
+        $generiSelezionati = $request->input('generi', []);
+        $registiScelti = $request->input('registi', []);
+
+        $dl = new DataLayer();
+
+        $dl->addFilm($request->input('titolo'), 
+                    $request->input('anno_uscita'), 
+                    $request->input('trama'),
+                    $request->input('durata'),
+                    $generiSelezionati,
+                    $registiScelti);
+
+        return Redirect::to(route('film.index'));
     }
 
     public function show(string $id){
@@ -30,7 +57,6 @@ class FilmController extends Controller
 
         $registi = $dl->listRegisti();
         $film = $dl->findFilmById($id);
-        $locandina = $dl->locandinaFilm($id);
         $generi = $dl->listGeneri();
         $linguaAudio = $dl -> lingueAudioFilm($id);
         $sottotitoli = $dl -> lingueSubFilm($id);
@@ -39,49 +65,26 @@ class FilmController extends Controller
             //VIEW per modifica $film
             return view('film.editFilm')
                         ->with('film', $film)
-                        ->with('locandina', $locandina)
                         ->with('registi', $registi)
                         ->with('generi', $generi)
                         ->with('audio', $linguaAudio)
                         ->with('sottotitoli', $sottotitoli);
         } else{
-            //VIEW di errore se $id errato! 
+            return view('errors.404'); //->with('messagge', 'FILM ID SBAGLIATO!')
         }
     }
 
-    public function create(){
-        $dl = new DataLayer();
-        $registi = $dl->listRegisti();
-        $generi = $dl->listGeneri();
+    public function update(Request $request, string $id){
 
-        return view('film.editFilm')->with('listaRegisti', $registi)->with('generi', $generi);
-    }
-
-    public function store(Request $request){
-
-        //TODO: Gestire validazione request?
         $generiSelezionati = $request->input('generi', []);
-        $registiScelti = $request->input();
+        $registiSelezionati = $request->input('registi', []);
 
         $dl = new DataLayer();
 
-        $dl->addFilm($request->input('titolo'), 
-                    $request->input('anno_uscita'), 
-                    $request->input('trama'),
-                    $request->input('durata'),
-                    $generiSelezionati,
-                    $registiScelti);
-
-        if ($request->hasFile('locandina')) {
-                    $imageName = time().'.'.$request->locandina->extension();
-                    $path = $request->locandina->storeAs('locandine', $imageName, 'public');
-                
-                    LocandinaFilm::create([
-                           'film_id' => $film->id,
-                            'file_locandina' => $path,
-                        ]);
-        }
-
-        return Redirect::to(route('film.films'));
+        $dl->editFilm($id, $request->input('titolo'), $request->input('anno_uscita'), $request->input('trama'),
+                        $request->input('durata'), $registiSelezionati, $generiSelezionati);
+        
+        return Redirect::to(route('film.index'));
+        
     }
 }
