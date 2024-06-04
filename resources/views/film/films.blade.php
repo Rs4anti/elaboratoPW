@@ -46,7 +46,9 @@
                                 href="{{ route('film.edit', ['film' => $film->id]) }}">
                                 Modifica</a>
 
-                        <a href="#" class="btn btn-danger">Elimina</a>
+                        <a class="btn btn-danger" 
+                            href="{{route('film.destroy', ['film' => $film->id])}}" >
+                            Elimina</a>
                     </div>
                 </div>
             </div>

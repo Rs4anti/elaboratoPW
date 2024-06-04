@@ -81,6 +81,25 @@ class DataLayer
 
     }
 
+    public function deleteFilm($id){
+
+        $film = Film::find($id);
+        $generi = $film->generi();
+        $registi = $film->registi();
+
+        foreach($generi as $genere){
+            $film->generi()->detach($genere->id);
+        }
+
+        foreach($registi as $regista){
+            $film->registi()->detach($regista->id);
+        }
+
+        //TODO: SE ELIMINO UN FILM ELIMINO ANCHE LE PROIEZIONI ASSOCIATE (?)
+
+        $film->delete();
+    }
+
     //add regista
 
     //edit regista

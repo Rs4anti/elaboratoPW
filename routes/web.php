@@ -21,4 +21,3 @@ Route::resource('irideRassegne', IrideRassegneController::class);
 Route::resource('price', PriceController::class);
 
 Route::resource('film', FilmController::class);
-

@@ -88,4 +88,14 @@ class FilmController extends Controller
         return Redirect::to(route('film.index'));
         
     }
+
+
+    public function destroy(string $id){
+        $dl = new DataLayer;
+
+        $dl->deleteFilm($id);
+
+        Redirect::to(route('film.films'));
+
+    }
 }
