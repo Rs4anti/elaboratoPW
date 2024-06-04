@@ -47,8 +47,7 @@
                                 Modifica</a>
 
                         <a class="btn btn-danger" 
-                            href="{{route('film.destroy', ['film' => $film->id])}}" >
-                            Elimina</a>
+                                href="{{ route('film.destroy.confirm', ['id' => $film->id]) }}"><i class="bi bi-trash"></i> Cancella</a>
                     </div>
                 </div>
             </div>

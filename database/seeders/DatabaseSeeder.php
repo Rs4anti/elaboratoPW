@@ -10,10 +10,6 @@ use Illuminate\Database\Seeder;
 use App\Models\Regista;
 use App\Models\Film;
 use App\Models\Lingua;
-use App\Models\Sala;
-use App\Models\Proiezione;
-use App\Models\Cinema;
-use App\Models\Indirizzo;
 use App\Models\Genere;
 
 class DatabaseSeeder extends Seeder
@@ -51,25 +47,25 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        $cinemas = Cinema::factory()->count(2)->create()->each(function ($cinema){
-            Indirizzo::factory()->count(1)->create(['cinema_id' => $cinema->id]);
-            Sala::factory()->count(4)->create(['cinema_id' => $cinema->id]);
-        });
+        //$cinemas = Cinema::factory()->count(2)->create()->each(function ($cinema){
+        //    Indirizzo::factory()->count(1)->create(['cinema_id' => $cinema->id]);
+        //    Sala::factory()->count(4)->create(['cinema_id' => $cinema->id]);
+        //});
         
          // Recupero tutte le sale
-         $sale = Sala::all();
+        // $sale = Sala::all();
  
          // Itera sui film
-         foreach ($films as $film) {
+        // foreach ($films as $film) {
              // Ottieni una sala casuale per la proiezione
-             $sala = $sale->random();
+        //     $sala = $sale->random();
  
              // Crea una nuova proiezione per il film nella sala selezionata
-             Proiezione::factory()->create([
-                 'film_id' => $film->id,
-                 'sala_id' => $sala->id,
-             ]);
-         }
+        //     Proiezione::factory()->create([
+        //         'film_id' => $film->id,
+        //         'sala_id' => $sala->id,
+        //     ]);
+        // }
 
 
          Genere::factory()->count(1)->create(['nome' => 'Azione']);

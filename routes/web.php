@@ -21,3 +21,4 @@ Route::resource('irideRassegne', IrideRassegneController::class);
 Route::resource('price', PriceController::class);
 
 Route::resource('film', FilmController::class);
+Route::get('/film/{id}/destroy/confirm', [FilmController::class, 'confirmDestroy'])->name('film.destroy.confirm');

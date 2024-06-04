@@ -84,20 +84,40 @@ class DataLayer
     public function deleteFilm($id){
 
         $film = Film::find($id);
-        $generi = $film->generi();
-        $registi = $film->registi();
 
-        foreach($generi as $genere){
-            $film->generi()->detach($genere->id);
+        if ($film !== null) {
+            $generi = $film->generi;
+            $registi = $film->registi;
+            $lingueAudio = $film->lingueAudio;
+            $sottotitoli = $film->sottotitoli;
+            //$proiezioni = $film->proiezioni;
+    
+            foreach($generi as $genere){
+                $film->generi()->detach($genere->id);
+            }
+    
+            foreach($registi as $regista){
+                $film->registi()->detach($regista->id);
+            }
+
+            foreach($lingueAudio as $audio){
+                $film->lingueAudio()->detach($audio->id);
+            }
+
+            foreach($sottotitoli as $sub){
+                $film->sottotitoli()->detach($sub->id);
+            }
+
+            //foreach($proiezioni as $proiezione){
+            //    $film->proiezioni()->detach($proiezione->id);
+            //}
+    
+            //TODO: 2nd ver SE ELIMINO UN FILM ELIMINO ANCHE LE PROIEZIONI ASSOCIATE (?)
+    
+            $film->delete();
+        } else {
+            throw new \Exception("Film not found");
         }
-
-        foreach($registi as $regista){
-            $film->registi()->detach($regista->id);
-        }
-
-        //TODO: SE ELIMINO UN FILM ELIMINO ANCHE LE PROIEZIONI ASSOCIATE (?)
-
-        $film->delete();
     }
 
     //add regista

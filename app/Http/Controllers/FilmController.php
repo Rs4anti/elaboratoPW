@@ -95,7 +95,18 @@ class FilmController extends Controller
 
         $dl->deleteFilm($id);
 
-        Redirect::to(route('film.films'));
+        return Redirect::to(route('film.index'));
+    }
 
+    public function confirmDestroy(string $id)
+    {
+        $dl = new DataLayer();
+        $film = $dl->findFilmById($id);
+
+        if ($film !== null) {
+            return view('film.deleteFilm')->with('film', $film);
+        } else {
+            return view('errors.404'); //->with('message','Wrong book ID has been used!');
+        }
     }
 }
