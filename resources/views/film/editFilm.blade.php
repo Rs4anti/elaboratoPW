@@ -86,28 +86,29 @@
 
 
             <div class="form-group row mb-3">
-            <div class="col-md-2">
-                <label for="generi">Generi</label>
-            </div>
-                <div class="col-md-10">
-                    <div class="row">
-                        @foreach($generi as $genere)
-                            <div class="col-md-4 col-sm-12">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="generi[]" value="{{ $genere->id }}" id="genere_{{ $genere->id }}"
-                                    @if((isset($film->id)) && ($film->generi->contains($genere)))
-                                        checked
-                                    @endif
-                                    >
-                                    <label class="form-check-label" value="genere_{{ $genere->id }}">
-                                        {{ $genere->nome }}
-                                    </label>
-                                </div>
-                            </div>
-                        @endforeach
+    <div class="col-md-2">
+        <label for="generi">Generi</label>
+    </div>
+    <div class="col-md-10">
+        <div class="row">
+            @foreach($generi as $genere)
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="generi[]" value="{{ $genere->id }}" id="genere_{{ $genere->id }}"
+                        @if((isset($film->id)) && ($film->generi->contains($genere)))
+                            checked
+                        @endif
+                        >
+                        <label class="form-check-label" value="{{ $genere->id }}">
+                            {{ $genere->nome }}
+                        </label>
                     </div>
                 </div>
-            </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+
 
             <div class="form-group row mb-3">
                 <div class="col-md-2">

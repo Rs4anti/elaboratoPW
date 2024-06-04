@@ -35,8 +35,9 @@ class FilmController extends Controller
                     $request->input('anno_uscita'), 
                     $request->input('trama'),
                     $request->input('durata'),
-                    $generiSelezionati,
-                    $registiScelti);
+                    $registiScelti,
+                    $generiSelezionati
+                );
 
         return Redirect::to(route('film.index'));
     }
