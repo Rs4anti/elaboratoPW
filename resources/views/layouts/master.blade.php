@@ -36,6 +36,25 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
               </li>
+
+              <li class="nav-item dropdown btn btn-warning">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Gestione cinema
+                </a>
+                    <ul class="dropdown-menu">       
+                    <li class="nav-item">
+                      <a href="{{route('film.index')}}" class="nav-link">
+                    <i class="bi bi-floppy"></i>
+                      Vedi film salvati</a>
+                    </li>
+                    
+                    <li class="nav-item"> 
+                      <a href="#" class="nav-link">
+                      <i class="bi bi-clock-history"></i>    
+                        Inserisci programmazione</a></li>
+                    </ul>
+              </li>
+
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Rassegne

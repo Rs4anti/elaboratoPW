@@ -6,7 +6,7 @@
 @section('body')
 
 <div class="row">
-    <div class="col-xs-6 d-flex justify-content-end">
+    <div class="col-xs-6 d-flex justify-content">
         <p>
             <a class="btn btn-success" href="{{route('film.create')}}">
                 <i class="bi bi-database-add"></i> 

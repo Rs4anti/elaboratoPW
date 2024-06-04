@@ -20,7 +20,9 @@
               <div class="col-md-6 col-sm-12 order-md-1 mt-2 mb-2">
                 <div class="card border-dark w-100 h-100">
                   <div class="card-header text-center">
-                    <a class="btn btn-primary" href="{{route('gardenProgrammazione.index')}}"> Vedi programmazione Garden-Multivision</a>
+                    <a class="btn btn-primary" href="{{route('gardenProgrammazione.index')}}"> 
+                    <i class="bi bi-film"></i> 
+                    Vedi programmazione Garden-Multivision</a>
                   </div>
                       <div class="card-body">
                           <a href="{{route('gardenProgrammazione.index')}}">
@@ -34,7 +36,9 @@
               <div class="col-md-6 col-sm-12 order-md-1 mt-2 mb-2">
                   <div class="card border-dark w-100 h-100">
                     <div class="card-header text-center">
-                      <a class="btn btn-primary" href="{{route('irideProgrammazione.index')}}"> Vedi programmazione Iride-Vega</a>
+                      <a class="btn btn-primary" href="{{route('irideProgrammazione.index')}}">
+                      <i class="bi bi-film"></i>
+                      Vedi programmazione Iride-Vega</a>
                     </div>
                         <div class="card-body d-flex justify-content-center align-items-center">
                           <a href="{{route('irideProgrammazione.index')}}">

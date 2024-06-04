@@ -40,7 +40,9 @@
                                     @endforeach
         </p>
           
-        <a class="btn btn-primary" href="https://www.youtube.com/watch?v=azNl5JJtaWY"> Vedi trailer</a>
+        <a class="btn btn-danger" href="https://www.youtube.com/watch?v=azNl5JJtaWY"> 
+        <i class="bi bi-youtube"></i>
+          Trailer</a>
       </div>
     </div>
   </div>

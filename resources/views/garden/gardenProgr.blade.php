@@ -3,18 +3,6 @@
 @section('title', 'Programmazione Multisala  Garden')
 
 @section('body')
-
-<div class="row">
-    <div class="col-6 align-items-center d-flex justify-content-center">
-        <a href="{{route('film.index')}}" class="btn btn-primary">Vedi film salvati</a>
-    </div>
-    
-    <div class="col-6 align-items-center d-flex justify-content-center">
-        <a href="#" class="btn btn-success">Inserisci programmazione</a>
-    </div>
-
-</div>
-
     <div class="row">
         <!-- Inizio Card -->
         <div class="col-12 mb-4">
