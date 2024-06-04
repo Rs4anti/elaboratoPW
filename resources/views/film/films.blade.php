@@ -38,16 +38,20 @@
                         <p class="card-text anno-uscita">Anno: {{ $film->anno_uscita }}</p>
                         <p class="class-text durata-film">Durata: {{$film->durata}} min</p>
                         
-                        <a class="btn btn-secondary" 
+                        <a class="btn btn-primary" 
                                 href="{{ route('film.show', ['film' => $film->id]) }}">
+                                <i class="bi bi-eye"></i>
                                 Scheda film</a>
 
                         <a class="btn btn-secondary"
                                 href="{{ route('film.edit', ['film' => $film->id]) }}">
+                                <i class="bi bi-pencil-square"></i>
                                 Modifica</a>
 
                         <a class="btn btn-danger" 
-                                href="{{ route('film.destroy.confirm', ['id' => $film->id]) }}"><i class="bi bi-trash"></i> Cancella</a>
+                                href="{{ route('film.destroy.confirm', ['id' => $film->id]) }}">
+                                <i class="bi bi-trash"></i>
+                                 Cancella</a>
                     </div>
                 </div>
             </div>

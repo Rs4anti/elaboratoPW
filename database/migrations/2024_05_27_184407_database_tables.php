@@ -103,12 +103,12 @@ return new class extends Migration
         //    $table -> timestamps();
         //});
 
-        //Schema::create('locandina_film', function(Blueprint $table){
-        //    $table -> id();
-        //    $table -> unsignedBigInteger('film_id');
-        //    $table -> text('file_locandina');
-        //    $table -> timestamps();
-        //});
+        Schema::create('locandina_film', function(Blueprint $table){
+            $table -> id();
+            $table -> unsignedBigInteger('film_id');
+            $table -> text('path_locandina');
+            $table -> timestamps();
+        });
 
         // VINCOLI DI INTEGRITA REFERENZIALE
 
@@ -165,9 +165,9 @@ return new class extends Migration
         //    $table->foreign('cinema_id')->references('id')->on('cinema');
         //});
 
-        //Schema::table('locandina_film', function(Blueprint $table){
-        //    $table->foreign('film_id')->references('id')->on('films');
-        //});
+        Schema::table('locandina_film', function(Blueprint $table){
+            $table->foreign('film_id')->references('id')->on('films');
+        });
 
         //Schema::table('indirizzo', function(Blueprint $table){
         //    $table->foreign('cinema_id')->references('id')->on('cinema');
@@ -192,6 +192,6 @@ return new class extends Migration
         Schema::dropIfExists('regista_film');
         Schema::dropIfExists('registi');
         Schema::dropIfExists('films');
-        //Schema::dropIfExists('locandina_film');
+        Schema::dropIfExists('locandina_film');
     }
 };
