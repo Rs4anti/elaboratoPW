@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Support\Facades\Storage;
 
 class DataLayer
 {
@@ -62,7 +63,7 @@ class DataLayer
         }
     }
 
-    public function editFilm($id, $titolo, $annoUscita, $linkTrailer, $trama, $durata, $registi, $generi, $lingueAudio , $sottotitoli){
+    public function editFilm($id, $titolo, $locandina, $annoUscita, $linkTrailer, $trama, $durata, $registi, $generi, $lingueAudio , $sottotitoli){
         $film = Film::find($id);
 
         $film->titolo = $titolo;
@@ -117,7 +118,29 @@ class DataLayer
              $film->sottotitoli()->attach($sub);
          }
 
-
+         if ($locandina) {
+            // Recupera la locandina attuale
+            $prevLocandina = $film->locandinaFilm;
+    
+            // Elimina il file della locandina attuale se esiste
+            if ($prevLocandina) {
+                Storage::delete('public/' . $prevLocandina->path_locandina);
+    
+                // Aggiorna il path della locandina
+                $path = $locandina->store('locandine', 'public');
+                $prevLocandina->path_locandina = $path;
+                $prevLocandina->save();
+            } else {
+                // Salva il nuovo file di locandina
+                $path = $locandina->store('locandine', 'public');
+    
+                // Crea una nuova entry nella tabella locandina
+                $newLocandina = new Locandina();
+                $newLocandina->path_locandina = $path;
+                $newLocandina->film_id = $film->id; // Associa la locandina al film
+                $newLocandina->save();
+            }
+        }
 
     }
 

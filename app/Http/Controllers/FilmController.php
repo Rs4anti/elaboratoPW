@@ -6,6 +6,7 @@ use App\Models\DataLayer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
+
 class FilmController extends Controller
 {
     public function index(){
@@ -90,12 +91,19 @@ class FilmController extends Controller
         $registiSelezionati = $request->input('registi', []);
         $lingueAudioSel = $request->input('lingueAudio', []);
         $lingueSubSel = $request->input('lingueSub', []);
+        $locandina = $request->file('locandina');
+
 
         $dl = new DataLayer();
+        // Gestione del caricamento della locandina
 
-        $dl->editFilm($id,  $request->input('titolo'), $request->input('anno_uscita'), $request->input('trailer'),
+            //$locandina = $film->locandinaFilm;
+        
+
+        $dl->editFilm($id,  $request->input('titolo'), $locandina, $request->input('anno_uscita'), $request->input('trailer'),
                             $request->input('trama'), $request->input('durata'),
                             $registiSelezionati, $generiSelezionati, $lingueAudioSel, $lingueSubSel);
+   
         
         return Redirect::to(route('film.index'));
         

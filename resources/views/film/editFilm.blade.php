@@ -55,6 +55,19 @@
             </div>
 
             <div class="form-group row mb-3">
+        <label for="locandina" class="col-md-2 col-form-label">Locandina</label>
+        <div class="col-md-10">
+            @if ($film->locandinaFilm)
+                    <div class="mb-3">
+                        <img src="{{ asset('storage/' . $film->locandinaFilm->path_locandina) }}" class="img-fluid rounded" alt="Locandina">
+                        <p>Attuale locandina</p>
+                    </div>
+                    @endif
+                    <input type="file" class="form-control" id="locandina" name="locandina">
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
                 <div class="col-md-2">
                     <label for="registi">Regia</label>
                 </div>
