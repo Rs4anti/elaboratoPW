@@ -148,6 +148,7 @@
                                     <input class="form-check-input" type="checkbox" name="lingueAudio[]" value="{{ $lingua->id }}" id="lingua_{{ $lingua->id }}"
                                     @if((isset($film->id)) && ($film->lingueAudio->contains($lingua)))
                                         checked
+                                    @elseif($lingua->lingua == 'Italiano') checked
                                     @endif
                                     >
                                     <label class="form-check-label" value="{{ $lingua->id }}">
@@ -172,6 +173,7 @@
                                     <input class="form-check-input" type="checkbox" name="lingueSub[]" value="{{ $sub->id }}" id="lingua_{{ $sub->id }}"
                                     @if((isset($film->id)) && ($film->sottotitoli->contains($sub)))
                                         checked
+                                    @elseif($sub->lingua == 'nessuna') checked
                                     @endif
                                     >
                                     <label class="form-check-label" value="{{ $sub->id }}">

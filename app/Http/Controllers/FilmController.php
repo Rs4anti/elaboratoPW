@@ -19,11 +19,11 @@ class FilmController extends Controller
         $dl = new DataLayer();
         $listaRegisti = $dl->listRegisti();
         $generi = $dl->listGeneri();
-        //$lingueAudio = $dl->listLingue();
-        //$lingueSubs = $dl->listLingue();
+        $lingueAudio = $dl->listLingue();
+        $sottotitoli = $dl->listLingue();
 
-        return view('film.editFilm')->with('registi', $listaRegisti)->with('generi', $generi);
-                                   // ->with('lingueAudio', $lingueAudio)->with('lingueSubs', $lingueSubs);
+        return view('film.editFilm')->with('registi', $listaRegisti)->with('generi', $generi)
+                                    ->with('lingueAudio', $lingueAudio)->with('lingueSub', $sottotitoli);
     }
 
     public function store(Request $request){
@@ -31,6 +31,8 @@ class FilmController extends Controller
         //TODO: Gestire validazione request?
         $generiSelezionati = $request->input('generi', []);
         $registiScelti = $request->input('registi', []);
+        $lingueAudioSel = $request->input('lingueAudio', []);
+        $lingueSubSel = $request->input('lingueSub', []);
 
         $dl = new DataLayer();
 
@@ -39,7 +41,9 @@ class FilmController extends Controller
                     $request->input('trama'),
                     $request->input('durata'),
                     $registiScelti,
-                    $generiSelezionati
+                    $generiSelezionati,
+                    $lingueAudioSel,
+                    $lingueSubSel
                 );
 
         return Redirect::to(route('film.index'));

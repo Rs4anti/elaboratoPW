@@ -28,7 +28,7 @@ class DataLayer
         }
     }
 
-    public function addFilm($titolo, $annoUscita, $trama, $durata, $registi, $generi){
+    public function addFilm($titolo, $annoUscita, $trama, $durata, $registi, $generi, $lingueAudio, $sottotitoli){
             $film = new Film;
             $film->titolo = $titolo;
             $film->anno_uscita = $annoUscita;
@@ -45,6 +45,15 @@ class DataLayer
                 $film->generi()->attach($genere);
             }
 
+            //aggiungo la lista delle lingue audio del film
+            foreach($lingueAudio as $lingua){
+            $film->lingueAudio()->attach($lingua);
+            }
+
+            //aggiungo la lista delle lingue audio del film
+            foreach($sottotitoli as $sub){
+            $film->sottotitoli()->attach($sub);
+        }
     }
 
     public function editFilm($id, $titolo, $annoUscita, $trama, $durata, $registi, $generi, $lingueAudio , $sottotitoli){
