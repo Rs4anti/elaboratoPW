@@ -6,11 +6,13 @@ use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Database\Factories\RegistaFactory;
 use Database\Factories\CinemFactory;
+use Database\Factories\LocandinaFactory;
 use Illuminate\Database\Seeder;
 use App\Models\Regista;
 use App\Models\Film;
 use App\Models\Lingua;
 use App\Models\Genere;
+use App\Models\Locandina;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,16 +29,16 @@ class DatabaseSeeder extends Seeder
     private function populateDB(){
         
         //Creo 100 registi
-        $registi = Regista::factory()->count(100)->create();
+        $registi = Regista::factory()->count(15)->create();
 
         // Crea film e associa casualmente da 1 a 3 registi per ogni film
-        Film::factory()->count(75)->create()->each(function ($film) use ($registi) {
+        Film::factory()->count(30)->create()->each(function ($film) use ($registi) {
             // Prendo un subset casuale di registi (da 1 a 3)
             $randomRegisti = $registi->random(rand(1, 3));
-            $film->registi()->attach($randomRegisti);
-        });
+            $film->registi()->attach($randomRegisti);            
+           });
 
-        $films = Film::all();
+        
         Lingua::factory()->count(1)->create(['lingua' => 'nessuna']); //In caso non serva visualizzare info lingua (es.sub assenti)
         Lingua::factory()->count(1)->create(['lingua' => 'Inglese']);
         Lingua::factory()->count(1)->create(['lingua' => 'Italiano']);
@@ -66,7 +68,9 @@ class DatabaseSeeder extends Seeder
         Lingua::factory()->count(1)->create(['lingua' => 'Croato']);
         Lingua::factory()->count(1)->create(['lingua' => 'Serbo']);
 
+        $films = Film::all();
         $lingue = Lingua::all();
+
 
 
         foreach($films as $film){
@@ -120,7 +124,14 @@ class DatabaseSeeder extends Seeder
             $numeroGeneri = rand(1,5);
             $generiScelti = $generi->random($numeroGeneri);
             $film->generi()->attach($generiScelti);
+            
          }
+
+         foreach ($films as $film) {
+            LocandinaFactory::new()->create([
+                'film_id' => $film->id,
+            ]);
+        }
          
 
 

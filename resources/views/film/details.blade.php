@@ -8,7 +8,7 @@
 <div class="card mb-3" style="max-width: 100%;">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="/img/Locandine/scarfaceLocandina.jpg" class="img-fluid rounded-start" alt="...">
+      <img src="{{ asset('storage/' . $locandina->path_locandina) }}" class="img-fluid rounded-start" alt="...">
     </div>
     <div class="col-md-8">
       <div class="card-body">

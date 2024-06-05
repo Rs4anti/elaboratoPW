@@ -55,7 +55,8 @@ class FilmController extends Controller
         $film = $dl->findFilmById($id);
 
         if($film !== null){
-            return view('film.details')->with('film', $film);
+           $locandina = $film->locandinaFilm;
+            return view('film.details')->with('film', $film)->with('locandina', $locandina);
         }else{
             return view('errors.404'); //->with('messagge', 'FILM ID SBAGLIATO!')
         }

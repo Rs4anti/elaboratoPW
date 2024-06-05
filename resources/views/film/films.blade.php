@@ -21,8 +21,12 @@
         @foreach ($films_list as $film)
             <!-- Inizio card per un film -->
             <div class="col-md-4 mb-4">
+                @php
+                $locandina = $film->locandinaFilm;
+                $locandinaPath = $locandina ? asset('storage/' . $locandina->path_locandina) : null;
+                @endphp
                 <!--TODO: gestire locandine-->
-                <div class="card h-100" style="background-image: url('{{$film->locandina}}'); background-size: cover; background-position: center;">
+                <div class="card h-100" style="background-image: url('{{ $locandinaPath }}'); background-size: cover; background-position: center;">
                     <div class="card-body text-white" style="background: rgba(0, 0, 0, 0.5);">
                         <h4 class="card-title film-title"><strong>{{ $film->titolo }}</strong></h4>
                         <h5 class="card-subtitle mb-2 regia">Regia:
