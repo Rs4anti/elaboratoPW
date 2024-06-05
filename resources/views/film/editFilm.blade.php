@@ -85,29 +85,29 @@
             </div>
 
 
-            <div class="form-group row mb-3">
-    <div class="col-md-2">
-        <label for="generi">Generi</label>
-    </div>
-    <div class="col-md-10">
-        <div class="row">
-            @foreach($generi as $genere)
-                <div class="col-md-4 col-sm-12">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="generi[]" value="{{ $genere->id }}" id="genere_{{ $genere->id }}"
-                        @if((isset($film->id)) && ($film->generi->contains($genere)))
-                            checked
-                        @endif
-                        >
-                        <label class="form-check-label" value="{{ $genere->id }}">
-                            {{ $genere->nome }}
-                        </label>
-                    </div>
-                </div>
-            @endforeach
+    <div class="form-group row mb-3">
+        <div class="col-md-2">
+            <label for="generi">Generi</label>
         </div>
+            <div class="col-md-10">
+                <div class="row">
+                    @foreach($generi as $genere)
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="generi[]" value="{{ $genere->id }}" id="genere_{{ $genere->id }}"
+                                @if((isset($film->id)) && ($film->generi->contains($genere)))
+                                    checked
+                                @endif
+                                >
+                                <label class="form-check-label" value="{{ $genere->id }}">
+                                    {{ $genere->nome }}
+                                </label>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
     </div>
-</div>
 
 
             <div class="form-group row mb-3">
@@ -136,6 +136,53 @@
                 </div>
             </div>
 
+            <div class="form-group row mb-3">
+                <div class="col-md-2">
+                    <label for="lingueAudio">Lingua audio</label>
+                </div>
+                <div class="col-md-10">
+                    <div class="row">
+                        @foreach($lingueAudio as $lingua)
+                            <div class="col-md-4 col-sm-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="lingueAudio[]" value="{{ $lingua->id }}" id="lingua_{{ $lingua->id }}"
+                                    @if((isset($film->id)) && ($film->lingueAudio->contains($lingua)))
+                                        checked
+                                    @endif
+                                    >
+                                    <label class="form-check-label" value="{{ $lingua->id }}">
+                                        {{ $lingua->lingua }}
+                                    </label>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                <div class="col-md-2">
+                    <label for="lingueSub">Lingua sottotitoli</label>
+                </div>
+                <div class="col-md-10">
+                    <div class="row">
+                        @foreach($lingueSub as $sub)
+                            <div class="col-md-4 col-sm-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="lingueSub[]" value="{{ $sub->id }}" id="lingua_{{ $sub->id }}"
+                                    @if((isset($film->id)) && ($film->sottotitoli->contains($sub)))
+                                        checked
+                                    @endif
+                                    >
+                                    <label class="form-check-label" value="{{ $sub->id }}">
+                                        {{ $sub->lingua }}
+                                    </label>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
 
             <div class="form-group row mb-3">
                 <div class="col-md-10 offset-md-2">

@@ -37,7 +37,37 @@ class DatabaseSeeder extends Seeder
         });
 
         $films = Film::all();
-        $lingue = Lingua::factory()->count(15)->create();
+        Lingua::factory()->count(1)->create(['lingua' => 'nessuna']); //In caso non serva visualizzare info lingua (es.sub assenti)
+        Lingua::factory()->count(1)->create(['lingua' => 'Inglese']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Italiano']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Francese']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Spagnolo']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Tedesco']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Portoghese']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Russo']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Cinese']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Giapponese']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Coreano']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Arabo']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Hindi']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Persiano']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Turco']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Olandese']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Svedese']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Norvegese']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Danese']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Finlandese']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Greco']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Polacco']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Ceco']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Ungherese']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Rumeno']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Bulgaro']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Croato']);
+        Lingua::factory()->count(1)->create(['lingua' => 'Serbo']);
+
+        $lingue = Lingua::all();
+
 
         foreach($films as $film){
             $numeroLingue = rand(1,5);

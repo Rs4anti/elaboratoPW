@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','PROGRAMMAZIONE')
+@section('title','Multisale Garden Iride')
 
 @section('breadcrumb')
 <li class="breadcrumb-item" aria-current="page"><a href="{{ route('home') }}">Home</a></li>

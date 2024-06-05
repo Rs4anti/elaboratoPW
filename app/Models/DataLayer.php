@@ -47,7 +47,7 @@ class DataLayer
 
     }
 
-    public function editFilm($id, $titolo, $annoUscita, $trama, $durata, $registi, $generi){
+    public function editFilm($id, $titolo, $annoUscita, $trama, $durata, $registi, $generi, $lingueAudio , $sottotitoli){
         $film = Film::find($id);
 
         $film->titolo = $titolo;
@@ -78,6 +78,30 @@ class DataLayer
         foreach($generi as $genere){
             $film->generi()->attach($genere);
         }
+
+        //cancello lingue audio associate al film
+        $prevLingue = $film->lingueAudio;
+        foreach($prevLingue as $prevLingua){
+            $film->lingueAudio()->detach($prevLingua->id);
+        }
+
+        //aggiorno la lista delle lingue audio del film
+        foreach($lingueAudio as $lingua){
+            $film->lingueAudio()->attach($lingua);
+        }
+
+         //cancello lingue Sottotitoli associate al film
+         $prevSubs = $film->sottotitoli;
+         foreach($prevSubs as $sub){
+             $film->sottotitoli()->detach($sub->id);
+         }
+ 
+         //aggiorno la lista delle lingue sottotitoli del film
+         foreach($sottotitoli as $sub){
+             $film->sottotitoli()->attach($sub);
+         }
+
+
 
     }
 
@@ -136,11 +160,16 @@ class DataLayer
         return Genere::orderBy('nome', 'asc')->get();
     }
 
+    public function listLingue(){
+        return Lingua::orderBy('lingua', 'asc')->get();
+    }
     public function lingueAudioFilm($filmId){
         $film = Film::find($filmId);
+        
 
         if($film){
-            return $film->lingueAudio();
+            $lingue = $film->lingueAudio();
+            return $lingue;
         }
         else return null;
     }
@@ -152,10 +181,6 @@ class DataLayer
             return $film->sottotitoli();
         }
         else return null;
-    }
-
-    public function listLingue(){
-        return Genere::orderBy('lingua', 'asc');
     }
 
     public function listProiezioni(){

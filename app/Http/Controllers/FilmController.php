@@ -19,8 +19,11 @@ class FilmController extends Controller
         $dl = new DataLayer();
         $listaRegisti = $dl->listRegisti();
         $generi = $dl->listGeneri();
+        //$lingueAudio = $dl->listLingue();
+        //$lingueSubs = $dl->listLingue();
 
         return view('film.editFilm')->with('registi', $listaRegisti)->with('generi', $generi);
+                                   // ->with('lingueAudio', $lingueAudio)->with('lingueSubs', $lingueSubs);
     }
 
     public function store(Request $request){
@@ -59,8 +62,8 @@ class FilmController extends Controller
         $registi = $dl->listRegisti();
         $film = $dl->findFilmById($id);
         $generi = $dl->listGeneri();
-        $linguaAudio = $dl -> lingueAudioFilm($id);
-        $sottotitoli = $dl -> lingueSubFilm($id);
+        $lingueAudio = $dl -> listLingue();
+        $sottotitoli = $dl -> listLingue();
 
         if($film !== null){
             //VIEW per modifica $film
@@ -68,8 +71,8 @@ class FilmController extends Controller
                         ->with('film', $film)
                         ->with('registi', $registi)
                         ->with('generi', $generi)
-                        ->with('audio', $linguaAudio)
-                        ->with('sottotitoli', $sottotitoli);
+                        ->with('lingueAudio', $lingueAudio)
+                        ->with('lingueSub', $sottotitoli);
         } else{
             return view('errors.404'); //->with('messagge', 'FILM ID SBAGLIATO!')
         }
@@ -79,11 +82,13 @@ class FilmController extends Controller
 
         $generiSelezionati = $request->input('generi', []);
         $registiSelezionati = $request->input('registi', []);
+        $lingueAudioSel = $request->input('lingueAudio', []);
+        $lingueSubSel = $request->input('lingueSub', []);
 
         $dl = new DataLayer();
 
         $dl->editFilm($id, $request->input('titolo'), $request->input('anno_uscita'), $request->input('trama'),
-                        $request->input('durata'), $registiSelezionati, $generiSelezionati);
+                        $request->input('durata'), $registiSelezionati, $generiSelezionati, $lingueAudioSel, $lingueSubSel);
         
         return Redirect::to(route('film.index'));
         
