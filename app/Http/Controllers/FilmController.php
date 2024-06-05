@@ -38,6 +38,7 @@ class FilmController extends Controller
 
         $dl->addFilm($request->input('titolo'), 
                     $request->input('anno_uscita'), 
+                    $request->input('trailer'),
                     $request->input('trama'),
                     $request->input('durata'),
                     $registiScelti,
@@ -91,8 +92,9 @@ class FilmController extends Controller
 
         $dl = new DataLayer();
 
-        $dl->editFilm($id, $request->input('titolo'), $request->input('anno_uscita'), $request->input('trama'),
-                        $request->input('durata'), $registiSelezionati, $generiSelezionati, $lingueAudioSel, $lingueSubSel);
+        $dl->editFilm($id,  $request->input('titolo'), $request->input('anno_uscita'), $request->input('trailer'),
+                            $request->input('trama'), $request->input('durata'),
+                            $registiSelezionati, $generiSelezionati, $lingueAudioSel, $lingueSubSel);
         
         return Redirect::to(route('film.index'));
         

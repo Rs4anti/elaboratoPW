@@ -11,7 +11,7 @@ class Film extends Model
 
     protected $table = 'films';
 
-    protected $fillable = ['titolo', 'trama', 'anno_uscita', 'durata'];
+    protected $fillable = ['titolo', 'trama', 'anno_uscita', 'durata', 'link_trailer'];
 
 
     public function proiezioni(){

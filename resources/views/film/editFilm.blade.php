@@ -136,6 +136,21 @@
                 </div>
             </div>
 
+
+            <div class="form-group row mb-3">
+                <div class="col-md-2">
+                    <label for="trailer">Link Trailer</label>
+                </div>
+                <div class="col-md-10">
+                    @if(isset($film->id))
+                        <input class="form-control" type="text" name="trailer" value="{{ $film->link_trailer }}"/>
+                    @else
+                        <input class="form-control" type="text" name="trailer"/>
+                    @endif
+                </div>
+            </div>
+
+
             <div class="form-group row mb-3">
                 <div class="col-md-2">
                     <label for="lingueAudio">Lingua audio</label>

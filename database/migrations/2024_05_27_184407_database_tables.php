@@ -17,6 +17,7 @@ return new class extends Migration
             $table -> text('trama');
             $table -> integer('anno_uscita');
             $table -> integer('durata');
+            $table -> text('link_trailer');
             $table -> timestamps();
        });
 

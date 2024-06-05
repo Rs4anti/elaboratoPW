@@ -28,12 +28,13 @@ class DataLayer
         }
     }
 
-    public function addFilm($titolo, $annoUscita, $trama, $durata, $registi, $generi, $lingueAudio, $sottotitoli){
+    public function addFilm($titolo, $annoUscita,  $linkTrailer, $trama, $durata, $registi, $generi, $lingueAudio, $sottotitoli){
             $film = new Film;
             $film->titolo = $titolo;
             $film->anno_uscita = $annoUscita;
             $film->durata = $durata;
             $film->trama = $trama;
+            $film->link_trailer = $linkTrailer;
 
             $film->save();
 
@@ -56,13 +57,14 @@ class DataLayer
         }
     }
 
-    public function editFilm($id, $titolo, $annoUscita, $trama, $durata, $registi, $generi, $lingueAudio , $sottotitoli){
+    public function editFilm($id, $titolo, $annoUscita, $linkTrailer, $trama, $durata, $registi, $generi, $lingueAudio , $sottotitoli){
         $film = Film::find($id);
 
         $film->titolo = $titolo;
         $film->anno_uscita = $annoUscita;
         $film->durata = $durata;
         $film->trama = $trama;
+        $film->link_trailer = $linkTrailer;
 
         $film->save();
 

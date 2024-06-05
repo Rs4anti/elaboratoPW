@@ -17,7 +17,8 @@ class FilmFactory extends Factory
             'titolo' => $this->faker->sentence(rand(1,10)),
             'trama'  => $this->faker->paragraph(),
             'anno_uscita' => $this->faker->year(),
-            'durata' => $this->faker->numberBetween(50, 250)
+            'durata' => $this->faker->numberBetween(50, 250),
+            'link_trailer' => $this->faker->url()
         ];
     }
 }
