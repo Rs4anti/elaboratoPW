@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'modifica programmazione Film')
+@section('title', 'Modifica programmazione Film')
 
 
 @section('body')

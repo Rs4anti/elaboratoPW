@@ -49,7 +49,7 @@
                     </li>
                     
                     <li class="nav-item"> 
-                      <a href="#" class="nav-link">
+                      <a href="{{route('programmazione.index')}}" class="nav-link">
                       <i class="bi bi-clock-history"></i>    
                         Inserisci programmazione</a></li>
                     </ul>
