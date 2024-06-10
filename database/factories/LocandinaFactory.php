@@ -14,8 +14,8 @@ class LocandinaFactory extends Factory
     protected $model = Locandina::class;
 
     // Proprietà con valori predefiniti
-    private $width = 640;
-    private $height = 480;
+    private $width = 480;
+    private $height = 640;
     private $category = 'animals'; // Categoria predefinita
     private $randomize = true;
     private $word = null;

@@ -19,28 +19,6 @@
     @endif
         @csrf
 
-
-        <!--gestione locandina
-    <div class="form-group row mb-3">
-        <label for="locandina" class="col-md-2 col-form-label">Locandina</label>
-        <div class="col-md-10">
-            @if(isset($film->locandina))
-                <div class="mb-2">
-                    <img src="#" alt="Locandina" style="width: 150px;">
-                </div>
-                <div>
-                    <input type="file" class="form-control" name="locandina" id="locandina">
-                </div>
-                <div class="mt-2">
-                    <a href="{{ route('films.removeLocandina', $film->id) }}" class="btn btn-danger">Elimina Locandina</a>
-                </div>
-            @else
-                <input type="file" class="form-control" name="locandina" id="locandina">
-            @endif
-        </div>
-    </div>
-    -->
-
         <div class="form-group row mb-3">
                 <div class="col-md-2">
                     <label for="titolo">Titolo</label>
@@ -54,18 +32,19 @@
                 </div>
             </div>
 
+            <!--
             <div class="form-group row mb-3">
-        <label for="locandina" class="col-md-2 col-form-label">Locandina</label>
-        <div class="col-md-10">
-            @if ($film->locandinaFilm)
+                <label for="locandina" class="col-md-2 col-form-label">Locandina</label>
+            <div class="col-md-10">
+                CONTROLLO SE FILM ID C'è
                     <div class="mb-3">
-                        <img src="{{ asset('storage/' . $film->locandinaFilm->path_locandina) }}" class="img-fluid rounded" alt="Locandina">
+                        <img src="" class="img-fluid rounded" alt="Locandina" onchange="previewImage(this)">
                         <p>Attuale locandina</p>
                     </div>
-                    @endif
-                    <input type="file" class="form-control" id="locandina" name="locandina">
-                </div>
-            </div>
+            
+            <input type="file" class="form-control" id="locandina" name="locandina">
+        </div>
+    </div>-->
 
             <div class="form-group row mb-3">
                 <div class="col-md-2">

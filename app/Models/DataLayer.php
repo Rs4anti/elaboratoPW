@@ -63,7 +63,7 @@ class DataLayer
         }
     }
 
-    public function editFilm($id, $titolo, $locandina, $annoUscita, $linkTrailer, $trama, $durata, $registi, $generi, $lingueAudio , $sottotitoli){
+    public function editFilm($id, $titolo, $annoUscita, $linkTrailer, $trama, $durata, $registi, $generi, $lingueAudio , $sottotitoli){
         $film = Film::find($id);
 
         $film->titolo = $titolo;
@@ -118,31 +118,7 @@ class DataLayer
              $film->sottotitoli()->attach($sub);
          }
 
-         if ($locandina) {
-            // Recupera la locandina attuale
-            $prevLocandina = $film->locandinaFilm;
-    
-            // Elimina il file della locandina attuale se esiste
-            if ($prevLocandina) {
-                Storage::delete('public/' . $prevLocandina->path_locandina);
-    
-                // Aggiorna il path della locandina
-                $path = $locandina->store('locandine', 'public');
-                $prevLocandina->path_locandina = $path;
-                $prevLocandina->save();
-            } else {
-                // Salva il nuovo file di locandina
-                $path = $locandina->store('locandine', 'public');
-    
-                // Crea una nuova entry nella tabella locandina
-                $newLocandina = new Locandina();
-                $newLocandina->path_locandina = $path;
-                $newLocandina->film_id = $film->id; // Associa la locandina al film
-                $newLocandina->save();
-            }
-        }
-
-    }
+}
 
     public function deleteFilm($id){
 
@@ -171,9 +147,9 @@ class DataLayer
                 $film->sottotitoli()->detach($sub->id);
             }
 
-            //foreach($proiezioni as $proiezione){
-            //    $film->proiezioni()->detach($proiezione->id);
-            //}
+            foreach($proiezioni as $proiezione){
+                $film->proiezioni()->detach($proiezione->id);
+            }
     
             //TODO: 2nd ver SE ELIMINO UN FILM ELIMINO ANCHE LE PROIEZIONI ASSOCIATE (?)
     
@@ -248,16 +224,70 @@ class DataLayer
     //tipo find proiezione per film
     // find proiezione per film, data
     // find proiezione per film, data e ora
+    public function findProiezioniCinema($cinemaId){
+           // Trova il cinema
+            $cinema = Cinema::find($cinemaId);
+    
+            // Recupera tutte le sale del cinema
+            $saleCinema = $cinema->sale()->pluck('id')->toArray();
+    
+            // Recupera tutte le proiezioni nelle sale del cinema
+            $proiezioni = Proiezione::whereIn('sala_id', $saleCinema)->get();
+
+            // Recupera i film associati alle proiezioni
+            $filmIds = $proiezioni->pluck('film_id')->unique();
+            $filmProiezione = Film::whereIn('id', $filmIds)
+                         ->with(['registi', 'generi']) // Eager load registi e generi
+                         ->get();
+
+            return $filmProiezione;
+        }
 
     public function findProiezioneById($id){
         return Proiezione::find($id);
     }
 
-    public function findProiezioneByDate($date){
-        return Proiezione::where( 'data', $date)->get();
-        //se voglio solo la prima occorrenza
-        //return Proiezione::where( 'data', $date)->first();
+    public function findProiezioniDateCinema($cinemaId) {
+        // Trova il cinema
+        $cinema = Cinema::find($cinemaId);
+        
+        // Recupera tutte le sale del cinema
+        $saleCinema = $cinema->sale()->pluck('id')->toArray();
+        
+        // Recupera tutte le proiezioni nelle sale del cinema
+        $proiezioni = Proiezione::whereIn('sala_id', $saleCinema)
+                                ->with('film') // Eager load il film associato
+                                ->get();
+    
+        // Raggruppa le proiezioni per film e data
+        $proiezioniPerData = $proiezioni->groupBy(function($proiezione) {
+            return $proiezione->data; // Supponendo che la colonna della data si chiami 'data_proiezione'
+        });
+    
+        return $proiezioniPerData;
     }
+
+    public function findFilmDetailsWithProiezioni($cinemaId) {
+        // Trova il cinema
+        $cinema = Cinema::find($cinemaId);
+    
+        // Recupera tutte le sale del cinema
+        $saleCinema = $cinema->sale()->pluck('id')->toArray();
+    
+        // Recupera tutte le proiezioni nelle sale del cinema
+        $proiezioni = Proiezione::whereIn('sala_id', $saleCinema)
+                                ->with(['film', 'sala']) // Eager load film e sala associati
+                                ->get();
+    
+        // Raggruppa le proiezioni per film
+        $filmProiezioni = $proiezioni->groupBy(function($proiezione) {
+            return $proiezione->film->id;
+        });
+    
+        return $filmProiezioni;
+    }
+    
+    
 
     public function findProiezioneByDateAndTime($date, $time){
         return Proiezione::where( 'data', $date)->where('ora', $time)->get();

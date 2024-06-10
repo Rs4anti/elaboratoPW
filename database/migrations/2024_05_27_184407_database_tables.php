@@ -68,48 +68,50 @@ return new class extends Migration
             $table -> timestamps();
         });
 
-        //Schema::create('indirizzo', function (Blueprint $table) {
-        //    $table -> id();
-        //    $table -> unsignedBigInteger('cinema_id');
-        //    $table -> string('nazione');
-        //    $table -> string('regione');
-        //    $table -> string('provincia');
-        //    $table -> string('citta');
-        //    $table -> string('via');
-        //    $table -> integer('civico');
-        //    $table -> string('CAP');
-        //    $table -> timestamps();
-        //});
+        Schema::create('indirizzo', function (Blueprint $table) {
+           $table -> id();
+           $table -> unsignedBigInteger('cinema_id');
+           $table -> string('nazione');
+           $table -> string('regione');
+           $table -> string('provincia');
+           $table -> string('citta');
+           $table -> string('via');
+           $table -> integer('civico');
+           $table -> string('CAP');
+           $table -> timestamps();
+        });
 
-        //Schema::create('cinema', function (Blueprint $table){
-        //    $table -> id();
-        //    $table -> string('nome');
-        //    $table -> timestamps();
-        //});
+        Schema::create('cinema', function (Blueprint $table){
+           $table -> id();
+           $table -> string('nome');
+           $table -> timestamps();
+        });
 
-        //Schema::create('sale', function(Blueprint $table){
-        //    $table -> id();
-        //    $table -> unsignedBigInteger('cinema_id');
-        //    $table -> string('nome');
-        //    $table -> unsignedInteger('n_posti');
-        //    $table -> timestamps();
-        //});
+        Schema::create('sale', function(Blueprint $table){
+           $table -> id();
+           $table -> unsignedBigInteger('cinema_id');
+           $table -> string('nome');
+           $table -> unsignedInteger('n_posti');
+           $table -> timestamps();
+        });
 
-        //Schema::create('proiezioni', function(Blueprint $table){
+         
+        Schema::create('proiezioni', function(Blueprint $table){
+           $table -> id();
+           $table -> unsignedBigInteger('film_id');
+           $table -> unsignedBigInteger('sala_id');
+           $table -> date('data');
+           $table -> time('ora');
+           $table -> timestamps();
+        });
+        
+
+        //Schema::create('locandina_film', function(Blueprint $table){
         //    $table -> id();
         //    $table -> unsignedBigInteger('film_id');
-        //    $table -> unsignedBigInteger('sala_id');
-        //    $table -> date('data');
-        //    $table -> time('ora');
+        //    $table -> text('path_locandina');
         //    $table -> timestamps();
-        //});
-
-        Schema::create('locandina_film', function(Blueprint $table){
-            $table -> id();
-            $table -> unsignedBigInteger('film_id');
-            $table -> text('path_locandina');
-            $table -> timestamps();
-        });
+       // });
 
         // VINCOLI DI INTEGRITA REFERENZIALE
 
@@ -150,29 +152,31 @@ return new class extends Migration
             $table->foreign('regista_id')->references('id')->on('regista');
         });
 
-
+        
         //Per 'proiezione'
-        //Schema::table('proiezioni', function(Blueprint $table){
-        //    $table->foreign('film_id')->references('id')->on('films');
-        //});
+        Schema::table('proiezioni', function(Blueprint $table){
+           $table->foreign('film_id')->references('id')->on('films');
+        });
 
-        //Schema::table('proiezioni', function(Blueprint $table){
-        //    $table->foreign('sala_id')->references('id')->on('sale');
-        //});
+         
+        Schema::table('proiezioni', function(Blueprint $table){
+           $table->foreign('sala_id')->references('id')->on('sale');
+        });
+        
 
 
         //Per 'sala'
-        //Schema::table('sale', function(Blueprint $table) {
-        //    $table->foreign('cinema_id')->references('id')->on('cinema');
-        //});
-
-        Schema::table('locandina_film', function(Blueprint $table){
-            $table->foreign('film_id')->references('id')->on('films');
+        Schema::table('sale', function(Blueprint $table) {
+           $table->foreign('cinema_id')->references('id')->on('cinema');
         });
 
-        //Schema::table('indirizzo', function(Blueprint $table){
-        //    $table->foreign('cinema_id')->references('id')->on('cinema');
+        //Schema::table('locandina_film', function(Blueprint $table){
+        //    $table->foreign('film_id')->references('id')->on('films');
         //});
+
+        Schema::table('indirizzo', function(Blueprint $table){
+           $table->foreign('cinema_id')->references('id')->on('cinema');
+        });
     }
 
     /**
@@ -180,11 +184,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //Schema::dropIfExists('proiezioni');
-        //Schema::dropIfExists('sala_cinema');
-        //Schema::dropIfExists('sale');
-        //Schema::dropIfExists('cinema');
-        //Schema::dropIfExists('indirizzo');
+        Schema::dropIfExists('proiezioni');
+        Schema::dropIfExists('sala_cinema');
+        Schema::dropIfExists('sale');
+        Schema::dropIfExists('cinema');
+        Schema::dropIfExists('indirizzo');
         Schema::dropIfExists('lingua_sottotitoli');
         Schema::dropIfExists('lingua_audio');
         Schema::dropIfExists('lingue');

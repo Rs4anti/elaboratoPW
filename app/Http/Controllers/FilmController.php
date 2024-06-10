@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\DataLayer;
 
+use App\Models\Locandina;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -56,8 +57,8 @@ class FilmController extends Controller
         $film = $dl->findFilmById($id);
 
         if($film !== null){
-           $locandina = $film->locandinaFilm;
-            return view('film.details')->with('film', $film)->with('locandina', $locandina);
+           //$locandina = $film->locandinaFilm;
+            return view('film.details')->with('film', $film);//->with('locandina', $locandina);
         }else{
             return view('errors.404'); //->with('messagge', 'FILM ID SBAGLIATO!')
         }
@@ -71,6 +72,7 @@ class FilmController extends Controller
         $generi = $dl->listGeneri();
         $lingueAudio = $dl -> listLingue();
         $sottotitoli = $dl -> listLingue();
+        $locandina = $dl->locandinaFilm($id);
 
         if($film !== null){
             //VIEW per modifica $film
@@ -79,7 +81,8 @@ class FilmController extends Controller
                         ->with('registi', $registi)
                         ->with('generi', $generi)
                         ->with('lingueAudio', $lingueAudio)
-                        ->with('lingueSub', $sottotitoli);
+                        ->with('lingueSub', $sottotitoli)
+                        ->with('locandina', $locandina);
         } else{
             return view('errors.404'); //->with('messagge', 'FILM ID SBAGLIATO!')
         }
@@ -91,7 +94,6 @@ class FilmController extends Controller
         $registiSelezionati = $request->input('registi', []);
         $lingueAudioSel = $request->input('lingueAudio', []);
         $lingueSubSel = $request->input('lingueSub', []);
-        $locandina = $request->file('locandina');
 
 
         $dl = new DataLayer();
@@ -100,7 +102,7 @@ class FilmController extends Controller
             //$locandina = $film->locandinaFilm;
         
 
-        $dl->editFilm($id,  $request->input('titolo'), $locandina, $request->input('anno_uscita'), $request->input('trailer'),
+        $dl->editFilm($id,  $request->input('titolo'), $request->input('anno_uscita'), $request->input('trailer'),
                             $request->input('trama'), $request->input('durata'),
                             $registiSelezionati, $generiSelezionati, $lingueAudioSel, $lingueSubSel);
    

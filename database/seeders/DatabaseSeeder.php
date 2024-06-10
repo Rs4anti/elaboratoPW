@@ -4,15 +4,18 @@ namespace Database\Seeders;
 
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Database\Factories\RegistaFactory;
-use Database\Factories\CinemFactory;
+
 use Database\Factories\LocandinaFactory;
 use Illuminate\Database\Seeder;
 use App\Models\Regista;
 use App\Models\Film;
 use App\Models\Lingua;
 use App\Models\Genere;
-use App\Models\Locandina;
+use App\Models\Cinema;
+use App\Models\Indirizzo;
+use App\Models\Sala;
+use App\Models\Proiezione;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -32,7 +35,7 @@ class DatabaseSeeder extends Seeder
         $registi = Regista::factory()->count(15)->create();
 
         // Crea film e associa casualmente da 1 a 3 registi per ogni film
-        Film::factory()->count(30)->create()->each(function ($film) use ($registi) {
+        Film::factory()->count(15)->create()->each(function ($film) use ($registi) {
             // Prendo un subset casuale di registi (da 1 a 3)
             $randomRegisti = $registi->random(rand(1, 3));
             $film->registi()->attach($randomRegisti);            
@@ -81,25 +84,29 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        //$cinemas = Cinema::factory()->count(2)->create()->each(function ($cinema){
-        //    Indirizzo::factory()->count(1)->create(['cinema_id' => $cinema->id]);
-        //    Sala::factory()->count(4)->create(['cinema_id' => $cinema->id]);
-        //});
+        $cinemas = Cinema::factory()->count(2)->create()->each(function ($cinema){
+           Indirizzo::factory()->count(1)->create(['cinema_id' => $cinema->id]);
+           Sala::factory()->count(2)->create(['cinema_id' => $cinema->id]);
+        });
         
          // Recupero tutte le sale
-        // $sale = Sala::all();
- 
-         // Itera sui film
-        // foreach ($films as $film) {
-             // Ottieni una sala casuale per la proiezione
-        //     $sala = $sale->random();
- 
-             // Crea una nuova proiezione per il film nella sala selezionata
-        //     Proiezione::factory()->create([
-        //         'film_id' => $film->id,
-        //         'sala_id' => $sala->id,
-        //     ]);
-        // }
+        $sale = Sala::all();
+
+        // Itera sui film
+        foreach ($films as $film) {
+            // Definisco numero tra 1 e 4 di proiezioni per ogni $film
+            $numeroProiezioniPerFilm = rand(1,4); 
+            for ($i = 0; $i < $numeroProiezioniPerFilm; $i++) {
+                // Ottengo una sala casuale per la proiezione
+                $sala = $sale->random();
+
+                // Creo una nuova proiezione per il film nella sala selezionata
+                Proiezione::factory()->create([
+                    'film_id' => $film->id,
+                    'sala_id' => $sala->id,
+                ]);
+            }
+}
 
 
          Genere::factory()->count(1)->create(['nome' => 'Azione']);
@@ -127,35 +134,21 @@ class DatabaseSeeder extends Seeder
             
          }
 
-         foreach ($films as $film) {
-            LocandinaFactory::new()->create([
-                'film_id' => $film->id,
-            ]);
-        }
-         
-
-
-
-
-
-
-
-
-
-
-
-
-
+        //foreach ($films as $film) {
+        //LocandinaFactory::new()->create([
+        //    'film_id' => $film->id,
+        //]);
+    //}
 
 }
     
 
-    //private function createUsers() {
+    private function createUsers() {
 
-        // User::factory(10)->create();
-      //  User::factory()->create([
-        //    'name' => 'Test User',
-        //    'email' => 'test@example.com',
-        //]);
-    //}
+         User::factory(10)->create();
+         User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+        ]);
+    }
 }

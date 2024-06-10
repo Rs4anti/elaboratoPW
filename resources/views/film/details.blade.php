@@ -8,7 +8,7 @@
 <div class="card mb-3" style="max-width: 100%;">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="{{ asset('storage/' . $locandina->path_locandina) }}" class="img-fluid rounded-start" alt="...">
+      <img src="" class="img-fluid rounded-start" alt="...">
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -17,26 +17,26 @@
 
         <p class="card-text"><strong>Genere:</strong> 
                                     @foreach ($film->generi as $gen)
-                                    {{$gen->nome}}
+                                    {{$gen->nome}}{{ !$loop->last ? ', ' : '' }}
                                     @endforeach
 
         <p class="card-text"><strong>Trama:</strong> {{$film->trama}}</p>
 
         <p class="card-text"><strong>Regia:</strong> 
-                                    @foreach ($film->registi as $regista)
-                                    <div>{{$regista->nome}} {{$regista->cognome}}</div>
-                                    @endforeach
+                                  @foreach ($film->registi as $regista)  
+                                    {{ $regista->nome }} {{$regista->cognome}}{{ !$loop->last ? ', ' : '' }}
+                                  @endforeach
         </p>
 
         <p class="card-text"><strong>Lingua audio:</strong> 
                                     @foreach ($film->lingueAudio as $audio)
-                                    <div>{{$audio->lingua}}</div>
+                                    {{$audio->lingua}}{{ !$loop->last ? ', ' : '' }}
                                     @endforeach
         </p>
 
         <p class="card-text"><strong>Lingua sottotioli:</strong> 
                                     @foreach ($film->sottotitoli as $sub)
-                                    <div>{{$sub->lingua}}</div>
+                                    {{$sub->lingua}}{{ !$loop->last ? ', ' : '' }}
                                     @endforeach
         </p>
           
