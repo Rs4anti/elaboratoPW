@@ -16,6 +16,8 @@ Route::resource('gardenProgrammazione', GardenProgrController::class);
 Route::resource('irideProgrammazione', IrideProgrController::class);
 
 Route::resource('programmazione', ProgrammazioneController::class);
+Route::get('/programmazione/create/{id}', [ProgrammazioneController::class, 'create'])->name('programmazione.create');
+
 
 Route::resource('gardenRassegne', GardenRassegneController::class);
 Route::resource('irideRassegne', IrideRassegneController::class);

@@ -50,8 +50,8 @@
                     
                     <li class="nav-item"> 
                       <a href="{{route('programmazione.index')}}" class="nav-link">
-                      <i class="bi bi-clock-history"></i>    
-                        Inserisci programmazione</a></li>
+                      <i class="bi bi-camera-reels"></i>    
+                        Vedi Registi Salvati</a></li>
                     </ul>
               </li>
 

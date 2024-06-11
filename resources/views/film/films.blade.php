@@ -47,12 +47,17 @@
                         <a class="btn btn-secondary"
                                 href="{{ route('film.edit', ['film' => $film->id]) }}">
                                 <i class="bi bi-pencil-square"></i>
-                                Modifica</a>
+                                Modifica Film</a>
+
+                        <a class="btn btn-success"
+                            href="{{route('programmazione.create', ['id' => $film->id])}}">
+                            <i class="bi bi-clock-history"></i>    
+                                Inserisci programmazione</a>
 
                         <a class="btn btn-danger" 
                                 href="{{ route('film.destroy.confirm', ['id' => $film->id]) }}">
                                 <i class="bi bi-trash"></i>
-                                 Cancella</a>
+                                 Cancella Film</a>
                     </div>
                 </div>
             </div>

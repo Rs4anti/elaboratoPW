@@ -52,12 +52,11 @@
                                     <a href="{{ route('film.show', ['film' => $film->id]) }}" class="btn btn-primary">Scheda film</a>
 
                                     <!-- Bottone per modifica programmazione -->
-                                    <a href="#" class="btn btn-secondary">Modifica programmazione</a>
+                                    <a href="{{route('programmazione.create', ['film' => $film->id])}}" class="btn btn-secondary">Modifica programmazione</a>
 
                                     <!-- Bottone per modifica orari (?) -->
                                     <a href="#" class="btn btn-warning">Modifica orari</a>
 
-                                    
                                     <!-- Bottone per eliminare programmazione -->
                                     <a href="#" class="btn btn-danger">Elimina programmazione</a>
                                 </div>
@@ -77,10 +76,10 @@
                                             // Crea un'istanza di Carbon dalla data
                                             $carbonDate = Carbon::parse($data);
                                             // Estrai il mese e il giorno
-                                            $formattedDate = $carbonDate->format('d/ M'); // Esempio: "Jan 01"
+                                            $formattedDate = $carbonDate->format('d/M'); // Esempio: "Jan 01"
 
                                         @endphp
-                                        <p><strong>{{ $formattedDate }}</strong> 
+                                        <p><strong>{{ $formattedDate }}:</strong> 
                                             @foreach ($proiezioni as $proiezione)
                                                 {{ $proiezione->ora }} @if (!$loop->last), @endif
                                             @endforeach
