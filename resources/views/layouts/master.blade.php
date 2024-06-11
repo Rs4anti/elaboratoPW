@@ -41,7 +41,8 @@
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Gestione cinema
                 </a>
-                    <ul class="dropdown-menu">       
+                    <ul class="dropdown-menu">  
+
                     <li class="nav-item">
                       <a href="{{route('film.index')}}" class="nav-link">
                     <i class="bi bi-floppy"></i>
@@ -49,9 +50,11 @@
                     </li>
                     
                     <li class="nav-item"> 
-                      <a href="{{route('programmazione.index')}}" class="nav-link">
+                      <a href="{{route('regista.index')}}" class="nav-link">
                       <i class="bi bi-camera-reels"></i>    
-                        Vedi Registi Salvati</a></li>
+                        Vedi Registi Salvati</a>
+                      </li>
+                      
                     </ul>
               </li>
 

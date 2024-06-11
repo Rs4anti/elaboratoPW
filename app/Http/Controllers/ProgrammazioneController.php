@@ -8,7 +8,7 @@ use App\Models\DataLayer;
 class ProgrammazioneController extends Controller
 {
     public function index(){
-        return view('programmazione.editProgrammazione');
+        return null;
     }
 
     public function create(string $FilmId){

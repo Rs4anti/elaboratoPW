@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class DataLayer
 {
@@ -147,9 +148,9 @@ class DataLayer
                 $film->sottotitoli()->detach($sub->id);
             }
 
-            foreach($proiezioni as $proiezione){
-                $film->proiezioni()->detach($proiezione->id);
-            }
+            //foreach($proiezioni as $proiezione){
+            //    $film->proiezioni()->detach($proiezione->id);
+            //}
     
             //TODO: 2nd ver SE ELIMINO UN FILM ELIMINO ANCHE LE PROIEZIONI ASSOCIATE (?)
     
@@ -164,11 +165,51 @@ class DataLayer
     //edit regista
 
     public function listRegisti(){
-        return Regista::orderBy('nome', 'asc')->orderBy('cognome', 'asc')->get();
+
+        $registi = Regista::with('films') // Carica i film associati a ciascun regista
+        ->orderBy('nome', 'asc')
+        ->orderBy('cognome', 'asc')
+        ->get();
+
+        // Debug: Registra i dati dei film associati a ciascun regista nel log
+    foreach ($registi as $regista) {
+        Log::info("Regista: {$regista->nome} {$regista->cognome}");
+        Log::info("Film associati:");
+        foreach ($regista->films as $film) {
+            Log::info(" - {$film->titolo}");
+        }
+    }
+
+        return $registi;
     }
 
     public function findRegistaById($id){
         return Regista::find($id);
+    }
+
+    public function editRegista($id, $nome, $cognome){
+        $regista = Regista::find($id);
+
+        $regista->nome = $nome;
+        $regista->cognome = $cognome;
+
+        $regista->save();
+    }
+
+    public function addRegista($nome, $cognome){
+        $regista = new Regista();
+
+        $regista->nome = $nome;
+        $regista->cognome = $cognome;
+
+        $regista->save();
+    }
+
+    public function deleteRegista($id){
+        $regista = Regista::find($id);
+
+        $regista->delete();
+
     }
 
     public function listGeneri(){
