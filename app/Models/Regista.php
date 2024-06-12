@@ -14,6 +14,6 @@ class Regista extends Model
     protected $fillable = ['nome', 'cognome'];
 
     public function films(){
-        return $this->belongsToMany(Film::class, 'regista_film', 'film_id', 'regista_id');
+        return $this->belongsToMany(Film::class, 'regista_film', 'regista_id', 'film_id');
     }
 }

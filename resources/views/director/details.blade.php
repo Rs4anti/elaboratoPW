@@ -29,11 +29,15 @@ Dettaglio regista: {{$regista->nome}} {{$regista->cognome}}
             <div class="col-md-3">
                 <b>Films:</b>
             </div>
-            @foreach ($regista->films as $film)
-            <div class="col-md-9 offset-md-3 mb-2">
-                {{ $film->titolo }} <a href="{{ route('film.show', ['film' => $film->id]) }}"><i class="bi bi-caret-right-square"></i></a>
-            </div>            
-            @endforeach
+            @if($filmAssociati->isEmpty())
+                <p>Non ci sono film associati a questo regista.</p>
+            @else
+                @foreach ($filmAssociati as $film)
+                <div class="col-md-9 offset-md-3 mb-2">
+                    {{ $film->titolo }} <a href="{{ route('film.show', ['film' => $film->id]) }}"><i class="bi bi-caret-right-square"></i></a>
+                </div>            
+                @endforeach
+            @endif
         </div>
     </div>
 

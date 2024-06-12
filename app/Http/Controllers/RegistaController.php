@@ -79,7 +79,8 @@ class RegistaController extends Controller
     public function show(string $id){
         $dl = new DataLayer();
         $regista = $dl->findRegistaById($id);
+        $filmAssociati = $dl->findFilmRegista($id);
 
-        return view('director.details')->with('regista', $regista);
+        return view('director.details')->with('regista', $regista)->with('filmAssociati', $filmAssociati);
     }
 }
