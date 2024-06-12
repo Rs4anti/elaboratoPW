@@ -102,9 +102,15 @@ class FilmController extends Controller
             //$locandina = $film->locandinaFilm;
         
 
-        $dl->editFilm($id,  $request->input('titolo'), $request->input('anno_uscita'), $request->input('trailer'),
-                            $request->input('trama'), $request->input('durata'),
-                            $registiSelezionati, $generiSelezionati, $lingueAudioSel, $lingueSubSel);
+        $dl->editFilm($id,  $request->input('titolo'), 
+                            $request->input('anno_uscita'), 
+                            $request->input('trailer'),
+                            $request->input('trama'), 
+                            $request->input('durata'),
+                            $registiSelezionati, 
+                            $generiSelezionati, 
+                            $lingueAudioSel, 
+                            $lingueSubSel);
    
         
         return Redirect::to(route('film.index'));

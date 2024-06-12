@@ -75,4 +75,11 @@ class RegistaController extends Controller
 
         return Redirect::to(route('regista.index'));
     }
+
+    public function show(string $id){
+        $dl = new DataLayer();
+        $regista = $dl->findRegistaById($id);
+
+        return view('director.details')->with('regista', $regista);
+    }
 }

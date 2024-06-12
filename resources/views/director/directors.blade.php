@@ -34,7 +34,7 @@
                     @foreach($lista_registi as $regista)
                         <tr>
                             <td>{{ $regista->nome }} </td>
-                            <td>{{ $regista->cognome }}</td>
+                            <td>{{ $regista->cognome }} <a href="{{ route('regista.show', ['id' => $regista->id]) }}"><i class="bi bi-caret-right-square"></i></a></td>
 
                             <td>
                                 <a class="btn btn-primary" href="{{ route('regista.edit', $regista->id) }}">
@@ -42,8 +42,16 @@
                             </td>
                             <td>
                             @if( count($regista->films) == 0)
+                            @php
+                            echo ("Film di" . $regista->nome  . $regista->cognome);
+                            echo ("# films:" . count($regista->films))
+                            @endphp
                                 <a class="btn btn-danger" href="{{ route('regista.destroy.confirm', ['id' => $regista->id]) }}"><i class="bi bi-trash"></i> Delete</a>
                             @else
+                            @php
+                            echo ("Film di" . $regista->nome  . $regista->cognome);
+                            echo ("# films:" . count($regista->films))
+                            @endphp
                                 <a class="btn btn-secondary" disabled="disabled" href="#"><i class="bi bi-ban"></i> Delete</a>
                             @endif
                             </td>

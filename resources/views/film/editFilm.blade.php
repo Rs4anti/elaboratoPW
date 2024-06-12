@@ -86,7 +86,7 @@
                     @foreach($generi as $genere)
                         <div class="col-md-4 col-sm-12">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="generi[]" value="{{ $genere->id }}" id="genere_{{ $genere->id }}"
+                                <input class="form-check-input" type="checkbox" name="generi[]" value="{{ $genere->id }}"
                                 @if((isset($film->id)) && ($film->generi->contains($genere)))
                                     checked
                                 @endif

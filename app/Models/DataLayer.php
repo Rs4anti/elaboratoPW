@@ -73,51 +73,72 @@ class DataLayer
         $film->trama = $trama;
         $film->link_trailer = $linkTrailer;
 
-        $film->save();
+        foreach($registi as $regista){
+            echo ("salvo " . $regista); 
+        }
+        
+
+        
 
         //cancello la lista di registi
-        $prevRegisti = $film->registi;
-        foreach($prevRegisti as $prevRegista){
-            $film->registi()->detach($prevRegista->id);
-        }
+        //$prevRegisti = $film->registi;
+        //foreach($prevRegisti as $prevRegista){
+        //    $film->registi()->detach($prevRegista->id);
+        //}
 
         //aggiorno la lista di registi
-        foreach($registi as $regista){
-            $film->registi()->attach($regista);
-        }
+        //foreach($registi as $regista){
+        //   $film->registi()->attach($regista);
+        //}
+
+         // aggiorno la lista di registi con sync
+        $film->registi()->sync($registi);
 
         //cancello i generi associati al film
-        $prevGeneri = $film->generi;
-        foreach($prevGeneri as $prevGenere){
-            $film->generi()->detach($prevGenere->id);
-        }
+        //$prevGeneri = $film->generi;
+        //foreach($prevGeneri as $prevGenere){
+        //    $film->generi()->detach($prevGenere->id);
+        //}
 
         //aggiorno la lista di generi del film
-        foreach($generi as $genere){
-            $film->generi()->attach($genere);
-        }
+        //foreach($generi as $genere){
+        //    $film->generi()->attach($genere);
+        //}
+
+        // aggiorno la lista di generi con sync
+        $film->generi()->sync($generi);
 
         //cancello lingue audio associate al film
-        $prevLingue = $film->lingueAudio;
-        foreach($prevLingue as $prevLingua){
-            $film->lingueAudio()->detach($prevLingua->id);
-        }
+        //$prevLingue = $film->lingueAudio;
+        //foreach($prevLingue as $prevLingua){
+        //    $film->lingueAudio()->detach($prevLingua->id);
+        //}
 
         //aggiorno la lista delle lingue audio del film
-        foreach($lingueAudio as $lingua){
-            $film->lingueAudio()->attach($lingua);
-        }
+        //foreach($lingueAudio as $lingua){
+        //    $film->lingueAudio()->attach($lingua);
+        //}
+
+        // aggiorno la lista delle lingue audio con sync
+        $film->lingueAudio()->sync($lingueAudio);
 
          //cancello lingue Sottotitoli associate al film
-         $prevSubs = $film->sottotitoli;
-         foreach($prevSubs as $sub){
-             $film->sottotitoli()->detach($sub->id);
-         }
+         //$prevSubs = $film->sottotitoli;
+         //foreach($prevSubs as $sub){
+         //    $film->sottotitoli()->detach($sub->id);
+         //}
  
          //aggiorno la lista delle lingue sottotitoli del film
-         foreach($sottotitoli as $sub){
-             $film->sottotitoli()->attach($sub);
-         }
+         //foreach($sottotitoli as $sub){
+         //    $film->sottotitoli()->attach($sub);
+         //}
+
+         // aggiorno la lista delle lingue sottotitoli con sync
+        $film->sottotitoli()->sync($sottotitoli);
+
+         // Ricarico le relazioni per aggiornare gli oggetti in memoria
+        $film->load('registi', 'generi', 'lingueAudio', 'sottotitoli');
+        $film->save();
 
 }
 
