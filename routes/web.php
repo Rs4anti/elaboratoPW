@@ -33,9 +33,6 @@ Route::get('/film/{id}/destroy/confirm', [FilmController::class, 'confirmDestroy
 Route::resource('regista', RegistaController::class)->parameters([
     'regista' => 'id'
 ]);
-#Route::get('/registi', [RegistaController::class, 'index'])->name('regista.index');
-#Route::get('/registi/{id}/edit', [RegistaController::class, 'edit'])->name('regista.edit');
-#Route::put('/registi/{id}', [RegistaController::class, 'update'])->name('regista.update');
-#Route::get('/registi/create', [RegistaController::class, 'create'])->name('regista.create');
 Route::get('/regista/{id}/destroy/confirm', [RegistaController::class, 'confirmDestroy'])->name('regista.destroy.confirm');
 
+Route::post('programmazione/create/{id}', [ProgrammazioneController::class, 'store'])->name('proiezioni.store');

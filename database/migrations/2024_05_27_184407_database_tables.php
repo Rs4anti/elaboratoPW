@@ -101,7 +101,7 @@ return new class extends Migration
            $table -> unsignedBigInteger('film_id');
            $table -> unsignedBigInteger('sala_id');
            $table -> date('data');
-           $table -> time('ora');
+           $table -> time('ora', 0);
            $table -> timestamps();
         });
         

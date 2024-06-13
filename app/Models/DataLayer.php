@@ -2,7 +2,7 @@
 
 namespace App\Models;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 
 class DataLayer
 {
@@ -73,12 +73,7 @@ class DataLayer
         $film->trama = $trama;
         $film->link_trailer = $linkTrailer;
 
-        foreach($registi as $regista){
-            echo ("salvo " . $regista); 
-        }
-        
-
-        
+        $film->save();
 
         //cancello la lista di registi
         //$prevRegisti = $film->registi;
@@ -138,7 +133,7 @@ class DataLayer
 
          // Ricarico le relazioni per aggiornare gli oggetti in memoria
         $film->load('registi', 'generi', 'lingueAudio', 'sottotitoli');
-        $film->save();
+        
 
 }
 
@@ -191,15 +186,6 @@ class DataLayer
         ->orderBy('nome', 'asc')
         ->orderBy('cognome', 'asc')
         ->get();
-
-        // Debug: Registra i dati dei film associati a ciascun regista nel log
-    foreach ($registi as $regista) {
-        Log::info("Regista: {$regista->nome} {$regista->cognome}");
-        Log::info("Film associati:");
-        foreach ($regista->films as $film) {
-            Log::info(" - {$film->titolo}");
-        }
-    }
 
         return $registi;
     }
@@ -376,6 +362,61 @@ class DataLayer
                     $query->where('cinema_id', $cinemaId);
                 })
                 ->get();
+    }
+
+    public function listFutureProiez($cinemaId){
+         // Trova il cinema
+         $cinema = Cinema::find($cinemaId);
+    
+         // Recupera tutte le sale del cinema
+         $saleCinema = $cinema->sale()->pluck('id')->toArray();
+     
+         // Recupera tutte le proiezioni nelle sale del cinema
+         $proiezioni = Proiezione::whereIn('sala_id', $saleCinema)
+                                 ->with(['film', 'sala']) // Eager load film e sala associati
+                                 ->get();
+
+        // Filtra solo le proiezioni future
+        $proiezioniFuture = $proiezioni->filter(function($proiezione) {
+        $proiezioneDateTime = Carbon::parse($proiezione->data . ' ' . $proiezione->ora);
+        return $proiezioneDateTime->isFuture();
+        });
+     
+         // Raggruppa le proiezioni per film cosi poi posso iterare nella vista sulla chiave (film id) per accedere
+         // alle proiezioni
+         $filmProiezioni = $proiezioniFuture->groupBy(function($proiezione) {
+             return $proiezione->film->id;
+         });
+         
+
+         return $filmProiezioni;
+
+    }
+
+    public function listSaleCinema(){
+        return Sala::all();
+    }
+    public function addProiezione($filmId, $salaId, $data, $ora){
+
+        $proiezione = new Proiezione();
+
+        $proiezione->film_id = $filmId;
+        $proiezione->sala_id = $salaId;
+        $proiezione->data = $data;
+        $proiezione->ora = $ora;
+
+        $proiezione->save();
+    }
+
+    public function editProiezione($id, $filmId, $data, $ora, $sala){
+        $proiezione = Proiezione::find($id);
+
+        $proiezione->film_id = $filmId;
+        $proiezione->data = Carbon::parse($data);;
+        $proiezione->ora =  Carbon::parse($ora)->format('H:i');
+        $proiezione->sala_id = $sala;
+
+        $proiezione->save();
     }
 
     //trovare proiezioni di registi?

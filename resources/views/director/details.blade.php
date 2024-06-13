@@ -30,7 +30,7 @@ Dettaglio regista: {{$regista->nome}} {{$regista->cognome}}
                 <b>Films:</b>
             </div>
             @if($filmAssociati->isEmpty())
-                <p>Non ci sono film associati a questo regista.</p>
+                <p><strong>Non ci sono film associati al regista {{$regista->nome}} {{$regista->cognome}}.</strong></p>
             @else
                 @foreach ($filmAssociati as $film)
                 <div class="col-md-9 offset-md-3 mb-2">
@@ -53,14 +53,14 @@ Dettaglio regista: {{$regista->nome}} {{$regista->cognome}}
                 @if(count($regista->films) == 0)
                     <a class="btn btn-danger w-100" href="{{ route('regista.destroy.confirm', ['id' => $regista->id]) }}"><i class="bi bi-trash"></i> Delete</a>
                 @else
-                    <a class="btn btn-secondary w-100" disabled="disabled" href="#"><i class="bi bi-ban"></i> Delete</a>
+                    <a class="btn btn-secondary w-100" disabled="disabled" href="#"><i class="bi bi-ban"></i> Cancella</a>
                 @endif
             </div>
         </div>
     </div>
 
     <div class="col-md-12">
-        <a class="btn btn-secondary w-100" href="{{ url()->previous() }}"><i class="bi bi-box-arrow-left"></i> Back</a>
+        <a class="btn btn-secondary w-100" href="{{ url()->previous() }}"><i class="bi bi-box-arrow-left"></i> Indietro</a>
     </div>
         
 </div>
