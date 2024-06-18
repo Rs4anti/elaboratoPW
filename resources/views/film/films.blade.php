@@ -11,7 +11,6 @@
         $(".searchOptions").on("click", function(e) {
             e.preventDefault();
             var parametroRicerca = $(this).attr("data-column");
-            console.log("Sono qua e cerco per: ", parametroRicerca);
             $("#searchInput").attr("data-column", parametroRicerca);
             $("#searchInput").attr("placeholder", "Cerca per " + $(this).text().toLowerCase() + " film...");
             $("#searchInput").trigger("keyup"); // Riesegui la ricerca quando viene selezionata una colonna
