@@ -77,8 +77,6 @@
 
 </script>
 
-<!-- Includo il file JavaScript di paginazione per i films-->
-<script src="{{ asset('js/paginationFilmScript.js') }}"></script>
 
 <div class="row">
     <div class="input-group mb-3">
@@ -118,6 +116,7 @@
                         <option value="10">10 film per pagina</option>
                         <option value="15">15 film per pagina</option>
                         <option value="20">20 film per pagina</option>
+                        <option value="50">50 film per pagina</option>
                     </select>
                 </li>
             </ul>
@@ -177,6 +176,7 @@
     </div>
 </div>
 
-
+<!-- Includo il file JavaScript di paginazione per i films-->
+<script src="{{ asset('js/paginationFilmScript.js') }}"></script>
 
 @endsection

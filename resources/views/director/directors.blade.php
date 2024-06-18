@@ -27,8 +27,6 @@
     });
 </script>
 
-<!-- Includo il file JavaScript di paginazione per i registi-->
-<script src="{{ asset('js/paginationScript.js') }}"></script>
 
 <div class="row">
     <div class="input-group mb-3">
@@ -105,4 +103,8 @@
                 </table>
             </div>
         </div>
+
+
+<!-- Includo il file JavaScript di paginazione per i registi-->
+<script src="{{ asset('js/paginationScript.js') }}"></script>
 @endsection
