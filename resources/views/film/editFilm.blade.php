@@ -26,7 +26,7 @@
             var titolo = $("input[name='titolo']").val();
             var trama = $("textarea[name='trama']").val();
             var durata = $("input[name='durata']").val();
-            var anno = $("input[name='anno']").val();
+            var anno = $("input[name='anno_uscita']").val();
             var trailer = $("input[name='trailer']").val();
 
 
@@ -34,12 +34,16 @@
                 $('#invalid-titolo').text('Il titolo del film è obbligatorio.');
                 event.preventDefault(); //impedisco la partenza della form!
                 $("input[name='titolo']").focus();
+            }else {
+                $("#invalid-titolo").text("");
             }
 
             if(trama.trim() === ""){
                 $('#invalid-trama').text('La trama del film è obbligatoria.');
                 event.preventDefault(); //impedisco la partenza della form!
                 $("input[name='trama']").focus();
+            }else {
+                $("#invalid-trama").text("");
             }
 
             if(durata.trim() === ""){
@@ -59,19 +63,23 @@
                 confirm("La durata del film sembra un po' ELEVATA, continuare?")
                 //$('#invalid-durata').text('La durata del film NON può essere negativa.');
                 $("input[name='durata']").focus();
+            }else {
+                $("#invalid-durata").text("");
             }
 
             if(anno.trim() === ""){
                 $('#invalid-anno').text('L\'anno di uscita del film è obbligatorio.');
                 event.preventDefault();
-                $("input[name='anno']").focus();
+                $("input[name='anno_uscita']").focus();
+            }else {
+                $("#invalid-anno").text("");
             }
 
             // Verifica se almeno una categoria è stata selezionata
-            if ($("select[name='generi[]'] option:selected").length === 0) {
+            if ($("input[name='generi[]']:checked").length === 0) {
                 $("#invalid-genere").text("Selezionare almeno un genere per il film.");
                 event.preventDefault(); // Impedisce l'invio del modulo
-                $("select[name='generi[]']").focus();
+                $("input[name='generi[]']").focus();
             } else {
                 $("#invalid-genere").text("");
             }
@@ -94,26 +102,27 @@
                 //$('#invalid-trailer').text('La durata del film NON può contenere caratteri.');
                 event.preventDefault();
                 $("input[name='trailer']").focus();
+            } else {
+                $("#invalid-trailer").text("");
             }
 
             // Verifica se almeno una lingua audio è stata selezionata
-            if ($("select[name='lingueAudio[]'] option:selected").length === 0) {
-                $("#invalid-lingua-audio").text("Selezionare almeno una lingua audio per il film.");
+            if ($("input[name='lingueAudio[]']:checked").length === 0) {
+                $("#invalid-lingua-audio").text("Selezionare almeno una lingua per il film.");
                 event.preventDefault(); // Impedisce l'invio del modulo
-                $("select[name='lingueAudio[]']").focus();
+                $("input[name='lingueAudio[]']").focus();
             } else {
                 $("#invalid-lingua-audio").text("");
             }
 
             // Verifica se almeno una lingua sottotitoli è stata selezionata
-            if ($("select[name='lingueSub[]'] option:selected").length === 0) {
-                $("#invalid-lingua-sub").text("Selezionare almeno una lingua per i sottotitoli del film.");
+            if ($("input[name='lingueSub[]']:checked").length === 0) {
+                $("#invalid-lingua-sub").text("Selezionare almeno una lingua per il film.");
                 event.preventDefault(); // Impedisce l'invio del modulo
-                $("select[name='lingueSub[]']").focus();
+                $("input[name='lingueSub[]']").focus();
             } else {
                 $("#invalid-lingua-sub").text("");
             }
-
 
         });
     });
@@ -231,13 +240,13 @@
 
             <div class="form-group row mb-3">
                 <div class="col-md-2">
-                    <label for="anno">Anno</label>
+                    <label for="anno_uscita">Anno</label>
                 </div>
                 <div class="col-md-10">
                     @if(isset($film->id))
-                        <input class="form-control" type="text" name="anno" value="{{ $film->anno_uscita }}"/>
+                        <input class="form-control" type="text" name="anno_uscita" value="{{ $film->anno_uscita }}"/>
                     @else
-                        <input class="form-control" type="text" name="anno"/>
+                        <input class="form-control" type="text" name="anno_uscita"/>
                     @endif
                     <span class="invalid-input" id="invalid-anno"></span>
                 </div>
