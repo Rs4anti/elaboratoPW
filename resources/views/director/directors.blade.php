@@ -27,13 +27,16 @@
     });
 </script>
 
+<!-- Includo il file JavaScript di paginazione per i registi-->
+<script src="{{ asset('js/paginationScript.js') }}"></script>
+
 <div class="row">
     <div class="input-group mb-3">
         <input type="text" id="searchInput" class="form-control" aria-label="Text input" placeholder="Cerca regista...">
     </div>
 </div>
 
-<div class="row">
+    <div class="row">
             <div class="col-xs-6 d-flex justify-content">
                 <p>
                     <a class="btn btn-success" href="{{route('regista.create')}}">
@@ -41,7 +44,25 @@
                         Inserisci nuovo regista</a>
                 </p>
             </div>
-        </div>
+    </div>
+
+    <nav aria-label="Page navigation example" id="paginationNav">
+            <ul class="pagination justify-content-center">
+                <li class="page-item" id="previousPage"><a class="page-link" href="#">Precedente</a></li>
+                <!-- Numeri di pagina -->
+                <li class="page-item" id="nextPage"><a class="page-link" href="#">Successiva</a></li>
+                <li>
+                    <select id="rowsPerPage" class="form-control justify-content-end">
+                        <option value="5">5 registi per pagina</option>
+                        <option value="10">10 registi per pagina</option>
+                        <option value="15">15 registi per pagina</option>
+                        <option value="20">20 registi per pagina</option>
+                    </select>
+                </li>
+            </ul>
+        </nav>
+
+
         <div class="row">
             <div class="col-md-12">
                 <table id="tabellaRegisti" class="table table-striped table-hover table-responsive">
