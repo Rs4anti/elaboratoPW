@@ -9,6 +9,49 @@
 @endsection
 
 @section('body')
+<script>
+    $(document).ready(function(){
+
+        $("form").submit(function(event) {
+        // Definire le espressioni regolari per verificare che i campi non contengano cifre
+        var regex = /^[a-zA-Z]+$/;
+
+        // Ottenere i valori dei campi nome e cognome
+        var nome = $("input[name='nomeRegista']").val();
+        var cognome = $("input[name='cognomeRegista']").val();
+        
+        // Verifica se il campo "cognomeRegista" è vuoto
+        if (cognome.trim() === "") {
+                //alert("Il cognome del regista è obbligatorio.");
+                $("#invalid-cognome").text("Il cognome del regista è obbligatorio.");
+                event.preventDefault(); // Impedisce l'invio del modulo
+                $("input[name='cognomeRegista']").focus();
+            } else if(!regex.test(cognome)){
+                //alert("Il cognome  del regista non deve contenere cifre.");
+                $("#invalid-cognome").text("Il cognome del regista non deve contenere cifre.");
+                event.preventDefault(); // Impedisce l'invio del modulo
+                $("input[name='cognomeRegista']").focus();
+            } else {
+                $("#invalid-cognome").text("");
+            }
+        
+        // Verifica se il campo "nomeRegista" è vuoto
+        if (nome.trim() === "") {
+                //alert("Il nome del regista è obbligatorio.");
+                $("#invalid-nome").text("Il nome del regista è obbligatorio.");
+                event.preventDefault(); // Impedisce l'invio del modulo
+                $("input[name='nomeRegista']").focus();
+            } else if(!regex.test(nome)){
+                //alert("Il nome  del regista non deve contenere cifre.");
+                $("#invalid-nome").text("Il nome  del regista non deve contenere cifre.");
+                event.preventDefault(); // Impedisce l'invio del modulo
+                $("input[name='nomeRegista']").focus();
+            } else {
+                $("#invalid-nome").text("");
+            }
+        });
+    });
+</script>
 <div class="row">
     <div class="col-md-12">
     @if(isset($regista->id))
@@ -21,7 +64,7 @@
     
         <div class="form-group row mb-3">
             <div class="col-md-2">
-                <label for="title">Nome</label>
+                <label for="nomeRegista">Nome</label>
             </div>
             <div class="col-md-10">
                 @if(isset($regista->id))
@@ -29,11 +72,12 @@
                 @else
                     <input class="form-control" type="text" name="nomeRegista"/>
                 @endif
+                <span class="invalid-input" id="invalid-nome"></span>
             </div>
         </div>
         <div class="form-group row mb-3">
             <div class="col-md-2">
-                <label for="title">Cognome</label>
+                <label for="cognomeRegista">Cognome</label>
             </div>
             <div class="col-md-10">
                 @if(isset($regista->id))
@@ -41,6 +85,7 @@
                 @else
                     <input class="form-control" type="text" name="cognomeRegista"/>
                 @endif
+                <span class="invalid-input" id="invalid-cognome"></span>
             </div>
         </div>
         <div class="form-group row mb-3">
