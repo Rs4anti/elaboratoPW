@@ -5,6 +5,46 @@
 
 @section('body')
 
+<script>
+    $(document).ready( function() {
+
+        $(".searchOptions").on("click", function(e) {
+            e.preventDefault();
+            var parametroRicerca = $(this).attr("data-column");
+            $("#searchInput").attr("data-column", parametroRicerca);
+            $("#searchInput").attr("placeholder", "Cerca per " + $(this).text().toLowerCase() + " film...");
+            $("#searchInput").trigger("keyup"); // Riesegui la ricerca quando viene selezionata una colonna
+        });
+
+
+        // $("searchInput").on("keyup", function(){
+        //     var value = $(this).val().toLowerCase();
+        //     $("card card-body").each(function (){
+        //         var found = false;
+        //         switch (searchOptions)
+        //             case
+        //     })
+        // });
+    });
+</script>
+
+
+<div class="row">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Cerca per</button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item searchOptions" href="#" data-column="0">Titolo</a></li>
+                <li><a class="dropdown-item searchOptions" href="#" data-column="1">Regista</a></li>
+                <li><a class="dropdown-item searchOptions" href="#" data-column="2">Anno uscita</a></li>
+                <li><a class="dropdown-item searchOptions" href="#" data-column="-1">Titolo o regista</a></li>
+            </ul>
+        </div>
+        <input type="text" id="searchInput" class="form-control" aria-label="Text input with dropdown button" placeholder="Cerca...">
+    </div>
+</div>
+
+
 <div class="row">
     <div class="col-xs-6 d-flex justify-content">
         <p>

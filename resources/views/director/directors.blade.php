@@ -4,6 +4,35 @@
 
 
 @section('body')
+<script>
+    $(document).ready(function(){
+        // Searching feature
+        $("#searchInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+
+            var column = $("#searchInput").attr("data-column");
+
+            $("#tabellaRegisti tbody tr").each(function() {
+                var found = false;
+                
+                $(this).find("td").slice(0, -3).each(function() { // Escludi le ultime tre colonne
+                    var text = $(this).text().toLowerCase();
+                    if (text.indexOf(value) > -1) {
+                        found = true;
+                    }
+                });
+                $(this).toggle(found);
+            });
+        });
+    });
+</script>
+
+<div class="row">
+    <div class="input-group mb-3">
+        <input type="text" id="searchInput" class="form-control" aria-label="Text input" placeholder="Cerca regista...">
+    </div>
+</div>
+
 <div class="row">
             <div class="col-xs-6 d-flex justify-content">
                 <p>
@@ -15,7 +44,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <table class="table table-striped table-hover table-responsive">
+                <table id="tabellaRegisti" class="table table-striped table-hover table-responsive">
                     <col width='25%'>
                     <col width='25%'>
                     <col width='10%'>
