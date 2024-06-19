@@ -192,7 +192,8 @@
             @foreach ($films_list as $film)
             <div class="col-md-4 mb-4">
                 <!--TODO: gestire locandine-->
-                <div class="card h-100" style="background-image: url('{{ $film->locandina_url }}'); background-size: cover; background-position: center;">
+                
+                <div class="card h-100" style="background-image: url('{{ asset('storage/' . $film->path_locandina)}}'); background-size: cover; background-position: center;">
                     <div class="card-body text-white" style="background: rgba(0, 0, 0, 0.5);">
 
                         <h4 class="card-title film-title"><strong>{{ $film->titolo }}</strong></h4>
@@ -200,10 +201,15 @@
                         <h5 class="card-subtitle mb-2 regia">Regia:
                             @foreach ($film->registi as $regista)
                                 <div>{{ $regista->nome }} {{ $regista->cognome }}</div>
+                                
                             @endforeach
+                           
                         </h5>
 
                         <h5 class="card-text genere">Genere:
+                        @php
+                                echo('qua '.$film->locandina_path);
+                            @endphp
                             @foreach ($film->generi as $gen)
                                 <div>{{$gen->nome}}</div>
                             @endforeach

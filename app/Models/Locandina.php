@@ -13,7 +13,7 @@ class Locandina extends Model
 
     protected $fillable = ['file_locandina'];
 
-    public function locandinaFilm(){
-        return $this->belongsTo(Film::class, 'film_id', 'id');
-    }
+    // public function locandinaFilm(){
+    //     return $this->belongsTo(Film::class, 'film_id', 'id');
+    // }
 }

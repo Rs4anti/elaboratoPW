@@ -25,7 +25,7 @@ class DataLayer
         return Film::find($id);
     }
 
-    public function locandinaFilm($filmId){
+    /* public function locandinaFilm($filmId){
         $film = Film::find($filmId);
 
         if($film){
@@ -33,7 +33,7 @@ class DataLayer
         }else{
             return null;
         }
-    }
+    } */
 
     public function addFilm($titolo, $annoUscita,  $linkTrailer, $trama, $durata, $registi, $generi, $lingueAudio, $sottotitoli){
             $film = new Film;
@@ -64,14 +64,15 @@ class DataLayer
         }
     }
 
-    public function editFilm($id, $titolo, $annoUscita, $linkTrailer, $trama, $durata, $registi, $generi, $lingueAudio , $sottotitoli){
+    public function editFilm($id, $titolo, $locandina, $annoUscita, $linkTrailer, $trama, $durata, $registi, $generi, $lingueAudio , $sottotitoli){
         $film = Film::find($id);
-
+        
         $film->titolo = $titolo;
         $film->anno_uscita = $annoUscita;
         $film->durata = $durata;
         $film->trama = $trama;
         $film->link_trailer = $linkTrailer;
+        $film->path_locandina = "locandine/".$locandina;
 
         $film->save();
 

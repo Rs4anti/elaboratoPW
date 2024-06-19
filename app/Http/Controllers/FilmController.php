@@ -6,6 +6,7 @@ use App\Models\DataLayer;
 use App\Models\Locandina;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\Film;
 
 
 class FilmController extends Controller
@@ -13,12 +14,6 @@ class FilmController extends Controller
     public function index(){
         $dl = new DataLayer();
         $films = $dl->listFilms();
-
-         // Recupera il percorso della locandina per ogni film
-        foreach ($films as $film) {
-        $locandina = Locandina::where('film_id', $film->id)->first();
-        $film->locandina_url = $locandina ? asset('storage/' . $locandina->path_locandina) : '';
-    }
 
         return view('film.films')->with('films_list', $films);
     }
@@ -36,6 +31,7 @@ class FilmController extends Controller
 
     public function store(Request $request){
 
+        
         $generiSelezionati = $request->input('generi', []);
         $registiScelti = $request->input('registi', []);
         $lingueAudioSel = $request->input('lingueAudio', []);
@@ -62,12 +58,11 @@ class FilmController extends Controller
         $film = $dl->findFilmById($id);
 
         if($film !== null){
-           
-        $locandina = Locandina::where('film_id', $film->id)->first();
-        $film->locandina_url = $locandina ? asset('storage/' . $locandina->path_locandina) : '';
+        $film->path_locandina = $film->path_locandina ? asset('storage/' . $film->path_locandina) : '';
 
             return view('film.details')->with('film', $film);//->with('locandina', $locandina);
-        }else{
+        }
+        else{
             return view('errors.404'); //->with('messagge', 'FILM ID SBAGLIATO!')
         }
     }
@@ -80,7 +75,7 @@ class FilmController extends Controller
         $generi = $dl->listGeneri();
         $lingueAudio = $dl -> listLingue();
         $sottotitoli = $dl -> listLingue();
-        $locandina = $dl->locandinaFilm($id);
+        //$locandina = $dl->locandinaFilm($id);
 
         if($film !== null){
             //VIEW per modifica $film
@@ -89,19 +84,22 @@ class FilmController extends Controller
                         ->with('registi', $registi)
                         ->with('generi', $generi)
                         ->with('lingueAudio', $lingueAudio)
-                        ->with('lingueSub', $sottotitoli)
-                        ->with('locandina', $locandina);
+                        ->with('lingueSub', $sottotitoli);
+                        //->with('locandina', $locandina);
         } else{
             return view('errors.404'); //->with('messagge', 'FILM ID SBAGLIATO!')
         }
     }
 
     public function update(Request $request, string $id){
-
+        
         $generiSelezionati = $request->input('generi', []);
         $registiSelezionati = $request->input('registi', []);
         $lingueAudioSel = $request->input('lingueAudio', []);
         $lingueSubSel = $request->input('lingueSub', []);
+       
+        $locandina= $request->file('locandina')->getClientOriginalName();
+        $path = $request->file('locandina')->storeAs('public/locandine', $locandina);
 
 
         $dl = new DataLayer();
@@ -110,7 +108,8 @@ class FilmController extends Controller
             //$locandina = $film->locandinaFilm;
         
 
-        $dl->editFilm($id,  $request->input('titolo'), 
+        $dl->editFilm($id,  $request->input('titolo'),
+                            $locandina,
                             $request->input('anno_uscita'), 
                             $request->input('trailer'),
                             $request->input('trama'), 

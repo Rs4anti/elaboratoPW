@@ -11,7 +11,7 @@ class Film extends Model
 
     protected $table = 'films';
 
-    protected $fillable = ['titolo', 'trama', 'anno_uscita', 'durata', 'link_trailer'];
+    protected $fillable = ['titolo', 'trama', 'anno_uscita', 'durata', 'link_trailer', 'path_locandina'];
 
 
     public function proiezioni(){
@@ -33,7 +33,7 @@ class Film extends Model
         return $this->belongsToMany(Lingua::class, 'lingua_sottotitoli', 'film_id', 'lingua_id');
     }
 
-    public function locandinaFilm(){
-        return $this->hasOne(Locandina::class, 'film_id', 'id');
-    }
+    // public function locandinaFilm(){
+    //     return $this->hasOne(Locandina::class, 'film_id', 'id');
+    // }
 }

@@ -8,8 +8,8 @@
 <div class="card mb-3" style="max-width: 100%;">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src='{{ $film->locandina_url }}' class="img-fluid rounded-start" alt="...">
-    </div>
+      <img src='{{($film->path_locandina)}}' class="img-fluid rounded-start" alt="...">
+    </div>    
     <div class="col-md-8">
       <div class="card-body">
         <h1 class="card-title text-center"><strong>{{$film->titolo}} [{{$film->anno_uscita}}]</strong></h1>

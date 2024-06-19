@@ -75,9 +75,6 @@
                                         <p><strong>{{ $formattedDate }}:</strong> 
                                             @foreach ($proiezioni as $proiezione)
                                             {{ Carbon::parse($proiezione->ora)->format('H:i') }} @if (!$loop->last), @endif
-                                            @php
-                                            echo('id proiezione->' . $proiezione->id)
-                                            @endphp
                                             <!-- Bottone per modifica programmazione -->
                                             <a href="{{route('programmazione.edit', ['programmazione' => $proiezione->id])}}" class="btn btn-warning">Modifica programmazione</a>
 
