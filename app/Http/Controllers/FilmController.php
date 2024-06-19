@@ -37,9 +37,17 @@ class FilmController extends Controller
         $lingueAudioSel = $request->input('lingueAudio', []);
         $lingueSubSel = $request->input('lingueSub', []);
 
+            if($request->hasFile('locandina')){
+                $locandina= $request->file('locandina')->getClientOriginalName();
+                $path = $request->file('locandina')->storeAs('public/locandine', $locandina);
+            }else{
+                $locandina = 'locandinaDefault.jpg';
+            }
+
         $dl = new DataLayer();
 
-        $dl->addFilm($request->input('titolo'), 
+        $dl->addFilm($request->input('titolo'),
+                    $locandina,
                     $request->input('anno_uscita'), 
                     $request->input('trailer'),
                     $request->input('trama'),
@@ -97,9 +105,13 @@ class FilmController extends Controller
         $registiSelezionati = $request->input('registi', []);
         $lingueAudioSel = $request->input('lingueAudio', []);
         $lingueSubSel = $request->input('lingueSub', []);
+        $locandina = null; 
        
-        $locandina= $request->file('locandina')->getClientOriginalName();
+        if($request->hasFile('locandina')){
+            $locandina= $request->file('locandina')->getClientOriginalName();
         $path = $request->file('locandina')->storeAs('public/locandine', $locandina);
+        }
+        
 
 
         $dl = new DataLayer();

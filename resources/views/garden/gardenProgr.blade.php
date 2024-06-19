@@ -13,7 +13,7 @@
         @php
             #recupero il primo film associato ad ogni proiezione
             $film = $proiezioni->first()->film;
-            $locandinaFilm = asset('storage/' . $film->locandinaFilm->path_locandina);
+            if($film !== null){ $film->path_locandina = $film->path_locandina ? asset('storage/' . $film->path_locandina) : '';}
         @endphp
     
         <!-- Inizio Card -->
@@ -23,7 +23,7 @@
 
                     <!-- Locandina del Film -->
                     <div class="col-md-4">
-                        <img src="{{$locandinaFilm}}" class="img-fluid rounded-start" alt="Locandina Scarface">
+                        <img src="{{($film->path_locandina)}}" class="img-fluid rounded-start" alt="Locandina Scarface">
                     </div>
 
                     <!-- Informazioni del Film -->

@@ -18,7 +18,7 @@
                     Dettagli film {{$film->titolo}}
                 </div>
                 <div class="card-body">
-                    <img src="{{ $film->locandina }}" class="card-img-top mb-3" alt="Locandina di {{ $film->titolo }}">
+                    <img src="{{asset('storage/' . $film->path_locandina)}}" class="card-img-top mb-3" alt="Locandina di {{ $film->titolo }}">
                     <h5 class="card-title">{{ $film->titolo }}</h5>
                     <p class="card-text"><strong>Anno di uscita:</strong> {{ $film->anno_uscita }}</p>
                     <p class="card-text"><strong>Durata:</strong> {{ $film->durata }} minuti</p>

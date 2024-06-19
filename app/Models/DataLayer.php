@@ -72,7 +72,10 @@ class DataLayer
         $film->durata = $durata;
         $film->trama = $trama;
         $film->link_trailer = $linkTrailer;
-        $film->path_locandina = "locandine/".$locandina;
+        if($locandina!=null){
+            $film->path_locandina = "locandine/".$locandina;
+        }
+        
 
         $film->save();
 
