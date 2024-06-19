@@ -134,11 +134,11 @@ class DatabaseSeeder extends Seeder
             
          }
 
-        //foreach ($films as $film) {
-        //LocandinaFactory::new()->create([
-        //    'film_id' => $film->id,
-        //]);
-    //}
+        foreach ($films as $film) {
+        LocandinaFactory::new()->create([
+           'film_id' => $film->id,
+        ]);
+    }
 
 }
     

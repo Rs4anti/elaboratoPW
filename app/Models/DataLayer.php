@@ -324,7 +324,7 @@ class DataLayer
     
         // Recupera tutte le proiezioni nelle sale del cinema
         $proiezioni = Proiezione::whereIn('sala_id', $saleCinema)
-                                ->with(['film', 'sala']) // Eager load film e sala associati
+                                ->with(['film', 'sala'])
                                 ->get();
     
         // Raggruppa le proiezioni per film

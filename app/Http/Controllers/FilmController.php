@@ -14,6 +14,12 @@ class FilmController extends Controller
         $dl = new DataLayer();
         $films = $dl->listFilms();
 
+         // Recupera il percorso della locandina per ogni film
+        foreach ($films as $film) {
+        $locandina = Locandina::where('film_id', $film->id)->first();
+        $film->locandina_url = $locandina ? asset('storage/' . $locandina->path_locandina) : '';
+    }
+
         return view('film.films')->with('films_list', $films);
     }
 
@@ -30,7 +36,6 @@ class FilmController extends Controller
 
     public function store(Request $request){
 
-        //TODO: Gestire validazione request?
         $generiSelezionati = $request->input('generi', []);
         $registiScelti = $request->input('registi', []);
         $lingueAudioSel = $request->input('lingueAudio', []);
@@ -57,7 +62,10 @@ class FilmController extends Controller
         $film = $dl->findFilmById($id);
 
         if($film !== null){
-           //$locandina = $film->locandinaFilm;
+           
+        $locandina = Locandina::where('film_id', $film->id)->first();
+        $film->locandina_url = $locandina ? asset('storage/' . $locandina->path_locandina) : '';
+
             return view('film.details')->with('film', $film);//->with('locandina', $locandina);
         }else{
             return view('errors.404'); //->with('messagge', 'FILM ID SBAGLIATO!')

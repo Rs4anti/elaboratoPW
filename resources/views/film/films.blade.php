@@ -192,7 +192,7 @@
             @foreach ($films_list as $film)
             <div class="col-md-4 mb-4">
                 <!--TODO: gestire locandine-->
-                <div class="card h-100" style="background-image: url(''); background-size: cover; background-position: center;">
+                <div class="card h-100" style="background-image: url('{{ $film->locandina_url }}'); background-size: cover; background-position: center;">
                     <div class="card-body text-white" style="background: rgba(0, 0, 0, 0.5);">
 
                         <h4 class="card-title film-title"><strong>{{ $film->titolo }}</strong></h4>
