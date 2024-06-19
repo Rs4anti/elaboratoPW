@@ -98,7 +98,7 @@
                     event.preventDefault();
                     $("input[name='trailer']").focus();
                 }else if(!regexLink.test(trailer)){
-                    alert("Il link del trailer sembra errato!")
+                    alert("Il link del trailer sembra errato!");
                     //$('#invalid-trailer').text('La durata del film NON può contenere caratteri.');
                     event.preventDefault();
                     $("input[name='trailer']").focus();
@@ -126,7 +126,9 @@
 
             });
         });
-    </script>
+</script>
+
+
     <div class="row">
         <div class="col-md-12">
         @if(isset($film->id))
@@ -137,20 +139,20 @@
         @endif
             @csrf
 
-            <div class="form-group row mb-3">
-    <div class="col-md-2">
-        <label for="locandina">Locandina</label>
-    </div>
-    <div class="col-md-10">
+    <div class="form-group row mb-3">
+        <div class="col-md-2">
+            <label for="locandina">Locandina</label>
+        </div>
+        <div class="col-md-10">
         @if(isset($film->id))
                 <img src="{{ asset('storage/' . $film->path_locandina)}}" class="img-fluid rounded" alt="Locandina attuale">
         @else
-            <img src="{{ asset('storage/locandinaDefault.jpg') }}" class="img-fluid rounded" alt="Locandina placeholder">
+            <img src="{{ asset('storage/locandine/locandinaDefault.jpg') }}" class="img-fluid rounded" alt="Locandina placeholder">
         @endif
-        <input type="file" class="form-control" id="locandina" name="locandina">
-        <span class="invalid-input" id="invalid-locandina"></span>
+            <input type="file" class="form-control" id="locandina" name="locandina" >
+            <span class="invalid-input" id="invalid-locandina"></span>
+        </div>
     </div>
-</div>
 
 
             <div class="form-group row mb-3">

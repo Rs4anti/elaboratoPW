@@ -2,7 +2,7 @@
 
 @section('title')
 @if(isset($proiezione->id))
-    Modficazione proiezione per {{$film->titolo}}
+    Modfica proiezione per {{$film->titolo}}
 @else 
     Inserimento proiezione per {{$film->titolo}}
 @endif
