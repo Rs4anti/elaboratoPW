@@ -6,7 +6,7 @@
 @section('body')
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
 
         $(".searchOptions").on("click", function(e) {
             e.preventDefault();
@@ -16,26 +16,23 @@
             $("#searchInput").trigger("keyup"); // Riesegui la ricerca quando viene selezionata una colonna
         });
 
+        $("#searchInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            var parametroRicerca = $("#searchInput").attr("data-column");
 
-        
-         $("#searchInput").on("keyup", function() {
-        var value = $(this).val().toLowerCase();
+            if (value !== "") {
+                // Nasconde la paginazione e mostra tutte le carte
+                $("#paginationNav").hide();
+                $(".card").parent().show();
+            } else {
+                // Mostra la paginazione e resetta la visualizzazione delle carte
+                $("#paginationNav").show();
+                paginateCards(); // Funzione che gestisce la paginazione
+            }
 
-        //GESTIONE PAGINAZIONE
-        //     // Reimposta completamente la paginazione se il campo di ricerca viene svuotato
-        //     if (value !== "") {
-        //         $("#paginationNav").hide();
-        //     } else {
-        //         $("#paginationNav").show();
-        //         currentPage = 1; // Riporta alla prima pagina
-        //         showPage(currentPage);
-        //         return;
-        //}
-
-        var parametroRicerca =  $("#searchInput").attr("data-column");
             $(".card").each(function() {
                 var found = false;
-                if ((parametroRicerca == -1)||(parametroRicerca === undefined)) { // Selezionato "Titolo o regista" o nessuna opzione
+                if ((parametroRicerca == -1) || (parametroRicerca === undefined)) { // Selezionato "Titolo o regista" o nessuna opzione
                     // Cerca nel titolo
                     var title = $(this).find(".film-title").text().toLowerCase();
                     if (title.indexOf(value) > -1) {
@@ -69,12 +66,79 @@
                         found = true;
                     }
                 }
-                $(this).toggle(found);
+                $(this).parent().toggle(found);
             });
         });
-    });
 
+        function paginateCards() {
+            var currentPage = 1;
+            var rowsPerPage = parseInt($("#rowsPerPage").val());
+            var $cards = $(".card");
+            var totalPages = Math.ceil($cards.length / rowsPerPage);
+
+            function showPage(page) {
+                var start = (page - 1) * rowsPerPage;
+                var end = start + rowsPerPage;
+
+                $cards.parent().hide().slice(start, end).show(); // Mostra solo le card nella pagina corrente
+
+                // Rimuovi i numeri di pagina esistenti
+                $(".page-item.pageNumber").remove();
+
+                // Calcola quali numeri di pagina visualizzare
+                var startPage = Math.max(1, currentPage - 1);
+                var endPage = Math.min(startPage + 2, totalPages);
+
+                // Aggiungere i numeri di pagina calcolati al markup HTML
+                for (var i = startPage; i <= endPage; i++) {
+                    var $li = $("<li>", { class: "page-item pageNumber" });
+                    var $link = $("<a>", { class: "page-link", href: "#", text: i });
+                    if (i === currentPage) {
+                        $li.addClass("active");
+                    }
+                    $li.append($link);
+                    $li.insertBefore("#nextPage");
+                }
+            }
+
+            function goToPreviousPage() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    showPage(currentPage);
+                }
+            }
+
+            function goToNextPage() {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    showPage(currentPage);
+                }
+            }
+
+            // Aggiorna il numero di righe per pagina quando viene selezionato un nuovo valore
+            $("#rowsPerPage").on("change", function() {
+                rowsPerPage = parseInt($(this).val());
+                totalPages = Math.ceil($cards.length / rowsPerPage);
+                currentPage = 1; // Torna alla prima pagina
+                showPage(currentPage);
+            });
+
+            showPage(currentPage);
+
+            $("#previousPage").on("click", goToPreviousPage);
+            $("#nextPage").on("click", goToNextPage);
+
+            $(document).on("click", ".pageNumber", function() {
+                var page = parseInt($(this).text());
+                currentPage = page;
+                showPage(currentPage);
+            });
+        }
+
+        paginateCards(); // Chiamata iniziale alla funzione di paginazione
+    });
 </script>
+
 
 
 <div class="row">
@@ -174,8 +238,5 @@
         @endforeach
     </div>
 </div>
-
-<!-- Includo il file JavaScript di paginazione per i films-->
-<script src="{{ asset('js/paginationFilmScript.js') }}"></script>
 
 @endsection
