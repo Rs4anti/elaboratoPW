@@ -168,22 +168,22 @@
     </div>
 </div>
 
-        <nav aria-label="Page navigation example" id="paginationNav">
-            <ul class="pagination justify-content-center">
-                <li class="page-item" id="previousPage"><a class="page-link" href="#">Precedente</a></li>
-                <!-- Numeri di pagina -->
-                <li class="page-item" id="nextPage"><a class="page-link" href="#">Successiva</a></li>
-                <li>
-                    <select id="rowsPerPage" class="form-control justify-content-end">
-                        <option value="5">5 film per pagina</option>
-                        <option value="10">10 film per pagina</option>
-                        <option value="15">15 film per pagina</option>
-                        <option value="20">20 film per pagina</option>
-                        <option value="50">50 film per pagina</option>
-                    </select>
-                </li>
-            </ul>
-        </nav>
+<nav aria-label="Page navigation example" id="paginationNav">
+    <ul class="pagination justify-content-center">
+        <li class="page-item" id="previousPage"><a class="page-link" href="#">Precedente</a></li>
+        <!-- Numeri di pagina -->
+        <li class="page-item" id="nextPage"><a class="page-link" href="#">Successiva</a></li>
+        <li>
+            <select id="rowsPerPage" class="form-control justify-content-end">
+                <option value="5">5 film per pagina</option>
+                <option value="10">10 film per pagina</option>
+                <option value="15">15 film per pagina</option>
+                <option value="20">20 film per pagina</option>
+                <option value="50">50 film per pagina</option>
+            </select>
+        </li>
+    </ul>
+</nav>
 
 <div class="container">
     <div class="row filmCardsContainer">
