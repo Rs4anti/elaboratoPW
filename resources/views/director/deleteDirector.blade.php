@@ -49,7 +49,7 @@
                 </div>
                 <div class="card-body">
                     <p>
-                        Il film <strong>non verrà rimosso</strong> dal database
+                        Il regista <strong>non verrà rimosso</strong> dal database
                     </p>
                     <a class="btn btn-secondary" href="{{ route('regista.index') }}"><i class="bi bi-box-arrow-left"></i> Annulla</a>
                 </div>
