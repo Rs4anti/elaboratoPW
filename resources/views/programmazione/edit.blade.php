@@ -2,7 +2,7 @@
 
 @section('title')
 @if(isset($proiezione->id))
-    Modfica proiezione per {{$film->titolo}}
+    Modifica proiezione per {{$film->titolo}}
 @else 
     Inserimento proiezione per {{$film->titolo}}
 @endif
@@ -38,7 +38,6 @@
     });
 </script>
 
-
 <div class="container">
     <div class="row">
         <!-- Card con i dettagli del film sulla sinistra -->
@@ -49,7 +48,6 @@
                 </div>
                 <div class="card-body">
                     <img src="{{asset('storage/' . $film->path_locandina)}}" class="card-img-top mb-3" alt="Locandina di {{ $film->titolo }}">
-                    <!--<h5 class="card-title">{{ $film->titolo }}</h5>-->
                     <p class="card-text"><strong>Anno di uscita:</strong> {{ $film->anno_uscita }}</p>
                     <p class="card-text"><strong>Durata:</strong> {{ $film->durata }} minuti</p>
                     <p class="card-text"><strong>Trailer:</strong> <a href="{{ $film->link_trailer }}" target="_blank">Guarda il Trailer</a></p>
@@ -73,15 +71,16 @@
                 <div class="form-group">
                     <label for="cinema">Scegli cinema:</label><br>
                     <div class="form-check">
-                    <input class="form-check-input check-input-cinema" type="radio" name="cinema_id" id="cinema1" data-column="1" 
-                        {{ (isset($proiezione) && $proiezione->sala->cinema_id == '1') ? 'checked' : '' }} required>
+                        <input class="form-check-input check-input-cinema" type="radio" name="cinema_id" id="cinema1" data-column="1" 
+                        {{ (isset($proiezione) && $proiezione->sala->cinema_id == '1') ? 'checked' : '' }} 
+                        {{ !isset($proiezione) ? 'checked' : '' }} required>
                         <label class="form-check-label" for="cinema1">
                             Multisala Garden
                         </label>
                     </div>
                     <div class="form-check">
-                    <input class="form-check-input check-input-cinema" type="radio" name="cinema_id" id="cinema2" data-column="2" 
-                    {{ (isset($proiezione) && $proiezione->sala->cinema_id == '2') ? 'checked' : '' }} required>
+                        <input class="form-check-input check-input-cinema" type="radio" name="cinema_id" id="cinema2" data-column="2" 
+                        {{ (isset($proiezione) && $proiezione->sala->cinema_id == '2') ? 'checked' : '' }} required>
                         <label class="form-check-label" for="cinema2">
                             Cinema Iride-Vega
                         </label>
