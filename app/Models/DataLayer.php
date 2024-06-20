@@ -73,7 +73,17 @@ class DataLayer
         $film->durata = $durata;
         $film->trama = $trama;
         $film->link_trailer = $linkTrailer;
+
+
+
         if($locandina!=null){
+            $attualeLocandina = $film->path_locandina;
+            //rimuovo da storage vecchia locandina associata al film che sto modificando
+            if (Storage::disk('public')->exists($attualeLocandina)) {
+                Storage::disk('public')->delete($attualeLocandina);
+            }
+
+            //imposto nuova locandina
             $film->path_locandina = "locandine/".$locandina;
         }
         

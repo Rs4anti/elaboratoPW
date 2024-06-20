@@ -93,7 +93,6 @@ class FilmController extends Controller
                         ->with('generi', $generi)
                         ->with('lingueAudio', $lingueAudio)
                         ->with('lingueSub', $sottotitoli);
-                        //->with('locandina', $locandina);
         } else{
             return view('errors.404'); //->with('messagge', 'FILM ID SBAGLIATO!')
         }
