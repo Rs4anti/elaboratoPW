@@ -13,7 +13,7 @@
     $(document).ready(function(){
         $("form").submit(function(event) {
         // Definire le espressioni regolari per verificare che i campi non contengano cifre
-        var regex = /^[a-zA-Z]+$/;
+        var regex = /^[a-zA-Z\s]+$/;
 
         // Ottenere i valori dei campi nome e cognome
         var nome = $("input[name='nomeRegista']").val();
