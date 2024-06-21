@@ -209,6 +209,13 @@ class DataLayer
         return Regista::find($id);
     }
 
+    public function findRegistaByNomeCognome($nome, $cognome){
+
+        return Regista::where('cognome', $cognome)
+                            ->where('nome', $nome)
+                                ->exists();
+    }
+
     public function editRegista($id, $nome, $cognome){
         $regista = Regista::find($id);
 

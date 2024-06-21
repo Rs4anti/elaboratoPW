@@ -13,7 +13,7 @@
 
         <!-- Plugin JavaScript  -->
         <script src="http://code.jquery.com/jquery.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
         <script src="{{url('/')}}/js/bootstrap.min.js"></script>
 

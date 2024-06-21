@@ -28,7 +28,6 @@ class RegistaController extends Controller
         }    
     }
 
-
     public function update(Request $request, string $id){
 
         $nome = $request->input('nomeRegista');
@@ -64,7 +63,7 @@ class RegistaController extends Controller
         if ($regista !== null) {
             return view('director.deleteDirector')->with('regista', $regista);
         } else {
-            return view('errors.404'); //->with('message','Wrong book ID has been used!');
+            return view('errors.404'); //->with('message','Regista ID errato!');
         }
     }
 
@@ -82,5 +81,25 @@ class RegistaController extends Controller
         $filmAssociati = $dl->findFilmRegista($id);
 
         return view('director.details')->with('regista', $regista)->with('filmAssociati', $filmAssociati);
+    }
+
+    public function ajaxCheckRegista(Request $request){
+        $dl = new DataLayer();
+
+        $nome = $request->input('nome');
+        $cognome = $request->input('cognome');
+
+        if($dl->findRegistaByNomeCognome($nome, $cognome)){
+
+            //regista trovato!
+            $response = array('found' => true);
+
+        }else{
+            //regista NON trovato!
+            $response = array('found' => false);
+        }
+
+        //ritorno un json {'found': true|false}
+        return response()->json($response);
     }
 }

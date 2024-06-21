@@ -36,3 +36,7 @@ Route::resource('regista', RegistaController::class)->parameters([
 Route::get('/regista/{id}/destroy/confirm', [RegistaController::class, 'confirmDestroy'])->name('regista.destroy.confirm');
 
 Route::post('programmazione/create/{id}', [ProgrammazioneController::class, 'store'])->name('proiezioni.store');
+
+//Rotte ajax
+Route::get('/ajaxDirector', [RegistaController::class, 'ajaxCheckRegista']);
+//Route::get('/ajaxBook', [BookController::class, 'ajaxCheckForBooks']);

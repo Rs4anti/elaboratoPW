@@ -11,7 +11,6 @@
 @section('body')
 <script>
     $(document).ready(function(){
-
         $("form").submit(function(event) {
         // Definire le espressioni regolari per verificare che i campi non contengano cifre
         var regex = /^[a-zA-Z]+$/;
@@ -19,14 +18,17 @@
         // Ottenere i valori dei campi nome e cognome
         var nome = $("input[name='nomeRegista']").val();
         var cognome = $("input[name='cognomeRegista']").val();
+        var error = false;
         
         // Verifica se il campo "cognomeRegista" è vuoto
         if (cognome.trim() === "") {
+                error=true;
                 //alert("Il cognome del regista è obbligatorio.");
                 $("#invalid-cognome").text("Il cognome del regista è obbligatorio.");
                 event.preventDefault(); // Impedisce l'invio del modulo
                 $("input[name='cognomeRegista']").focus();
             } else if(!regex.test(cognome)){
+                error=true;
                 //alert("Il cognome  del regista non deve contenere cifre.");
                 $("#invalid-cognome").text("Il cognome del regista non deve contenere cifre.");
                 event.preventDefault(); // Impedisce l'invio del modulo
@@ -37,11 +39,13 @@
         
         // Verifica se il campo "nomeRegista" è vuoto
         if (nome.trim() === "") {
+                error=true;
                 //alert("Il nome del regista è obbligatorio.");
                 $("#invalid-nome").text("Il nome del regista è obbligatorio.");
                 event.preventDefault(); // Impedisce l'invio del modulo
                 $("input[name='nomeRegista']").focus();
             } else if(!regex.test(nome)){
+                error=true;
                 //alert("Il nome  del regista non deve contenere cifre.");
                 $("#invalid-nome").text("Il nome  del regista non deve contenere cifre.");
                 event.preventDefault(); // Impedisce l'invio del modulo
@@ -49,8 +53,36 @@
             } else {
                 $("#invalid-nome").text("");
             }
-        });
+
+        if(!error){
+            //capire se sono in inserimento->controllo metodo http -> deve essere POST
+            var methodHttp = $('input[name="_method"]').val();
+
+            if (methodHttp === undefined){ // sono in creazione nuovo regista
+                event.preventDefault(); //evito di far partire la form e faccio la chiamata ajax
+
+                $.ajax({
+                    
+                    type: 'GET',
+
+                    url: '/ajaxDirector',
+
+                    data: {nome: nome.trim(), cognome: cognome.trim()},
+
+                    success: function (data){
+                        if(data.found){
+                            error = true;
+                            $("#invalid-cognome").text("Il regista è già presente nel database!");
+                        }else{
+                            //seleziono il primo modello della lista delle form e faccio partire il submit!
+                            $("form")[0].submit(); 
+                        }
+                    }
+                });
+            }
+        }
     });
+});
 </script>
 <div class="row">
     <div class="col-md-12">
