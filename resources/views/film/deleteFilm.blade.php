@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <header>
                 <h1>
-                    Cancellazione "{{ $film->titolo }}" dalla lista
+                    Cancellazione "{{ $film->titolo }}" dalla lista.
                 </h1>
             </header>
             <p class="confirm">

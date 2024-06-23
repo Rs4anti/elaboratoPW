@@ -207,9 +207,6 @@
                         </h5>
 
                         <h5 class="card-text genere">Genere:
-                        @php
-                                echo('qua '.$film->locandina_path);
-                            @endphp
                             @foreach ($film->generi as $gen)
                                 <div>{{$gen->nome}}</div>
                             @endforeach
@@ -234,10 +231,15 @@
                             <i class="bi bi-clock-history"></i>    
                                 Inserisci programmazione</a>
 
+
+                        @if( count($film->proiezioni) == 0)
                         <a class="btn btn-danger" 
                                 href="{{ route('film.destroy.confirm', ['id' => $film->id]) }}">
                                 <i class="bi bi-trash"></i>
                                  Cancella Film</a>
+                        @else
+                            <a class="btn btn-secondary" disabled="disabled" href="#"><i class="bi bi-ban"></i> Cancella Film</a>
+                        @endif
                     </div>
                 </div>
             </div>

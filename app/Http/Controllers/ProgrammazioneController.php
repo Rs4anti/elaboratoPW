@@ -61,4 +61,31 @@ class ProgrammazioneController extends Controller
         
         return Redirect::to('gardenProgrammazione');
     }
+
+    public function destroy(string $id){
+        $dl = new DataLayer;
+
+        $dl->deleteProiezione($id);
+
+        return Redirect::to(route('gardenProgrammazione.index'));
+    }
+
+    public function confirmDestroy(string $id)
+    {
+        $dl = new DataLayer();
+        $proiezione = $dl->findProiezioneById($id);
+        $film = $proiezione->film;
+        $sala = $proiezione->sala;
+        $cinema = $sala->cinema;
+
+        if ($proiezione !== null) {
+            return view('programmazione.deleteProiezione')
+                        ->with('proiezione', $proiezione)
+                        ->with('film', $film)
+                        ->with('sala', $sala)
+                        ->with('cinema', $cinema);
+        } else {
+            return view('errors.404'); //->with('message','Wrong book ID has been used!');
+        }
+    }
 }

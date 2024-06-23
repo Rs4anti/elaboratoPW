@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <header>
                 <h1>
-                    Cancellazione "{{ $regista->nome }} {{$regista->cognome}}" dalla lista
+                    Cancellazione regista "{{ $regista->nome }} {{$regista->cognome}}" dalla lista.
                 </h1>
             </header>
             <p class="confirm">

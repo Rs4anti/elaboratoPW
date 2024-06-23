@@ -77,10 +77,12 @@
                                             {{ Carbon::parse($proiezione->ora)->format('H:i') }} @if (!$loop->last), @endif
                                             <!-- Bottone per modifica programmazione -->
                                             <div>
-                                            <a href="{{route('programmazione.edit', ['programmazione' => $proiezione->id])}}" class="btn btn-warning">Modifica programmazione</a>
+                                            <a href="{{route('programmazione.edit', ['programmazione' => $proiezione->id])}}" class="btn btn-warning">
+                                                Modifica programmazione</a>
 
                                             <!-- Bottone per eliminare programmazione -->
-                                            <a href="#" class="btn btn-danger">Elimina programmazione</a>
+                                            <a href="{{route('programmazione.destroy.confirm', ['id' => $proiezione->id])}}" class="btn btn-danger">
+                                                Elimina programmazione</a>
                                             </div>
                                             @endforeach
                                         </p>

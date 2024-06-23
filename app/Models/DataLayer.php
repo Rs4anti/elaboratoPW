@@ -441,10 +441,15 @@ class DataLayer
         $proiezione = Proiezione::find($id);
 
         $proiezione->film_id = $filmId;
-        $proiezione->data = Carbon::parse($data);;
+        $proiezione->data = Carbon::parse($data);
         $proiezione->ora =  Carbon::parse($ora)->format('H:i');
         $proiezione->sala_id = $sala;
 
         $proiezione->save();
+    }
+    public function deleteProiezione($id){
+        $proiezione = Proiezione::find($id);
+
+        $proiezione->delete();
     }
 }
