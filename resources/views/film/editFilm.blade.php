@@ -151,6 +151,7 @@
                             success: function(data){
                                 if(data.found){
                                     error = true;
+                                    $("input[name='titolo']").focus();
                                     $('#invalid-titolo').text('Un film con lo stesso titolo è gia presente.');
                                 }else{
                                     $("form")[0].submit();
