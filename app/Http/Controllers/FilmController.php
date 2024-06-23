@@ -152,7 +152,7 @@ class FilmController extends Controller
     public function ajaxCheckFilm(Request $request){
         $dl = new DataLayer();
 
-        if($dl->findFilmByTitolo($request->input('titolo'))){
+        if($dl->findFilmByTitoloAnno($request->input('titolo'), $request->input('anno_uscita'))){
             $response = array('found' => true);
         }else{
             $response = array('found' => false);

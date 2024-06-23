@@ -146,13 +146,13 @@
 
                             url: '/ajaxFilm',
 
-                            data: {titolo: titolo.trim()},
+                            data: {titolo: titolo.trim(), anno_uscita: anno.trim()},
 
                             success: function(data){
                                 if(data.found){
                                     error = true;
                                     $("input[name='titolo']").focus();
-                                    $('#invalid-titolo').text('Un film con lo stesso titolo è gia presente.');
+                                    $('#invalid-titolo').text('Un film con lo stesso titolo e stesso anno di uscita è gia presente.');
                                 }else{
                                     $("form")[0].submit();
                                 }

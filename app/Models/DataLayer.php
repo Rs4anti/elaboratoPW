@@ -201,6 +201,12 @@ class DataLayer
     return $film !== null;
     }
 
+    public function findFilmByTitoloAnno($titolo, $anno)
+    {
+    $film = Film::where('titolo', $titolo)->where('anno_uscita', $anno)->first();
+    return $film !== null;
+    }
+
     public function listRegisti(){
 
         $registi = Regista::with('films') // Carica i film associati a ciascun regista
