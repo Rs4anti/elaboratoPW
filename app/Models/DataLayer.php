@@ -161,6 +161,7 @@ class DataLayer
             $registi = $film->registi;
             $lingueAudio = $film->lingueAudio;
             $sottotitoli = $film->sottotitoli;
+
             if (Storage::disk('public')->exists($film->path_locandina)) {
                 Storage::disk('public')->delete($film->path_locandina);
             }
@@ -194,18 +195,10 @@ class DataLayer
         }
     }
 
-    public function findFilmByTitolo($titolo){
-
-        $films = Film::where('titolo', $titolo)->get();
-
-        if(count($films) == 0 ){
-            return false;
-        }else{
-            return true;
-        }
-
-        //return Film::where('titolo', $titolo)->exists();
-
+    public function findFilmByTitolo($titolo)
+    {
+    $film = Film::where('titolo', $titolo)->first();
+    return $film !== null;
     }
 
     public function listRegisti(){

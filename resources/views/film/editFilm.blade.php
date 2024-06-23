@@ -30,7 +30,6 @@
                 var trailer = $("input[name='trailer']").val();
                 var error = false;
 
-
                 if(titolo.trim() === ""){
                     error = true;
                     $('#invalid-titolo').text('Il titolo del film è obbligatorio.');
@@ -133,7 +132,7 @@
                 } else {
                     $("#invalid-lingua-sub").text("");
                 }
-                
+
                 if(!error){
                     //effettuare una chiamata AJAX per verificare che non sia presente un film con lo stesso titolo nel db
                     var methodHttp = $('input[name="_method"]').val();
@@ -160,11 +159,9 @@
                         });
                     }
                 }
-
             });
         });
 </script>
-
 
     <div class="row">
         <div class="col-md-12">
