@@ -191,9 +191,19 @@ class DataLayer
         }
     }
 
-    //add regista
+    public function findFilmByTitolo($titolo){
 
-    //edit regista
+        $films = Film::where('titolo', $titolo)->get();
+
+        if(count($films) == 0 ){
+            return false;
+        }else{
+            return true;
+        }
+
+        //return Film::where('titolo', $titolo)->exists();
+
+    }
 
     public function listRegisti(){
 
@@ -289,11 +299,6 @@ class DataLayer
         }
         else null;
     }
-
-    //TODO: aggiungere altri function per proiezioni?
-    //tipo find proiezione per film
-    // find proiezione per film, data
-    // find proiezione per film, data e ora
     public function findProiezioniCinema($cinemaId){
            // Trova il cinema
             $cinema = Cinema::find($cinemaId);
@@ -440,10 +445,4 @@ class DataLayer
 
         $proiezione->save();
     }
-
-    //trovare proiezioni di registi?
-
-
-    
-
 }

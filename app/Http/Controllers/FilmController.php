@@ -155,4 +155,18 @@ class FilmController extends Controller
             return view('errors.404'); //->with('message','Wrong book ID has been used!');
         }
     }
+
+
+    public function ajaxCheckFilm(Request $request){
+        $dl = new DataLayer();
+        
+
+        if($dl->findFilmByTitolo($request->input('titolo'))){
+            $response = array('found', true);
+        }else{
+            $response = array('found', false);
+        }
+
+        return response()->json($response);
+    }
 }

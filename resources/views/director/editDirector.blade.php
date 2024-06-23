@@ -55,7 +55,7 @@
             }
 
         if(!error){
-            //capire se sono in inserimento->controllo metodo http -> deve essere POST
+            //capire se sono in inserimento->controllo metodo http se definito
             var methodHttp = $('input[name="_method"]').val();
 
             if (methodHttp === undefined){ // sono in creazione nuovo regista

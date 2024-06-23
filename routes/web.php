@@ -39,4 +39,4 @@ Route::post('programmazione/create/{id}', [ProgrammazioneController::class, 'sto
 
 //Rotte ajax
 Route::get('/ajaxDirector', [RegistaController::class, 'ajaxCheckRegista']);
-//Route::get('/ajaxBook', [BookController::class, 'ajaxCheckForBooks']);
+Route::get('/ajaxFilm', [FilmController::class, 'ajaxCheckFilm']);

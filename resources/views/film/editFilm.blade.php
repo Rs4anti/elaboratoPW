@@ -28,9 +28,11 @@
                 var durata = $("input[name='durata']").val();
                 var anno = $("input[name='anno_uscita']").val();
                 var trailer = $("input[name='trailer']").val();
+                var error = false;
 
 
                 if(titolo.trim() === ""){
+                    error = true;
                     $('#invalid-titolo').text('Il titolo del film è obbligatorio.');
                     event.preventDefault(); //impedisco la partenza della form!
                     $("input[name='titolo']").focus();
@@ -39,6 +41,7 @@
                 }
 
                 if(trama.trim() === ""){
+                    error = true;
                     $('#invalid-trama').text('La trama del film è obbligatoria.');
                     event.preventDefault(); //impedisco la partenza della form!
                     $("input[name='trama']").focus();
@@ -47,10 +50,12 @@
                 }
 
                 if(durata.trim() === ""){
+                    error = true;
                     $('#invalid-durata').text('La durata del film è obbligatoria.');
                     event.preventDefault();
                     $("input[name='durata']").focus();
                 }else if(!regexInteger.test(durata)){
+                    error = true;
                     $('#invalid-durata').text('La durata del film NON può contenere caratteri.');
                     event.preventDefault();
                     $("input[name='durata']").focus();
@@ -61,13 +66,13 @@
                 }
                 else if(durata > 251){ //once upon a time in America usa director's cut length
                     confirm("La durata del film sembra un po' ELEVATA, continuare?")
-                    //$('#invalid-durata').text('La durata del film NON può essere negativa.');
                     $("input[name='durata']").focus();
                 }else {
                     $("#invalid-durata").text("");
                 }
 
                 if(anno.trim() === ""){
+                    error = true;
                     $('#invalid-anno').text('L\'anno di uscita del film è obbligatorio.');
                     event.preventDefault();
                     $("input[name='anno_uscita']").focus();
@@ -77,6 +82,7 @@
 
                 // Verifica se almeno una categoria è stata selezionata
                 if ($("input[name='generi[]']:checked").length === 0) {
+                    error = true;
                     $("#invalid-genere").text("Selezionare almeno un genere per il film.");
                     event.preventDefault(); // Impedisce l'invio del modulo
                     $("input[name='generi[]']").focus();
@@ -86,6 +92,7 @@
 
                 // Verifica se almeno un regista è stata selezionato
                 if ($("select[name='registi[]'] option:selected").length === 0) {
+                    error = true;
                     $("#invalid-regista").text("Selezionare almeno un regista per il film.");
                     event.preventDefault(); // Impedisce l'invio del modulo
                     $("select[name='registi[]']").focus();
@@ -94,12 +101,13 @@
                 }
 
                 if(trailer.trim() === ""){
+                    error = true;
                     $('#invalid-trailer').text('Inserire un link al trailer del film.');
                     event.preventDefault();
                     $("input[name='trailer']").focus();
                 }else if(!regexLink.test(trailer)){
+                    error = true;
                     alert("Il link del trailer sembra errato!");
-                    //$('#invalid-trailer').text('La durata del film NON può contenere caratteri.');
                     event.preventDefault();
                     $("input[name='trailer']").focus();
                 } else {
@@ -108,6 +116,7 @@
 
                 // Verifica se almeno una lingua audio è stata selezionata
                 if ($("input[name='lingueAudio[]']:checked").length === 0) {
+                    error = true;
                     $("#invalid-lingua-audio").text("Selezionare almeno una lingua per il film.");
                     event.preventDefault(); // Impedisce l'invio del modulo
                     $("input[name='lingueAudio[]']").focus();
@@ -117,11 +126,39 @@
 
                 // Verifica se almeno una lingua sottotitoli è stata selezionata
                 if ($("input[name='lingueSub[]']:checked").length === 0) {
+                    error = true;
                     $("#invalid-lingua-sub").text("Selezionare almeno una lingua per il film.");
                     event.preventDefault(); // Impedisce l'invio del modulo
                     $("input[name='lingueSub[]']").focus();
                 } else {
                     $("#invalid-lingua-sub").text("");
+                }
+                
+                if(!error){
+                    //effettuare una chiamata AJAX per verificare che non sia presente un film con lo stesso titolo nel db
+                    var methodHttp = $('input[name="_method"]').val();
+
+                    if(methodHttp === undefined){
+                        event.preventDefault();
+
+                        //costruisco la mia chiamata ajax
+                        $.ajax({
+                            type: 'GET',
+
+                            url: '/ajaxFilm',
+
+                            data: {titolo: titolo.trim()},
+
+                            success: function(data){
+                                if(data.found){
+                                    error = true;
+                                    $('#invalid-titolo').text('Un film con lo stesso titolo è gia presente.');
+                                }else{
+                                    $("form")[0].submit();
+                                }
+                            }
+                        });
+                    }
                 }
 
             });
