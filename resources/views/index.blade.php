@@ -2,13 +2,6 @@
 
 @section('title','Multisale Garden Iride')
 
-@section('breadcrumb')
-<li class="breadcrumb-item" aria-current="page"><a href="{{ route('home') }}">Home</a></li>
-<li class="breadcrumb-item active" aria-current="page">Library</li>
-<li class="breadcrumb-item active" aria-current="page">Books</li>
-@endsection
-
-
 @section('body')
           <div class="row text-center">
               <h2>

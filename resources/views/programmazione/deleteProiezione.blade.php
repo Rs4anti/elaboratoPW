@@ -17,7 +17,10 @@
                         </div>
                         <div class="card-body">
                             <p class="lead">
-                                Stai per cancellare la proiezione del film <strong><i>{{ $film->titolo }}</i></strong> del <strong>{{ $proiezione->data }}</strong> alle <strong>{{ $proiezione->ora }}</strong>.
+                                Stai per cancellare la proiezione del film 
+                                <strong><i>{{ $film->titolo }}</i></strong>
+                                 del <strong>{{ $proiezione->data }}</strong> 
+                                 alle <strong>{{ $proiezione->ora }}</strong>.
                             </p>
                             <p>
                                 Sala: <strong>{{ $sala->nome }}</strong><br>

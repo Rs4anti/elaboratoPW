@@ -59,7 +59,7 @@
                     event.preventDefault();
                     $("input[name='durata']").focus();
                 }else if(durata < 50){
-                    confirm("La durata un po' BREVE, continuare?")
+                    confirm("La durata sembra un po' BREVE, continuare?")
                     //$('#invalid-durata').text('La durata del film NON può essere negativa.');
                     $("input[name='durata']").focus();
                 }
