@@ -83,7 +83,6 @@ class FilmController extends Controller
         $generi = $dl->listGeneri();
         $lingueAudio = $dl -> listLingue();
         $sottotitoli = $dl -> listLingue();
-        //$locandina = $dl->locandinaFilm($id);
 
         if($film !== null){
             //VIEW per modifica $film
@@ -114,10 +113,6 @@ class FilmController extends Controller
 
 
         $dl = new DataLayer();
-        // Gestione del caricamento della locandina
-
-            //$locandina = $film->locandinaFilm;
-        
 
         $dl->editFilm($id,  $request->input('titolo'),
                             $locandina,

@@ -161,6 +161,9 @@ class DataLayer
             $registi = $film->registi;
             $lingueAudio = $film->lingueAudio;
             $sottotitoli = $film->sottotitoli;
+            if (Storage::disk('public')->exists($film->path_locandina)) {
+                Storage::disk('public')->delete($film->path_locandina);
+            }
             //$proiezioni = $film->proiezioni;
     
             foreach($generi as $genere){
