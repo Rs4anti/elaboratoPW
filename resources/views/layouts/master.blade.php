@@ -84,18 +84,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#" role="button">Contatti</a>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#" role="button">LOGIN</a>
-                </li>
-
             </li>
             </ul>
 
             <ul class="navbar-nav">
                     @if(isset($_SESSION['logged']))
-                    //aggiungo messaggio personalizzato di benvenuto con nome utente
-                    <li class="nav-item"><i>Wecome {{ $_SESSION['loggedName'] }}</i> <a href="{{ route('user.logout') }}"><i class="bi bi-box-arrow-right"></i></a></li>
+                    <li class="nav-item"><i>Benvenuto {{ $_SESSION['loggedName'] }}</i> <a href="{{ route('user.logout') }}"><i class="bi bi-box-arrow-right"></i></a></li>
                     @else
                     <li class="nav-item"><a href="{{ route('user.login') }}"><i class="bi bi-person-check-fill"></i></a></li>
                     @endif

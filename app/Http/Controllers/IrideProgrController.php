@@ -8,6 +8,7 @@ use App\Models\DataLayer;
 class IrideProgrController extends Controller
 {
     public function index(){
+        session_start();
         //ID cinema iride == 2
         $dl = new DataLayer();
         

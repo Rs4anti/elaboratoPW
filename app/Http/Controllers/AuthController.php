@@ -16,6 +16,7 @@ class AuthController extends Controller
     public function login(Request $request) {
         
         session_start();
+        
         $dl = new DataLayer();
         if($dl->validUser($request->input('email'), $request->input('password')))
         {
@@ -26,7 +27,7 @@ class AuthController extends Controller
             return Redirect::to(route('home'));
         } else 
         {
-            return view('errors.404')->with('message','Wrong authentication credentials!');
+            return view('errors.404');//->with('message','Wrong authentication credentials!');
         }
     }
 

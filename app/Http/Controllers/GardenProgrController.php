@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class GardenProgrController extends Controller
 {
     public function index(){
+        session_start();
         //ID cinema garden == 1
         $dl = new DataLayer();
         

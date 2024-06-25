@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Redirect;
 
 class ProgrammazioneController extends Controller
 {
-    public function index(){
-        return null;
-    }
+    /* public function index(){
+        
+    } */
 
     public function create(string $FilmId){
         $dl = new DataLayer();

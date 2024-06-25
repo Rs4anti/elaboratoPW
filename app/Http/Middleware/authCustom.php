@@ -19,7 +19,7 @@ class authCustom
         session_start(); //recuper info di sessione
 
         if (!isset($_SESSION['logged'])) { // se non è settato
-            return Redirect::to(route('user.login'));
+            return response()->view('errors.404',['message' => 'Only administrators can view this page!']);
         }
 
         return $next($request); //altrimenti vai avanti

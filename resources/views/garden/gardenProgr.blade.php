@@ -75,15 +75,20 @@
                                         <p><strong>{{ $formattedDate }}:</strong> 
                                             @foreach ($proiezioni as $proiezione)
                                             {{ Carbon::parse($proiezione->ora)->format('H:i') }} @if (!$loop->last), @endif
-                                            <!-- Bottone per modifica programmazione -->
-                                            <div>
-                                            <a href="{{route('programmazione.edit', ['programmazione' => $proiezione->id])}}" class="btn btn-warning">
-                                                Modifica programmazione</a>
 
-                                            <!-- Bottone per eliminare programmazione -->
-                                            <a href="{{route('programmazione.destroy.confirm', ['id' => $proiezione->id])}}" class="btn btn-danger">
-                                                Elimina programmazione</a>
-                                            </div>
+                                                @if(isset($_SESSION['logged']) && $_SESSION['role'] == 'admin')
+                                                <!-- Bottone per modifica programmazione -->
+                                                <div>
+                                                <a href="{{route('programmazione.edit', ['programmazione' => $proiezione->id])}}" class="btn btn-warning">
+                                                    Modifica programmazione</a>
+                                                </div>
+
+                                                <div>
+                                                <!-- Bottone per eliminare programmazione -->
+                                                <a href="{{route('programmazione.destroy.confirm', ['id' => $proiezione->id])}}" class="btn btn-danger">
+                                                    Elimina programmazione</a>
+                                                </div>
+                                                @endif
                                             @endforeach
                                         </p>
                                         @endforeach

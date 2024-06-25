@@ -15,6 +15,9 @@ class isRegisteredUser
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if ((!isset($_SESSION['role']))||($_SESSION['role']!='registered_user')) {
+            return response()->view('errors.404',['message' => 'Only external registered users can view this page!']);
+        }
         return $next($request);
     }
 }
