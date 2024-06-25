@@ -41,6 +41,8 @@
                 <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
               </li>
 
+              @if((isset($_SESSION['logged']))&&($_SESSION['role']==='admin'))
+
               <li class="nav-item dropdown btn btn-warning">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Gestione cinema
@@ -62,7 +64,9 @@
                     </ul>
               </li>
 
-              <li class="nav-item dropdown">
+              @endif
+
+              <!-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Rassegne
                 </a>
@@ -71,7 +75,7 @@
                                                       
                         <li><a class="dropdown-item" href="{{route('irideRassegne.index')}}">Iride</a></li>
                     </ul>
-              </li>
+              </li> -->
 
               <li class="nav-item">
                 <a class="nav-link" href="{{route('price.index')}}"> Prezzi</a>
@@ -87,6 +91,16 @@
 
             </li>
             </ul>
+
+            <ul class="navbar-nav">
+                    @if(isset($_SESSION['logged']))
+                    //aggiungo messaggio personalizzato di benvenuto con nome utente
+                    <li class="nav-item"><i>Wecome {{ $_SESSION['loggedName'] }}</i> <a href="{{ route('user.logout') }}"><i class="bi bi-box-arrow-right"></i></a></li>
+                    @else
+                    <li class="nav-item"><a href="{{ route('user.login') }}"><i class="bi bi-person-check-fill"></i></a></li>
+                    @endif
+            </ul>
+
           </div>
         </div>
         </div>

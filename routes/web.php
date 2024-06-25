@@ -10,6 +10,7 @@ use App\Http\Controllers\ProgrammazioneController;
 use App\Http\Controllers\RegistaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', [FrontController::class, 'getHome'])->name('home');
 
@@ -41,3 +42,24 @@ Route::get('/prorgammazione/{id}/destroy/confirm', [ProgrammazioneController::cl
 //Rotte ajax
 Route::get('/ajaxDirector', [RegistaController::class, 'ajaxCheckRegista']);
 Route::get('/ajaxFilm', [FilmController::class, 'ajaxCheckFilm']);
+
+
+Route::get('/user/login', [AuthController::class, 'authentication'])->name('user.login');
+Route::post('/user/login', [AuthController::class, 'login'])->name('user.login');
+Route::get('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
+
+Route::post('/user/register', [AuthController::class, 'registration'])->name('user.register');
+Route::get('/ajaxUser', [AuthController::class, 'ajaxCheckForEmail']);
+
+Route::group(['middleware' => ['authCustom','isRegisteredUser']], function() {
+    //qua farei metodi di Film per consentire a utente di aggiungere film che gli interessano da catalogo
+    /* Route::resource('book', BookController::class);
+    Route::get('/book/{id}/destroy/confirm', [BookController::class, 'confirmDestroy'])->name('book.destroy.confirm'); */
+
+    //qua farei metodi di Film per consentire a utente di aggiungere proiezioni che gli interessano da quelle disponibili
+    /* Route::resource('author', AuthorController::class);
+    Route::get('/author/{id}/destroy/confirm', [AuthorController::class, 'confirmDestroy'])->name('author.destroy.confirm'); */
+
+    Route::get('/ajaxDirector', [RegistaController::class, 'ajaxCheckRegista']);
+    Route::get('/ajaxFilm', [FilmController::class, 'ajaxCheckFilm']);
+});

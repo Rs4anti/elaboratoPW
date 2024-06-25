@@ -23,14 +23,14 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
     public function run(): void
-    {
+    {   
+        $this->createUsers();
         $this->populateDB();
-        //$this->createUsers();
-        
     }
 
     private function populateDB(){
         
+       
         //Creo 100 registi
         $registi = Regista::factory()->count(15)->create();
 
@@ -38,11 +38,20 @@ class DatabaseSeeder extends Seeder
         Film::factory()->count(15)->create()->each(function ($film) use ($registi) {
             // Prendo un subset casuale di registi (da 1 a 3)
             $randomRegisti = $registi->random(rand(1, 3));
-            $film->registi()->attach($randomRegisti);            
+            $film->registi()->attach($randomRegisti);           
            });
 
-        
-        Lingua::factory()->count(1)->create(['lingua' => 'nessuna']); //In caso non serva visualizzare info lingua (es.sub assenti)
+           $films = Film::all();
+           $utentiRegistrati = User::all();
+
+        foreach($films as $film){
+            $film->user_id = $utentiRegistrati->random()->id;
+            $film->save();
+        }
+           
+
+        //In caso non serva visualizzare info lingua (es.sub assenti)
+        Lingua::factory()->count(1)->create(['lingua' => 'nessuna']); 
         Lingua::factory()->count(1)->create(['lingua' => 'Inglese']);
         Lingua::factory()->count(1)->create(['lingua' => 'Italiano']);
         Lingua::factory()->count(1)->create(['lingua' => 'Francese']);
@@ -71,7 +80,6 @@ class DatabaseSeeder extends Seeder
         Lingua::factory()->count(1)->create(['lingua' => 'Croato']);
         Lingua::factory()->count(1)->create(['lingua' => 'Serbo']);
 
-        $films = Film::all();
         $lingue = Lingua::all();
 
 
@@ -104,6 +112,7 @@ class DatabaseSeeder extends Seeder
                 Proiezione::factory()->create([
                     'film_id' => $film->id,
                     'sala_id' => $sala->id,
+                    'user_id' => $utentiRegistrati->random()->id
                 ]);
             }
 }
@@ -134,21 +143,32 @@ class DatabaseSeeder extends Seeder
             
          }
 
-        /* foreach ($films as $film) {
-        LocandinaFactory::new()->create([
-           'film_id' => $film->id,
-        ]); 
-    }*/
-
 }
     
 
     private function createUsers() {
 
-         User::factory(10)->create();
-         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        User::factory()->create([
+            'name' => 'Roberto Santicoli',
+            'email' => 'santicoliroberto@gmail.com',
+            'password' => 'santicoli',
+            'role' => 'admin'
         ]);
+
+        User::factory()->create([
+            'name' => 'Paolo Santicoli',
+            'email' => 'santicolipaolo@gmail.com',
+            'password' => 'santicoli',
+            'role' => 'registered_user'
+        ]);
+
+        User::factory()->create([
+            'name' => 'Giacomino Santicoli',
+            'email' => 'santicoligiacomino@gmail.com',
+            'password' => 'santicoli',
+            'role' => 'registered_user'
+        ]);
+
+
     }
 }

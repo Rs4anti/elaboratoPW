@@ -3,11 +3,15 @@
 namespace App\Models;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class DataLayer
 {
     public function listFilms(){
         $films = Film::orderBy('titolo', 'asc')->get();
+
+        //per avere lista dal piu recente modificato
+        //$films = Film::orderBy('updated_at', 'desc')->get();
         return $films;
     }
 
@@ -24,16 +28,6 @@ class DataLayer
     public function findFilmById($id){
         return Film::find($id);
     }
-
-    /* public function locandinaFilm($filmId){
-        $film = Film::find($filmId);
-
-        if($film){
-            return $film->locandinaFilm();
-        }else{
-            return null;
-        }
-    } */
 
     public function addFilm($titolo, $locandina, $annoUscita,  $linkTrailer, $trama, $durata, $registi, $generi, $lingueAudio, $sottotitoli){
             $film = new Film;
@@ -182,12 +176,6 @@ class DataLayer
             foreach($sottotitoli as $sub){
                 $film->sottotitoli()->detach($sub->id);
             }
-
-            //foreach($proiezioni as $proiezione){
-            //    $film->proiezioni()->detach($proiezione->id);
-            //}
-    
-            //TODO: 2nd ver SE ELIMINO UN FILM ELIMINO ANCHE LE PROIEZIONI ASSOCIATE (?)
     
             $film->delete();
         } else {
@@ -451,5 +439,51 @@ class DataLayer
         $proiezione = Proiezione::find($id);
 
         $proiezione->delete();
+    }
+
+    public function validUser($email, $password) {
+        $user = User::where('email', $email)->first();
+        
+        if($user && Hash::check($password, $user->password))
+        {
+            return true;
+        } else {
+            return false;
+        }        
+    }
+    
+    public function addUser($name, $password, $email) {
+        $user = new User();
+        $user->name = $name;
+        $user->password = Hash::make($password);
+        $user->email = $email;
+        $user->role = "registered_user";
+        $user->email_verified_at = now();
+        $user->save();
+    }
+
+    public function getUserID($email) {
+        $users = User::where('email',$email)->get(['id']);
+        return $users[0]->id;
+    }
+
+    public function getUserName($email) {
+        $users = User::where('email',$email)->get(['name']);
+        return $users[0]->name;
+    }
+
+    public function getUserRole($email) {
+        $users = User::where('email',$email)->get(['role']);
+        return $users[0]->role;
+    }
+
+    public function findUserByemail($email) {
+        $users = User::where('email', $email)->get();
+        
+        if (count($users) == 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

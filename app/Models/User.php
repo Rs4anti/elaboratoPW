@@ -29,7 +29,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        'remember_token'
     ];
 
     /**
@@ -43,5 +43,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+
+    //Metodi del modello user
+    public function films(){
+       return $this->hasMany(Film::class, 'user_id', 'id');
+    }
+
+    public function proiezioni(){
+        return $this->hasMany(Proiezione::class, 'user_id', 'id');
     }
 }

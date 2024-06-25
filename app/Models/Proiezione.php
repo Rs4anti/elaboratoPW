@@ -11,7 +11,7 @@ class Proiezione extends Model
 
     protected $table = 'proiezioni';
 
-    protected $fillable=['data', 'ora'];
+    protected $fillable=['data', 'ora', 'user_id'];
 
     // in una sala proietto un fiilm
     public function film(){
@@ -21,6 +21,10 @@ class Proiezione extends Model
     // Una proiezione appartiene a una sala
     public function sala(){
         return $this->belongsTo(Sala::class, 'sala_id');
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
 }
