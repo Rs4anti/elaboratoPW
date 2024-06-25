@@ -11,6 +11,7 @@ use App\Http\Controllers\RegistaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MostraFilmController;
 
 Route::get('/', [FrontController::class, 'getHome'])->name('home');
 
@@ -19,6 +20,8 @@ Route::resource('irideProgrammazione', IrideProgrController::class);
 
 Route::resource('gardenRassegne', GardenRassegneController::class);
 Route::resource('irideRassegne', IrideRassegneController::class);
+
+Route::resource('mostraFilm', MostraFilmController::class);
 
 Route::resource('price', PriceController::class);
 
@@ -29,15 +32,17 @@ Route::get('/user/logout', [AuthController::class, 'logout'])->name('user.logout
 Route::post('/user/register', [AuthController::class, 'registration'])->name('user.register');
 Route::get('/ajaxUser', [AuthController::class, 'ajaxCheckForEmail']);
 
+
 Route::group(['middleware' => ['authCustom','isAdmin']], function() {
     Route::get('/programmazione/create/{id}', [ProgrammazioneController::class, 'create'])->name('programmazione.create');
-    Route::resource('film', FilmController::class);
+    
     Route::get('/film/{id}/destroy/confirm', [FilmController::class, 'confirmDestroy'])->name('film.destroy.confirm');
     Route::resource('regista', RegistaController::class)->parameters([
         'regista' => 'id'
     ]);
     Route::get('/regista/{id}/destroy/confirm', [RegistaController::class, 'confirmDestroy'])->name('regista.destroy.confirm');
-
+    Route::resource('film', FilmController::class);
+    //Route::get('film/{id}', [FilmController::class, 'create'])->name('film.create');
     Route::resource('programmazione', ProgrammazioneController::class);
     
     Route::post('programmazione/create/{id}', [ProgrammazioneController::class, 'store'])->name('proiezioni.store');

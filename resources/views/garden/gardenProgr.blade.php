@@ -50,7 +50,7 @@
                                     <p class="card-text"><strong>Anno Uscita: </strong>{{$film->anno_uscita}}</p>
 
                                     <!-- Bottone per scheda film -->
-                                    <a href="{{ route('film.show', ['film' => $film->id]) }}" class="btn btn-primary">Scheda film</a>
+                                    <a href="{{ route('mostraFilm.show', ['mostraFilm' => $film->id]) }}" class="btn btn-primary">Scheda film</a>
                                 </div>
                             </div>
 

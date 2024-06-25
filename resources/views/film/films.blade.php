@@ -156,7 +156,7 @@
     </div>
 </div>
 
-
+@if (isset($_SESSION['logged']))
 <div class="row">
     <div class="col-xs-6 d-flex justify-content">
         <p>
@@ -167,6 +167,8 @@
         </p>
     </div>
 </div>
+@endif
+
 
 <nav aria-label="Page navigation example" id="paginationNav">
     <ul class="pagination justify-content-center">
@@ -217,7 +219,7 @@
                         <p class="class-text durata-film">Durata: {{$film->durata}} min</p>
                         
                         <a class="btn btn-primary" 
-                                href="{{ route('film.show', ['film' => $film->id]) }}">
+                                href="{{ route('mostraFilm.show', ['mostraFilm' => $film->id]) }}">
                                 <i class="bi bi-eye"></i>
                                 Scheda film</a>
 

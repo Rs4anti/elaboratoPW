@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Redirect;
 class RegistaController extends Controller
 {
     public function index(){
-        session_start();
         $dl = new DataLayer();
         $registi = $dl->listRegisti();
 
