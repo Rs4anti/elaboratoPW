@@ -66,6 +66,32 @@
 
               @endif
 
+
+              @if((isset($_SESSION['logged']))&&($_SESSION['role']==='registered_user'))
+
+              <li class="nav-item dropdown btn btn-warning">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Area Personale
+                </a>
+                    <ul class="dropdown-menu">  
+
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">
+                    <i class="bi bi-floppy"></i>
+                      I tuoi generi preferiti</a>
+                    </li>
+                    
+                    <li class="nav-item"> 
+                      <a href="#" class="nav-link">
+                      <i class="bi bi-camera-reels"></i>    
+                        I tuoi registi preferiti</a>
+                      </li>
+                      
+                    </ul>
+              </li>
+
+              @endif
+
               <!-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Rassegne

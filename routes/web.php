@@ -34,7 +34,7 @@ Route::get('/ajaxUser', [AuthController::class, 'ajaxCheckForEmail']);
 
 
 Route::group(['middleware' => ['authCustom','isAdmin']], function() {
-    Route::get('/programmazione/create/{id}', [ProgrammazioneController::class, 'create'])->name('programmazione.create');
+    
     
     Route::get('/film/{id}/destroy/confirm', [FilmController::class, 'confirmDestroy'])->name('film.destroy.confirm');
     Route::resource('regista', RegistaController::class)->parameters([
@@ -44,7 +44,7 @@ Route::group(['middleware' => ['authCustom','isAdmin']], function() {
     Route::resource('film', FilmController::class);
     //Route::get('film/{id}', [FilmController::class, 'create'])->name('film.create');
     Route::resource('programmazione', ProgrammazioneController::class);
-    
+    Route::get('/programmazione/create/{id}', [ProgrammazioneController::class, 'create'])->name('programmazione.create');
     Route::post('programmazione/create/{id}', [ProgrammazioneController::class, 'store'])->name('proiezioni.store');
     Route::get('/prorgammazione/{id}/destroy/confirm', [ProgrammazioneController::class, 'confirmDestroy'])->name('programmazione.destroy.confirm');
    

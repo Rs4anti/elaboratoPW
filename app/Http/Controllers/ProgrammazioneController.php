@@ -10,13 +10,13 @@ use Illuminate\Support\Facades\Redirect;
 
 class ProgrammazioneController extends Controller
 {
-    /* public function index(){
-        
-    } */
+     /* public function index(){
+        session_start();
+     } */
 
-    public function create(string $FilmId){
+    public function create(string $id){
         $dl = new DataLayer();
-        $film = $dl->findFilmById($FilmId);
+        $film = $dl->findFilmById($id);
         $sale = $dl->listSaleCinema();
 
         return view('programmazione.edit')->with('film', $film)->with('sale', $sale);

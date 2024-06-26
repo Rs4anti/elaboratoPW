@@ -16,7 +16,6 @@ return Application::configure(basePath: dirname(__DIR__))
             'authCustom' => \App\Http\Middleware\authCustom::class,
             'isAdmin' => \App\Http\Middleware\isAdmin::class,
             'isRegisteredUser' => \App\Http\Middleware\isRegisteredUser::class,
-            'isNotRegisteredUser' => \App\Http\Middleware\isNotRegisteredUser::class,
         ]);
 
         //

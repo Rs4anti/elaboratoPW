@@ -104,13 +104,26 @@ return new class extends Migration
            $table -> unsignedBigInteger('sala_id');
            $table -> date('data');
            $table -> time('ora', 0);
-           $table->unsignedBigInteger('user_id');
            $table -> timestamps();
         });
 
         Schema::table('users', function (Blueprint $table) {
             $table->string('role')->default('registered_user'); // Aggiunge la colonna 'role' con un valore predefinito
         });
+
+        Schema::create('generi_preferiti', function(Blueprint $table){
+            $table -> id();
+            $table -> unsignedBigInteger('user_id');
+            $table -> unsignedBigInteger('genere_id');
+            $table -> timestamps();
+         });
+
+        Schema::create('registi_preferiti', function(Blueprint $table){
+            $table -> id();
+            $table -> unsignedBigInteger('user_id');
+            $table -> unsignedBigInteger('regista_id');
+            $table -> timestamps();
+         });
 
         // VINCOLI DI INTEGRITA REFERENZIALE
         //Per 'genere' n:m
@@ -143,9 +156,6 @@ return new class extends Migration
         //Per 'regista_film'
         Schema::table('regista_film', function(Blueprint $table){
             $table->foreign('film_id')->references('id')->on('films');
-        });
-
-        Schema::table('regista_film', function(Blueprint $table){
             $table->foreign('regista_id')->references('id')->on('regista');
         });
 
@@ -157,7 +167,6 @@ return new class extends Migration
         Schema::table('proiezioni', function(Blueprint $table){
            $table->foreign('film_id')->references('id')->on('films');
            $table->foreign('sala_id')->references('id')->on('sale');
-           $table->foreign('user_id')->references('id')->on('users');
         });
         
         //Per 'sala'
@@ -167,6 +176,18 @@ return new class extends Migration
 
         Schema::table('indirizzo', function(Blueprint $table){
            $table->foreign('cinema_id')->references('id')->on('cinema');
+        });
+
+        //Per generi preferiti
+        Schema::table('generi_preferiti', function(Blueprint $table){
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('genere_id')->references('id')->on('generi');
+        });
+
+        //Per registi preferiti
+        Schema::table('registi_preferiti', function(Blueprint $table){
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('regista_id')->references('id')->on('regista');
         });
 
 

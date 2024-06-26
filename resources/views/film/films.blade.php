@@ -230,7 +230,7 @@
 
                         <a class="btn btn-success"
                             href="{{route('programmazione.create', ['id' => $film->id])}}">
-                            <i class="bi bi-clock-history"></i>    
+                            <i class="bi bi-clock-history"></i>
                                 Inserisci programmazione</a>
 
 

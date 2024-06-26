@@ -30,28 +30,21 @@ class DatabaseSeeder extends Seeder
 
     private function populateDB(){
         
-       
-        //Creo 100 registi
-        $registi = Regista::factory()->count(15)->create();
+        //Creo 20 registi
+        $registi = Regista::factory()->count(20)->create();
 
-        // Crea film e associa casualmente da 1 a 3 registi per ogni film
+        // Creo film e associa casualmente da 1 a 3 registi per ogni film
         Film::factory()->count(15)->create()->each(function ($film) use ($registi) {
             // Prendo un subset casuale di registi (da 1 a 3)
             $randomRegisti = $registi->random(rand(1, 3));
             $film->registi()->attach($randomRegisti);           
            });
 
-           $films = Film::all();
-           $utentiRegistrati = User::all();
-
-        foreach($films as $film){
-            $film->user_id = $utentiRegistrati->random()->id;
-            $film->save();
-        }
-           
+        $films = Film::all();  
 
         //In caso non serva visualizzare info lingua (es.sub assenti)
-        Lingua::factory()->count(1)->create(['lingua' => 'nessuna']); 
+        Lingua::factory()->count(1)->create(['lingua' => 'nessuna']);
+
         Lingua::factory()->count(1)->create(['lingua' => 'Inglese']);
         Lingua::factory()->count(1)->create(['lingua' => 'Italiano']);
         Lingua::factory()->count(1)->create(['lingua' => 'Francese']);
@@ -82,8 +75,6 @@ class DatabaseSeeder extends Seeder
 
         $lingue = Lingua::all();
 
-
-
         foreach($films as $film){
             $numeroLingue = rand(1,5);
             for($i=0; $i<$numeroLingue; $i++){
@@ -112,10 +103,9 @@ class DatabaseSeeder extends Seeder
                 Proiezione::factory()->create([
                     'film_id' => $film->id,
                     'sala_id' => $sala->id,
-                    'user_id' => $utentiRegistrati->random()->id
                 ]);
             }
-}
+        }
 
 
          Genere::factory()->count(1)->create(['nome' => 'Azione']);
@@ -140,11 +130,28 @@ class DatabaseSeeder extends Seeder
             $numeroGeneri = rand(1,5);
             $generiScelti = $generi->random($numeroGeneri);
             $film->generi()->attach($generiScelti);
-            
          }
 
+         $utenti = User::where('role', 'registered_user')->get();
+
+         foreach ($utenti as $utente) {
+            $this->creaUtenteConPreferenze($utente, $generi, $registi);
+         }
+
+
 }
-    
+
+        private function creaUtenteConPreferenze($utente, $generi, $registi){
+
+            $generiEstratti = $generi->random(rand(1,3));
+            $utente->generiPreferiti()->attach($generiEstratti);
+
+            $registiEstratti = $registi->random(rand(1,3));
+            $utente->registiPreferiti()->attach($registiEstratti);
+
+        }
+ 
+
 
     private function createUsers() {
 

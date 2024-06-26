@@ -47,11 +47,11 @@ class User extends Authenticatable
 
 
     //Metodi del modello user
-    public function films(){
-       return $this->hasMany(Film::class, 'user_id', 'id');
+    public function generiPreferiti(){
+       return $this->belongsToMany(Genere::class, 'generi_preferiti', 'user_id', 'genere_id');
     }
 
-    public function proiezioni(){
-        return $this->hasMany(Proiezione::class, 'user_id', 'id');
+    public function registiPreferiti(){
+        return $this->belongsToMany(Regista::class, 'registi_preferiti', 'user_id', 'regista_id');
     }
 }

@@ -58,7 +58,7 @@
             return Redirect::to(route('film.index'));
         }
 
-        /* public function show(string $id){
+         public function show(string $id){
             $dl = new DataLayer();
             $film = $dl->findFilmById($id);
 
@@ -70,7 +70,7 @@
             else{
                 return view('errors.404'); //->with('messagge', 'FILM ID SBAGLIATO!')
             }
-        } */
+        } 
 
         public function edit(String $id){
             $dl = new DataLayer();
