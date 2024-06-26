@@ -38,6 +38,8 @@ Route::get('/ajaxUser', [AuthController::class, 'ajaxCheckForEmail']);
 Route::group(['middleware' => ['authCustom', 'isRegisteredUser']], function() {
     Route::get('/preferenzeUtente', [UserController::class, 'index'])->name('preferenzeUtente');
     Route::get('/suggerimenti', [UserController::class, 'suggerimenti'])->name('suggerimentiUtente');
+    Route::get('/preferenzeUtente', [UserController::class, 'index'])->name('preferenzeUtente');
+    Route::post('/preferenzeUtente', [UserController::class, 'store'])->name('preferenze.store');
 });
 
 

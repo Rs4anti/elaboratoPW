@@ -512,13 +512,17 @@ class DataLayer
 
     }
 
-    public function checkPreferenze($userID){
+    public function addPreferenzeUtente($userID, $generi, $registi){
+
         $user = User::find($userID);
 
-        if($user->registiPreferiti() != null & $user->generiPreferiti()!=null){
-            return true;
-        }else{
-            return false;
+        foreach($generi as $genere){
+            $user->generiPreferiti()->attach($genere);
         }
+
+        foreach($registi as $regista){
+            $user->registiPreferiti()->attach($regista);
+        }
+
     }
 }

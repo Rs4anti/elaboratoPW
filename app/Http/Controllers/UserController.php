@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DataLayer;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
@@ -14,8 +15,6 @@ class UserController extends Controller
         $generiPreferiti = $dl->generiPreferitiUtente($_SESSION['loggedID']);
         $registiPreferiti = $dl->registiPreferitiUtente($_SESSION['loggedID']);
 
-        $prferenzeEspresse = $dl->checkPreferenze($_SESSION['loggedID']);
-
         $registi = $dl->listRegisti();
         $generi = $dl->listGeneri();
 
@@ -23,8 +22,7 @@ class UserController extends Controller
             ->with('registi', $registi)
             ->with('generi', $generi)
             ->with('generiPreferiti', $generiPreferiti)
-            ->with('registiPreferiti', $registiPreferiti)
-            ->with('preferenze', $prferenzeEspresse);
+            ->with('registiPreferiti', $registiPreferiti);
     }
 
 
@@ -36,6 +34,19 @@ class UserController extends Controller
         $dl = new DataLayer();
 
         $dl->updatePreferenzeUtente($userID, $generiSelezionati, $registiSelezionati);
+
+    }
+
+    public function store(Request $request){
+        $userID = $_SESSION['loggedID'];
+        $generiSelezionati = $request->input('generi', []);
+        $registiScelti = $request->input('registi', []);
+
+        $dl = new DataLayer();
+
+        $dl->addPreferenzeUtente($userID, $generiSelezionati, $registiScelti);
+
+        return Redirect::to(route('home'));
 
     }
     public function suggerimenti(){

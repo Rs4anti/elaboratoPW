@@ -6,16 +6,16 @@
 
 <div class="row">
         <div class="col-md-12">
-        @if($preferenze)
+        @if(!$registiPreferiti->isEmpty() || !$generiPreferiti->isEmpty())
             <form class="form-horizontal" name="film" method="post" action="#"  enctype="multipart/form-data">
             @method('PUT')
         @else
-            <form class="form-horizontal" name="film" method="post" action="#"  enctype="multipart/form-data">
+            <form class="form-horizontal" name="film" method="post" action="{{route('preferenze.store')}}"  enctype="multipart/form-data">
         @endif
             @csrf
 
             @php
-            echo($preferenze);
+            echo(" " . $registiPreferiti);
             @endphp
 
                 <div class="form-group row mb-3">
@@ -35,6 +35,10 @@
                         <span class="invalid-input" id="invalid-regista"></span>  
                     </div>
                 </div>
+
+                @php
+            echo("" . $generiPreferiti);
+            @endphp
 
         <div class="form-group row mb-3">
             <div class="col-md-2">
