@@ -537,4 +537,41 @@ class DataLayer
         }
 
     }
+
+
+    public function suggerisciFilmByRegista($userID){
+        $user = User::find($userID);
+
+        $registiPreferiti = $user->registiPreferiti()->get();
+
+        $filmIds = [];
+
+    // Itera sui registi preferiti
+    foreach($registiPreferiti as $regista){
+        // Recupera gli ID dei film associati a ciascun regista preferito
+        $films = $regista->films()->pluck('films.id')->toArray();
+        
+        // Unisci gli ID dei film al risultato finale
+        $filmIds = array_merge($filmIds, $films);
+    }
+
+    return $filmIds;
+    }
+
+    public function suggerisciFilmByGenere($userID){
+        $user = User::find($userID);
+
+        $generiPreferiti = $user->generiPreferiti()->get();
+
+        $filmIds = [];
+        foreach($generiPreferiti as $genere){
+        // Recupera gli ID dei film associati a ciascun genere preferito
+        $films = $genere->films()->pluck('films.id')->toArray();
+        
+        // Unisci gli ID dei film al risultato finale
+        $filmIds = array_merge($filmIds, $films);
+    }
+
+    return $filmIds;
+    } 
 }

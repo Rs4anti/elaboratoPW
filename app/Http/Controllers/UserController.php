@@ -52,6 +52,34 @@ class UserController extends Controller
 
     }
     public function suggerimenti(){
-        return view('user.suggerimenti');
+        $userID = $_SESSION['loggedID'];
+
+        $dl = new DataLayer();
+        
+        $filmsIDByRegista = $dl->  suggerisciFilmByRegista($userID);
+        $suggerimentiByRegista = [];
+
+        foreach($filmsIDByRegista as $filmID){
+            $film = $dl->findFilmById($filmID);
+
+            if($film !== null){
+                $suggerimentiByRegista[] = $film;
+            }
+        }
+
+        $filmsIDByGenere = $dl->  suggerisciFilmByGenere($userID);
+        $suggerimentiByGenere = [];
+
+        foreach($filmsIDByGenere as $filmID){
+            $film = $dl->findFilmById($filmID);
+
+            if($film !== null){
+                $suggerimentiByGenere[] = $film;
+            }
+        }
+
+        return view('user.suggerimenti')
+                ->with('suggerimentiByRegista', $suggerimentiByRegista)
+                ->with('suggerimentiByGenere', $suggerimentiByGenere);
     }
 }
