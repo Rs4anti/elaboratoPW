@@ -78,6 +78,8 @@ class UserController extends Controller
             }
         }
 
+
+
         return view('user.suggerimenti')
                 ->with('suggerimentiByRegista', $suggerimentiByRegista)
                 ->with('suggerimentiByGenere', $suggerimentiByGenere);
