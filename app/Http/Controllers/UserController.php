@@ -56,34 +56,27 @@ class UserController extends Controller
 
         $dl = new DataLayer();
         
-        $filmsIDByRegista = $dl->  suggerisciFilmByRegista($userID);
-        $suggerimentiByRegista = [];
+        $filmsByRegista = $dl->  suggerisciFilmByRegista($userID);
 
-        foreach($filmsIDByRegista as $filmID){
-            $film = $dl->findFilmById($filmID);
+        foreach($filmsByRegista as $film){
 
             if($film !== null){
                 $film->proiezioniFuture = $dl->listFutureProiezFilm($film->id);
-                $suggerimentiByRegista[] = $film;
             }
         }
 
-        $filmsIDByGenere = $dl->  suggerisciFilmByGenere($userID);
-        $suggerimentiByGenere = [];
-
-        foreach($filmsIDByGenere as $filmID){
-            $film = $dl->findFilmById($filmID);
+       $filmsByGenere = $dl->  suggerisciFilmByGenere($userID);
+        foreach($filmsByGenere as $film){
 
             if($film !== null){
                 $film->proiezioniFuture = $dl->listFutureProiezFilm($film->id);
-                $suggerimentiByGenere[] = $film;
             }
         }
 
 
 
         return view('user.suggerimenti')
-                ->with('suggerimentiByRegista', $suggerimentiByRegista)
-                ->with('suggerimentiByGenere', $suggerimentiByGenere);
+                ->with('filmsByRegista', $filmsByRegista)
+                ->with('filmsByGenere', $filmsByGenere);
     }
 }

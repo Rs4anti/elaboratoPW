@@ -561,37 +561,45 @@ class DataLayer
 
     public function suggerisciFilmByRegista($userID){
         $user = User::find($userID);
-
+    
+        // Recupera i registi preferiti dell'utente
         $registiPreferiti = $user->registiPreferiti()->get();
-
-        $filmIds = [];
-
-    // Itera sui registi preferiti
-    foreach($registiPreferiti as $regista){
-        // Recupera gli ID dei film associati a ciascun regista preferito
-        $films = $regista->films()->pluck('films.id')->toArray();
-        
-        // Unisci gli ID dei film al risultato finale
-        $filmIds = array_merge($filmIds, $films);
-    }
-
-    return $filmIds;
+    
+        // Array per memorizzare i film suggeriti
+        $films = [];
+    
+        // Itera sui registi preferiti e recupera i loro film
+        foreach ($registiPreferiti as $regista) {
+            foreach ($regista->films()->get() as $film) {
+                // Evita di aggiungere duplicati
+                if (!in_array($film, $films)) {
+                    $films[] = $film;
+                }
+            }
+        }
+    
+        return $films;
     }
 
     public function suggerisciFilmByGenere($userID){
         $user = User::find($userID);
-
+    
+        // Recupera i registi preferiti dell'utente
         $generiPreferiti = $user->generiPreferiti()->get();
-
-        $filmIds = [];
-        foreach($generiPreferiti as $genere){
-        // Recupera gli ID dei film associati a ciascun genere preferito
-        $films = $genere->films()->pluck('films.id')->toArray();
-        
-        // Unisci gli ID dei film al risultato finale
-        $filmIds = array_merge($filmIds, $films);
+    
+        // Array per memorizzare i film suggeriti
+        $films = [];
+    
+        // Itera sui registi preferiti e recupera i loro film
+        foreach ($generiPreferiti as $genere) {
+            foreach ($genere->films()->get() as $film) {
+                // Evita di aggiungere duplicati
+                if (!in_array($film, $films)) {
+                    $films[] = $film;
+                }
+            }
+        }
+    
+        return $films;
     }
-
-    return $filmIds;
-    } 
 }
