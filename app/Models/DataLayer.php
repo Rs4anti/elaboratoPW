@@ -382,13 +382,13 @@ class DataLayer
     }
 
     public function listFutureProiez($cinemaId){
-         // Trova il cinema
+         // Trovo il cinema
          $cinema = Cinema::find($cinemaId);
     
-         // Recupera tutte le sale del cinema
+         // Recupero tutte le sale del cinema
          $saleCinema = $cinema->sale()->pluck('id')->toArray();
      
-         // Recupera tutte le proiezioni nelle sale del cinema
+         // Recupero tutte le proiezioni nelle sale del cinema
          $proiezioni = Proiezione::whereIn('sala_id', $saleCinema)
                                  ->with(['film', 'sala']) // Eager load film e sala associati
                                  ->get();
@@ -484,6 +484,41 @@ class DataLayer
             return false;
         } else {
             return true;
+        }
+    }
+
+
+    public function generiPreferitiUtente($userID){
+        $utente = User::find($userID);
+
+        return $utente->generiPreferiti()->get();
+    }
+
+    public function registiPreferitiUtente($userID){
+        $utente = User::find($userID);
+
+        return $utente->registiPreferiti()->get();
+    }
+
+    public function updatePreferenzeUtente($userID, $generi, $registi){
+
+        $user = User::find($userID);
+
+
+        $user->generiPreferiti()->sync($generi);
+        $user->registiPreferiti()->sync($registi);
+
+        $user->load('generiPreferiti', 'registiPreferiti');
+
+    }
+
+    public function checkPreferenze($userID){
+        $user = User::find($userID);
+
+        if($user->registiPreferiti() != null & $user->generiPreferiti()!=null){
+            return true;
+        }else{
+            return false;
         }
     }
 }

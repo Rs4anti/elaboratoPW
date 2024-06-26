@@ -85,7 +85,7 @@ class ProgrammazioneController extends Controller
                         ->with('sala', $sala)
                         ->with('cinema', $cinema);
         } else {
-            return view('errors.404'); //->with('message','Wrong book ID has been used!');
+            return view('errors.404')->with('message','PROIEZIONE NON TROVATA!');
         }
     }
 }

@@ -76,15 +76,15 @@
                     <ul class="dropdown-menu">  
 
                     <li class="nav-item">
-                      <a href="#" class="nav-link">
+                      <a href="{{route('preferenzeUtente')}}" class="nav-link">
                     <i class="bi bi-floppy"></i>
-                      I tuoi generi preferiti</a>
+                      I tuoi gusti</a>
                     </li>
                     
                     <li class="nav-item"> 
-                      <a href="#" class="nav-link">
+                      <a href="{{route('suggerimentiUtente')}}" class="nav-link">
                       <i class="bi bi-camera-reels"></i>    
-                        I tuoi registi preferiti</a>
+                        Ti potrebbe interessare</a>
                       </li>
                       
                     </ul>

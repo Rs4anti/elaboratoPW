@@ -8,6 +8,7 @@ use App\Http\Controllers\PriceController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\ProgrammazioneController;
 use App\Http\Controllers\RegistaController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\AuthController;
@@ -33,6 +34,13 @@ Route::post('/user/register', [AuthController::class, 'registration'])->name('us
 Route::get('/ajaxUser', [AuthController::class, 'ajaxCheckForEmail']);
 
 
+// Gruppo di rotte per utenti registrati
+Route::group(['middleware' => ['authCustom', 'isRegisteredUser']], function() {
+    Route::get('/preferenzeUtente', [UserController::class, 'index'])->name('preferenzeUtente');
+    Route::get('/suggerimenti', [UserController::class, 'suggerimenti'])->name('suggerimentiUtente');
+});
+
+
 Route::group(['middleware' => ['authCustom','isAdmin']], function() {
     
     
@@ -51,4 +59,8 @@ Route::group(['middleware' => ['authCustom','isAdmin']], function() {
     //Rotte ajax
     Route::get('/ajaxDirector', [RegistaController::class, 'ajaxCheckRegista']);
     Route::get('/ajaxFilm', [FilmController::class, 'ajaxCheckFilm']);
+});
+
+Route::fallback(function () {
+    return view('errors.404')->with('message','Error 404 - Page not found!');
 });

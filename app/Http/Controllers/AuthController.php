@@ -27,7 +27,7 @@ class AuthController extends Controller
             return Redirect::to(route('home'));
         } else 
         {
-            return view('errors.404');//->with('message','Wrong authentication credentials!');
+            return view('errors.404')->with('message','Wrong authentication credentials!');
         }
     }
 

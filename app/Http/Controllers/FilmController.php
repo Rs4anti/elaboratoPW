@@ -65,10 +65,10 @@
             if($film !== null){
             $film->path_locandina = $film->path_locandina ? asset('storage/' . $film->path_locandina) : '';
 
-                return view('film.details')->with('film', $film);//->with('locandina', $locandina);
+                return view('film.details')->with('film', $film);
             }
             else{
-                return view('errors.404'); //->with('messagge', 'FILM ID SBAGLIATO!')
+                return view('errors.404')->with('messagge', 'FILM ID SBAGLIATO!');
             }
         } 
 
