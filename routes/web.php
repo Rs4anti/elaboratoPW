@@ -40,6 +40,7 @@ Route::group(['middleware' => ['authCustom', 'isRegisteredUser']], function() {
     Route::get('/suggerimenti', [UserController::class, 'suggerimenti'])->name('suggerimentiUtente');
     Route::get('/preferenzeUtente', [UserController::class, 'index'])->name('preferenzeUtente');
     Route::post('/preferenzeUtente', [UserController::class, 'store'])->name('preferenze.store');
+    Route::put('/preferenzeUtente', [UserController::class, 'update'])->name('preferenze.update');
 });
 
 

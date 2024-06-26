@@ -504,12 +504,24 @@ class DataLayer
 
         $user = User::find($userID);
 
+        $generiVecchi = $user->generiPreferiti()->get();
+        $registiVecchi = $user->registiPreferiti()->get();
 
-        $user->generiPreferiti()->sync($generi);
-        $user->registiPreferiti()->sync($registi);
+        foreach($generiVecchi as $genereVecchio){
+            $user->generiPreferiti()->detach($genereVecchio);
+        }
 
-        $user->load('generiPreferiti', 'registiPreferiti');
+        foreach($registiVecchi as $registaVecchio){
+            $user->registiPreferiti()->detach($registaVecchio);
+        }
 
+        foreach($generi as $genere){
+            $user->generiPreferiti()->attach($genere);
+        }
+
+        foreach($registi as $regista){
+            $user->registiPreferiti()->attach($regista);
+        }
     }
 
     public function addPreferenzeUtente($userID, $generi, $registi){

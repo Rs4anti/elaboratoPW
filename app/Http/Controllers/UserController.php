@@ -28,13 +28,15 @@ class UserController extends Controller
 
     public function update(Request $request){
         $userID = $_SESSION['loggedID'];
-        $generiSelezionati = $request->input('generi[]');
-        $registiSelezionati =  $request->input('registi[]');
+
+        $generiSelezionati = $request->input('generi', []);
+        $registiSelezionati =  $request->input('registi', []);
 
         $dl = new DataLayer();
 
         $dl->updatePreferenzeUtente($userID, $generiSelezionati, $registiSelezionati);
 
+        return Redirect::to(route('home'));
     }
 
     public function store(Request $request){

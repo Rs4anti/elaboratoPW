@@ -7,17 +7,17 @@
 <div class="row">
         <div class="col-md-12">
         @if(!$registiPreferiti->isEmpty() || !$generiPreferiti->isEmpty())
-            <form class="form-horizontal" name="film" method="post" action="#"  enctype="multipart/form-data">
+            <form class="form-horizontal" name="film" method="post" action="{{route('preferenze.update')}}"  enctype="multipart/form-data">
             @method('PUT')
         @else
             <form class="form-horizontal" name="film" method="post" action="{{route('preferenze.store')}}"  enctype="multipart/form-data">
         @endif
             @csrf
 
-            @php
-            echo(" " . $registiPreferiti);
-            @endphp
-
+            @if(!$registiPreferiti->isEmpty() || !$generiPreferiti->isEmpty())
+            <div>SEI IN MODIFICA</div>
+            @endif
+            
                 <div class="form-group row mb-3">
                     <div class="col-md-2">
                         <label for="registi">Registi Preferiti</label>
@@ -35,10 +35,6 @@
                         <span class="invalid-input" id="invalid-regista"></span>  
                     </div>
                 </div>
-
-                @php
-            echo("" . $generiPreferiti);
-            @endphp
 
         <div class="form-group row mb-3">
             <div class="col-md-2">
