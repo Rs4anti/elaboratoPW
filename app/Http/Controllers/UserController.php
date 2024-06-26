@@ -36,7 +36,7 @@ class UserController extends Controller
 
         $dl->updatePreferenzeUtente($userID, $generiSelezionati, $registiSelezionati);
 
-        return Redirect::to(route('home'));
+        return Redirect::to(route('suggerimentiUtente'));
     }
 
     public function store(Request $request){
@@ -48,7 +48,7 @@ class UserController extends Controller
 
         $dl->addPreferenzeUtente($userID, $generiSelezionati, $registiScelti);
 
-        return Redirect::to(route('home'));
+        return Redirect::to(route('suggerimentiUtente'));
 
     }
     public function suggerimenti(){

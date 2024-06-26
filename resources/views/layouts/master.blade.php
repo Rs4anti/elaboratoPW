@@ -108,7 +108,7 @@
               </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#" role="button">Contatti</a>
+                    <a class="nav-link" href="{{route('cinema.contatti')}}" role="button">Dove ci troviamo</a>
                 </li>
             </li>
             </ul>

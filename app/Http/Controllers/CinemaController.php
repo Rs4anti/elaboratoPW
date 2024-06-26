@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cinema;
 use Illuminate\Http\Request;
 
 class CinemaController extends Controller
 {
-    public function showProiezioni($cinemaId) {
-        $dl = new DataLayer();
-        $filmTitoli = $dl->findProiezioniCinema($cinemaId);
-    
-        return view('cinema.proiezioni')
-            ->with('filmTitoli', $filmTitoli);
+    public function contatti()
+    {
+        $cinemas = Cinema::with('indirizzo')->get();
+        return view('contatti', compact('cinemas'));
     }
 }

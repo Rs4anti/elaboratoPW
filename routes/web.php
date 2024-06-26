@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MostraFilmController;
+use App\Http\Controllers\CinemaController;
 
 Route::get('/', [FrontController::class, 'getHome'])->name('home');
+Route::get('/contatti', [CinemaController::class, 'contatti'])->name('cinema.contatti');
 
 Route::resource('gardenProgrammazione', GardenProgrController::class);
 Route::resource('irideProgrammazione', IrideProgrController::class);
