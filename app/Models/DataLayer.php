@@ -381,7 +381,7 @@ class DataLayer
                 ->get();
     }
 
-    public function listFutureProiez($cinemaId){
+    public function listFutureProiezCinema($cinemaId){
          // Trovo il cinema
          $cinema = Cinema::find($cinemaId);
     
@@ -408,6 +408,26 @@ class DataLayer
 
          return $filmProiezioni;
 
+    }
+
+    public function listFutureProiezFilm($filmId){
+        // Trova il film
+        $film = Film::find($filmId);
+    
+        if (!$film) {
+            return collect(); // Ritorna una collezione vuota se il film non viene trovato
+        }
+    
+        // Recupera tutte le proiezioni future del film
+        $proiezioniFuture = Proiezione::where('film_id', $filmId)
+                                      ->whereDate('data', '>=', now()->toDateString())
+                                      ->with('sala.cinema') // Carica le relazioni necessarie
+                                      ->get();
+    
+        // Raggruppa le proiezioni per film
+        // $filmProiezioni = $proiezioniFuture->groupBy('film_id');
+    
+        return $proiezioniFuture;
     }
 
     public function listSaleCinema(){

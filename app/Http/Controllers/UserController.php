@@ -63,6 +63,7 @@ class UserController extends Controller
             $film = $dl->findFilmById($filmID);
 
             if($film !== null){
+                $film->proiezioniFuture = $dl->listFutureProiezFilm($film->id);
                 $suggerimentiByRegista[] = $film;
             }
         }
@@ -74,6 +75,7 @@ class UserController extends Controller
             $film = $dl->findFilmById($filmID);
 
             if($film !== null){
+                $film->proiezioniFuture = $dl->listFutureProiezFilm($film->id);
                 $suggerimentiByGenere[] = $film;
             }
         }

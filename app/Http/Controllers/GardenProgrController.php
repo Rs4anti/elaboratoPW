@@ -15,7 +15,7 @@ class GardenProgrController extends Controller
         $filmsProiezioni = $dl->findFilmDetailsWithProiezioni('1');
         
         //ritorno solo le proiezioni di film nel futuro rispetto ad ora
-        //$filmsProiezioni = $dl->listFutureProiez('1');
+        //$filmsProiezioni = $dl->listFutureProiezCinema('1');
 
         return view('garden.gardenProgr')
             ->with('filmsProiezioni', $filmsProiezioni);

@@ -15,7 +15,7 @@ class IrideProgrController extends Controller
         $filmsProiezioni = $dl->findFilmDetailsWithProiezioni('2');
         
         //ritorno solo le proiezioni di film nel futuro rispetto ad ora
-        //$filmsProiezioni = $dl->listFutureProiez('2');
+        //$filmsProiezioni = $dl->listFutureProiezCinema('2');
 
         return view('iride.irideProgr')
             ->with('filmsProiezioni', $filmsProiezioni);

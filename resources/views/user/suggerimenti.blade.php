@@ -29,17 +29,25 @@
                 </td>
 
                 <td>
-                    @foreach ($suggerimentoFilmReg->proiezioni as $proiezione)
-                    Cinema {{ $proiezione->sala->cinema->nome }}
-                    <br>
-                    @endforeach
+                @if(count($suggerimentoFilmReg->proiezioniFuture)>0)
+                    @foreach ($suggerimentoFilmReg->proiezioniFuture as $proiezione)
+                            Cinema {{ $proiezione->sala->cinema->nome }}
+                            <br>
+                        @endforeach
+                @else
+                Al momento non sono previste proiezioni.
+                @endif
                 </td>
 
                 <td>
-                    @foreach ($suggerimentoFilmReg->proiezioni as $proiezione)
-                    {{ $proiezione->data }} alle {{ $proiezione->ora }}
-                    <br>
+                @if(count($suggerimentoFilmReg->proiezioniFuture)>0)  
+                @foreach ($suggerimentoFilmReg->proiezioniFuture as $proiezione)
+                        {{ $proiezione->data}} alle {{$proiezione->ora}}
+                        <br>
                     @endforeach
+                @else
+                   -
+                @endif
                 </td>
                 
                 
@@ -76,17 +84,25 @@
                 </td>
 
                 <td>
-                    @foreach ($suggerimentoFilmGen->proiezioni as $proiezione)
-                    Cinema {{ $proiezione->sala->cinema->nome }}
-                    <br>
-                    @endforeach
+                @if(count($suggerimentoFilmGen->proiezioniFuture)>0)
+                    @foreach ($suggerimentoFilmGen->proiezioniFuture as $proiezione)
+                            Cinema {{ $proiezione->sala->cinema->nome }}
+                            <br>
+                        @endforeach
+                @else
+                Al momento non sono previste proiezioni.
+                @endif
                 </td>
 
                 <td>
-                    @foreach ($suggerimentoFilmGen->proiezioni as $proiezione)
-                    {{ $proiezione->data }} alle {{ $proiezione->ora }}
-                    <br>
+                @if(count($suggerimentoFilmGen->proiezioniFuture)>0)  
+                    @foreach ($suggerimentoFilmGen->proiezioniFuture as $proiezione)
+                        {{ $proiezione->data}} alle {{$proiezione->ora}}
+                        <br>
                     @endforeach
+                @else
+                   -
+                @endif
                 </td>
 
             </tr>
