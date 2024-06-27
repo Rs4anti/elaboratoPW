@@ -12,10 +12,10 @@ class IrideProgrController extends Controller
         //ID cinema iride == 2
         $dl = new DataLayer();
         
-        $filmsProiezioni = $dl->findFilmDetailsWithProiezioni('2');
+        //$filmsProiezioni = $dl->findFilmDetailsWithProiezioni('2');
         
         //ritorno solo le proiezioni di film nel futuro rispetto ad ora
-        //$filmsProiezioni = $dl->listFutureProiezCinema('2');
+        $filmsProiezioni = $dl->listFutureProiezCinema('2');
 
         return view('iride.irideProgr')
             ->with('filmsProiezioni', $filmsProiezioni);

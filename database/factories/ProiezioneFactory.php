@@ -14,8 +14,26 @@ class ProiezioneFactory extends Factory
     public function definition(): array
     {
         return [
-            'data' => $this->faker->date(),
-            'ora' =>  $this->faker->time
+            'data' => $this->faker->dateTimeBetween('-1 year', '+1 year'), // Date between 1 year ago and 1 year in the future
+            'ora' =>  $this->faker->time()
         ];
+    }
+
+    public function past(): self
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'data' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            ];
+        });
+    }
+
+    public function future(): self
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'data' => $this->faker->dateTimeBetween('now', '+1 year'),
+            ];
+        });
     }
 }

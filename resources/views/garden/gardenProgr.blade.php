@@ -19,11 +19,12 @@
         <!-- Inizio Card -->
         <div class="col-12 mb-4">
             <div class="card">
-                <div class="row g-0"> <!-- classe di utilità di Bootstrap che rimuove tutte le spaziature (gutter) tra le colonne all'interno della riga-->
+        <!-- classe di utilità di Bootstrap che rimuove tutte le spaziature (gutter) tra le colonne all'interno della riga-->
+            <div class="row g-0">
 
                     <!-- Locandina del Film -->
                     <div class="col-md-4">
-                        <img src="{{($film->path_locandina)}}" class="img-fluid rounded-start" alt="Locandina Scarface">
+                        <img src="{{($film->path_locandina)}}" class="img-fluid rounded-start" alt="Locandina Film">
                     </div>
 
                     <!-- Informazioni del Film -->
@@ -59,7 +60,7 @@
                                 <div class="card-body">
                                     <h6 class="card-title">Orari:</h6>
                                         @php
-                                        // Raggruppa le proiezioni per data
+                                        // Raggruppo le proiezioni per data
                                             $proiezioniPerData = $proiezioni->groupBy('data');
                                             
                                         @endphp
@@ -68,7 +69,7 @@
                                         @php
                                             // Crea un'istanza di Carbon dalla data
                                             $carbonDate = Carbon::parse($data);
-                                            // Estrai il mese e il giorno
+                                            // Estrae il mese e il giorno
                                             $formattedDate = $carbonDate->format('d/M'); // Esempio: "Jan 01"
 
                                         @endphp
@@ -78,12 +79,12 @@
 
                                                 @if(isset($_SESSION['logged']) && $_SESSION['role'] == 'admin')
                                                 <!-- Bottone per modifica programmazione -->
-                                                <div>
+                                                <div class="mt-2">
                                                 <a href="{{route('programmazione.edit', ['programmazione' => $proiezione->id])}}" class="btn btn-warning">
                                                     Modifica programmazione</a>
                                                 </div>
 
-                                                <div>
+                                                <div class="mt-2">
                                                 <!-- Bottone per eliminare programmazione -->
                                                 <a href="{{route('programmazione.destroy.confirm', ['id' => $proiezione->id])}}" class="btn btn-danger">
                                                     Elimina programmazione</a>
@@ -101,6 +102,7 @@
         </div>
         <!-- Fine Card -->
         @endforeach
+    </div>
     
     <div class="row justify">
         <a href="{{route('home')}}" class="btn btn-primary">

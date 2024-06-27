@@ -12,10 +12,10 @@ class GardenProgrController extends Controller
         //ID cinema garden == 1
         $dl = new DataLayer();
         
-        $filmsProiezioni = $dl->findFilmDetailsWithProiezioni('1');
+        //$filmsProiezioni = $dl->findFilmDetailsWithProiezioni('1');
         
         //ritorno solo le proiezioni di film nel futuro rispetto ad ora
-        //$filmsProiezioni = $dl->listFutureProiezCinema('1');
+        $filmsProiezioni = $dl->listFutureProiezCinema('1');
 
         return view('garden.gardenProgr')
             ->with('filmsProiezioni', $filmsProiezioni);
