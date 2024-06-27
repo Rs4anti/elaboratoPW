@@ -17,9 +17,7 @@
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
         <script src="{{url('/')}}/js/bootstrap.min.js"></script>
 
-        <!-- Custom jQuery and Javascript scripts 
-        <script src="{{ url('/') }}/js/paginationScript.js"></script>
-        <script src="{{ url('/') }}/js/paginationFilmScript.js"></script> -->
+        <!-- Custom jQuery and Javascript scripts -->
 
         <!-- Bootstrap Icons -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">

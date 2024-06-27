@@ -2,7 +2,7 @@
 
 @section('title')
     @if($registiPreferiti->isEmpty() && $generiPreferiti->isEmpty())
-        Non hai espresso le tue preferenze su registi e generi!
+       Esprimi le tue preferenze su registi e generi per avere dei consigli!
     @else
         Le tue preferenze.
 @endif
@@ -102,9 +102,4 @@
             </form>
         </div>
     </div>
-
-
-
-
-
 @endsection
