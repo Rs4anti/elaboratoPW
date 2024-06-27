@@ -8,6 +8,12 @@
 
 @if(count($filmsByRegista) > 0)
     <table class="table table-striped">
+                    <col width='35%'>
+                    <col width='15%'>
+                    <col width='10%'>
+                    <col width='20%'>
+                    <col width='10%'>
+                    <col width='10%'>
         <thead>
             <tr>
                 <th>Titolo</th>
@@ -40,9 +46,11 @@
 
             <td>
                 @if(count($film->proiezioniFuture)>0)
+                <div>
                     @foreach($film->proiezioniFuture as $proiezione)
-                    {{$proiezione->data}}
+                    <div>{{$proiezione->data}}</div>
                     @endforeach
+                </div>
                 @else
                     -
                 @endif
@@ -50,9 +58,11 @@
 
             <td>
                 @if(count($film->proiezioniFuture)>0)
+                <div>
                     @foreach($film->proiezioniFuture as $proiezione)
-                    {{$proiezione->ora}}
+                    <div>{{$proiezione->ora}}</div>
                     @endforeach
+                </div>
                 @else
                     -
                 @endif
@@ -71,6 +81,12 @@
 
 @if(count($filmsByGenere) > 0)
     <table class="table table-striped">
+                    <col width='35%'>
+                    <col width='15%'>
+                    <col width='10%'>
+                    <col width='20%'>
+                    <col width='10%'>
+                    <col width='10%'>
         <thead>
             <tr>
                 <th>Titolo</th>
@@ -93,9 +109,11 @@
 
             <td>
                 @if(count($film->proiezioniFuture)>0)
+                <div>
                     @foreach($film->proiezioniFuture as $proiezione)
-                    {{$proiezione->sala->cinema->nome}}
+                    <div>{{$proiezione->sala->cinema->nome}}</div>
                     @endforeach
+                </div>
                 @else
                     Al momento non sono previste proiezioni.
                 @endif
@@ -103,9 +121,11 @@
 
             <td>
                 @if(count($film->proiezioniFuture)>0)
+                <div>
                     @foreach($film->proiezioniFuture as $proiezione)
-                    {{$proiezione->data}}
+                    <div>{{$proiezione->data}}</div>
                     @endforeach
+                </div>
                 @else
                     -
                 @endif
@@ -113,9 +133,11 @@
 
             <td>
                 @if(count($film->proiezioniFuture)>0)
+                <div>
                     @foreach($film->proiezioniFuture as $proiezione)
-                    {{$proiezione->ora}}
+                    <div>{{$proiezione->ora}}</div>
                     @endforeach
+                </div>
                 @else
                     -
                 @endif
