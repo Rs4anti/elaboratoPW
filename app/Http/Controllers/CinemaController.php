@@ -9,6 +9,7 @@ class CinemaController extends Controller
 {
     public function contatti()
     {
+        session_start();
         $cinemas = Cinema::with('indirizzo')->get();
         return view('contatti', compact('cinemas'));
     }

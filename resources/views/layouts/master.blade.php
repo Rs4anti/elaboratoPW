@@ -75,7 +75,7 @@
 
                     <li class="nav-item">
                       <a href="{{route('preferenzeUtente')}}" class="nav-link">
-                    <i class="bi bi-floppy"></i>
+                      <i class="bi bi-heart-pulse-fill"></i>
                       I tuoi gusti</a>
                     </li>
                     
