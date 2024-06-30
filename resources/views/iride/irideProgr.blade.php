@@ -33,7 +33,13 @@
                             <!-- Central Info -->
                             <div class="col-md-6 order-md-1 order-2">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{$film->titolo}}</h5>
+                                <h5 class="card-title"> 
+                                        <i>
+                                            <b>
+                                            {{$film->titolo}}
+                                            </b>
+                                        </i>
+                                    </h5>
                                     
                                     <p class="card-text"><strong>Regia:</strong>
                                     @foreach ($film->registi as $regista)
