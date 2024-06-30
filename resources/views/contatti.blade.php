@@ -14,7 +14,7 @@
                     </div>
                     <div class="card-body">
                         <p><strong>Indirizzo:</strong></p>
-                        <p>{{ $cinema->indirizzo->via }} {{ $cinema->indirizzo->civico }}</p>
+                        <p>{{ $cinema->indirizzo->via }} {{ $cinema->indirizzo->civico }} , {{$cinema->indirizzo->CAP}}</p>
                         <p>{{ $cinema->indirizzo->citta }}, {{ $cinema->indirizzo->provincia }}</p>
                         <p>{{ $cinema->indirizzo->regione }}, {{ $cinema->indirizzo->nazione }}</p>
                     </div>
