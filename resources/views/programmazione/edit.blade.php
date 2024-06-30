@@ -113,7 +113,7 @@
                     @endforeach
                 </div>
 
-                <button type="submit" class="btn btn-primary">Salva Programmazione</button>
+                <button type="submit" class="btn btn-primary">Salva Proiezione</button>
             </form>
         </div>
     </div>

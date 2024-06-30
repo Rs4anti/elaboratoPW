@@ -81,19 +81,26 @@
                                                 <!-- Bottone per modifica programmazione -->
                                                 <div class="mt-2">
                                                 <a href="{{route('programmazione.edit', ['programmazione' => $proiezione->id])}}" class="btn btn-warning">
-                                                    Modifica programmazione</a>
+                                                    Modifica proiezione</a>
                                                 </div>
 
                                                 <div class="mt-2">
                                                 <!-- Bottone per eliminare programmazione -->
                                                 <a href="{{route('programmazione.destroy.confirm', ['id' => $proiezione->id])}}" class="btn btn-danger">
-                                                    Elimina programmazione</a>
+                                                    Elimina proiezione</a>
                                                 </div>
                                                 @endif
                                             @endforeach
                                         </p>
                                         @endforeach
                                 </div>
+                                @if(isset($_SESSION['logged']) && $_SESSION['role'] == 'admin')
+                                <!-- Bottone per aggiungere proiezione -->
+                                <a class="btn btn-success"
+                                    href="{{route('programmazione.create', ['id' => $film->id])}}">
+                                <i class="bi bi-clock-history"></i>
+                                        Inserisci proiezione</a>
+                                        @endif
                             </div>
                         </div>
                     </div>

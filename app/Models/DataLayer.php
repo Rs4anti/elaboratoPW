@@ -15,11 +15,6 @@ class DataLayer
         return $films;
     }
 
-    public function locandine(){
-        $locandine = Locandina::all();
-
-    }
-
     public function listFilmsByYear(){
         $filmsByYear = Film::orderBy('anno_uscita', 'asc')->get();
         return $filmsByYear;
