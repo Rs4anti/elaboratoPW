@@ -7,13 +7,13 @@ Questa repository contiene il codice sorgente per la realizzazione di un sito we
 - **Framework**: Laravel 11
 - **Composer**: Versione 2.7.2 (2024-03-11 17:12:18)
 - **PHP**: Versione 8.2.18
-- **Lato Client**: JavaScript per la paginazione dei contenuti
+- **Lato Client**: JavaScript per la paginazione e validazione dei contenuti
 - **Chiamate AJAX**: Per interagire con i contenuti già presenti nel database sul server
 - **Database**: MySql
 
 ## Descrizione del Progetto
 
-Il sito web è stato progettato per facilitare la gestione e la visualizzazione di informazioni relative ai due cinema, comprese le proiezioni dei film, la prenotazione dei biglietti e la gestione degli utenti. Il progetto sfrutta le potenzialità del framework Laravel per il backend, garantendo una solida struttura MVC e una gestione efficiente dei dati.
+Il sito web è stato progettato per permettere la gestione e la visualizzazione di informazioni relative a due cinema, comprese le proiezioni dei film e la gestione degli utenti. Il progetto sfrutta le potenzialità del framework Laravel per il backend, garantendo una solida struttura MVC e una gestione efficiente dei dati.
 
 ### Funzionalità Principali
 
