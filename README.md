@@ -9,6 +9,7 @@ Questa repository contiene il codice sorgente per la realizzazione di un sito we
 - **PHP**: Versione 8.2.18
 - **Lato Client**: JavaScript per la paginazione dei contenuti
 - **Chiamate AJAX**: Per interagire con i contenuti già presenti nel database sul server
+- **Database**: MySql
 
 ## Descrizione del Progetto
 
@@ -32,6 +33,27 @@ Per installare e configurare il progetto, segui questi passaggi:
     ```bash
     cd elaboratoPW
 
-3. 
+3. Installa le dipendenze con Composer:
+    ```bash
+    composer update
+
+4. Configura il file .env con le impostazioni del database e altre configurazioni necessarie
+
+5. Esegui le migrazioni del database:
+    ```bash
+    php artisan migrate
+
+6. Esegui il seed del database:
+     ```bash
+    php artisan db:seed
+
+7. Avvia il server locale:
+    ```bash
+   php artisan serve
+
+
+## Contribuire
+Se desideri contribuire al progetto, sentiti libero di fare un fork della repository, creare un nuovo branch per le tue modifiche e inviare una pull request. Sarò felice di esaminare e integrare i miglioramenti.
+
 
 
