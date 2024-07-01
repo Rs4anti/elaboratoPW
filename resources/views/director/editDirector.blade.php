@@ -90,7 +90,7 @@
         <form class="form-horizontal" name="regista" method="post" action="{{ route('regista.update', ['id' => $regista->id]) }}">
             @method('PUT')
     @else
-        <form class="form-horizontal" name="regista" method="post" action="{{ route('regista.store') }}">
+        <form class="form-horizontal" name="regista" method="post" action="{{ route('regista.store')}}">
     @endif
     @csrf
     

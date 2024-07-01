@@ -12,8 +12,7 @@
                     <col width='15%'>
                     <col width='10%'>
                     <col width='20%'>
-                    <col width='10%'>
-                    <col width='10%'>
+                    <col width='20%'> 
         <thead>
             <tr>
                 <th>Titolo</th>
@@ -85,8 +84,7 @@
                     <col width='15%'>
                     <col width='10%'>
                     <col width='20%'>
-                    <col width='10%'>
-                    <col width='10%'>
+                    <col width='20%'>   
         <thead>
             <tr>
                 <th>Titolo</th>

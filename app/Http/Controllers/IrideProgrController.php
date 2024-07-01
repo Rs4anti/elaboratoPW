@@ -17,6 +17,13 @@ class IrideProgrController extends Controller
         //ritorno solo le proiezioni di film nel futuro rispetto ad ora
         $filmsProiezioni = $dl->listFutureProiezCinema('2');
 
+        /*RICORDA che filmsproiezione del tipo*/ 
+        /* $filmsProiezioni = [
+            1 => Collection of proiezioni for film with ID 1,
+            2 => Collection of proiezioni for film with ID 2,
+            ...
+        ]; */
+
         return view('iride.irideProgr')
             ->with('filmsProiezioni', $filmsProiezioni);
     }

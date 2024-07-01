@@ -34,7 +34,7 @@ Dettaglio regista: {{$regista->nome}} {{$regista->cognome}}
             @else
                 @foreach ($filmAssociati as $film)
                 <div class="col-md-9 offset-md-3 mb-2">
-                    {{ $film->titolo }} <a href="{{ route('film.show', ['film' => $film->id]) }}"><i class="bi bi-caret-right-square"></i></a>
+                    {{ $film->titolo }} <a href="{{ route('mostraFilm.show', ['mostraFilm' => $film->id]) }}"><i class="bi bi-caret-right-square"></i></a>
                 </div>            
                 @endforeach
             @endif
@@ -51,7 +51,7 @@ Dettaglio regista: {{$regista->nome}} {{$regista->cognome}}
         <div class="row mb-3">
             <div class="col-md-12">
                 @if(count($regista->films) == 0)
-                    <a class="btn btn-danger w-100" href="{{ route('regista.destroy.confirm', ['id' => $regista->id]) }}"><i class="bi bi-trash"></i> Delete</a>
+                    <a class="btn btn-danger w-100" href="{{ route('regista.destroy.confirm', ['id' => $regista->id]) }}"><i class="bi bi-trash"></i> Cancella</a>
                 @else
                     <a class="btn btn-secondary w-100" disabled="disabled" href="#"><i class="bi bi-ban"></i> Cancella</a>
                 @endif
