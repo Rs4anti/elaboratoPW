@@ -60,10 +60,10 @@ class RegistaController extends Controller
         $dl = new DataLayer();
         $regista = $dl->findRegistaById($id);
 
-        if ($regista !== null) {
+        if ($regista !== null && count($regista->films) == 0) {
             return view('director.deleteDirector')->with('regista', $regista);
         } else {
-            return view('errors.404')->with('message','Regista ID errato!');
+            return view('errors.404')->with('message','Regista ID errato oppure regista ha film associati!');
         }
     }
 
