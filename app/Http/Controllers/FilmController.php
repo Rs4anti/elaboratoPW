@@ -90,7 +90,7 @@
                             ->with('lingueAudio', $lingueAudio)
                             ->with('lingueSub', $sottotitoli);
             } else{
-                return view('errors.404')->with('messagge', 'FILM ID SBAGLIATO!');
+                return view('errors.404')->with('message', 'FILM ID SBAGLIATO!');
             }
         }
 
