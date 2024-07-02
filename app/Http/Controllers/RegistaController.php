@@ -24,7 +24,7 @@ class RegistaController extends Controller
         if($regista !==null)
             return view('director.editDirector')->with('regista', $regista);
         else{
-            return view('errors.404');
+            return view('errors.404')->with('message','Regista ID errato!');
         }    
     }
 
@@ -63,7 +63,7 @@ class RegistaController extends Controller
         if ($regista !== null) {
             return view('director.deleteDirector')->with('regista', $regista);
         } else {
-            return view('errors.404'); //->with('message','Regista ID errato!');
+            return view('errors.404')->with('message','Regista ID errato!');
         }
     }
 
@@ -75,13 +75,18 @@ class RegistaController extends Controller
         return Redirect::to(route('regista.index'));
     }
 
-    public function show(string $id){
+    public function show(string $id) {
         $dl = new DataLayer();
         $regista = $dl->findRegistaById($id);
         $filmAssociati = $dl->findFilmRegista($id);
-
+    
+        if ($regista === null) {
+            return view('errors.404')->with('message', 'Regista non trovato!');
+        }
+    
         return view('director.details')->with('regista', $regista)->with('filmAssociati', $filmAssociati);
     }
+    
 
     public function ajaxCheckRegista(Request $request){
         $dl = new DataLayer();

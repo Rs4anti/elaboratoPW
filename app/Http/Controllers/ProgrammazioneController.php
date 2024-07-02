@@ -14,13 +14,19 @@ class ProgrammazioneController extends Controller
         session_start();
      } */
 
-    public function create(string $id){
+     public function create(string $id) {
         $dl = new DataLayer();
         $film = $dl->findFilmById($id);
+    
+        if ($film === null) {
+            return view('errors.404')->with('message', 'Film non trovato!');
+        }
+    
         $sale = $dl->listSaleCinema();
-
+    
         return view('programmazione.edit')->with('film', $film)->with('sale', $sale);
     }
+    
 
     public function store(Request $request){
         $dl = new DataLayer();
@@ -34,20 +40,31 @@ class ProgrammazioneController extends Controller
         return Redirect::to(route('film.index'));
     }
 
-    public function edit(string $proiezId){
+    public function edit(string $proiezId) {
         $dl = new DataLayer();
-
+    
         $proiezione = Proiezione::find($proiezId);
+    
+        if ($proiezione === null) {
+            return view('errors.404')->with('message', 'Proiezione non trovata!');
+        }
+    
+        if ($proiezione->film_id === null) {
+            return view('errors.404')->with('message', 'Qualcosa è andato storto!');
+        }
+    
         $film = Film::find($proiezione->film_id);
+    
         $saleCinema = $dl->listSaleCinema();
         $salaProiezione = $proiezione->sala_id;
-
+    
         return view('programmazione.edit')
                 ->with('proiezione', $proiezione)
                 ->with('film', $film)
                 ->with('sala', $salaProiezione)
                 ->with('sale', $saleCinema);
     }
+    
 
     public function update(Request $request, String $proiezioneId){
         
