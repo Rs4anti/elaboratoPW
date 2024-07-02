@@ -88,21 +88,27 @@ class ProgrammazioneController extends Controller
     }
 
     public function confirmDestroy(string $id)
-    {
-        $dl = new DataLayer();
-        $proiezione = $dl->findProiezioneById($id);
-        $film = $proiezione->film;
-        $sala = $proiezione->sala;
-        $cinema = $sala->cinema;
+{
+    $dl = new DataLayer();
+    $proiezione = $dl->findProiezioneById($id);
 
-        if ($proiezione !== null) {
-            return view('programmazione.deleteProiezione')
-                        ->with('proiezione', $proiezione)
-                        ->with('film', $film)
-                        ->with('sala', $sala)
-                        ->with('cinema', $cinema);
-        } else {
-            return view('errors.404')->with('message','PROIEZIONE NON TROVATA!');
-        }
+    if ($proiezione === null) {
+        return view('errors.404')->with('message', 'PROIEZIONE NON TROVATA!');
     }
+
+    $film = $proiezione->film;
+    $sala = $proiezione->sala;
+    $cinema = $sala->cinema;
+
+    if ($film === null) {
+        return view('errors.404')->with('message', 'FILM ASSOCIATO NON TROVATO!');
+    }
+
+    return view('programmazione.deleteProiezione')
+                ->with('proiezione', $proiezione)
+                ->with('film', $film)
+                ->with('sala', $sala)
+                ->with('cinema', $cinema);
+}
+
 }

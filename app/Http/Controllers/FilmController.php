@@ -90,7 +90,7 @@
                             ->with('lingueAudio', $lingueAudio)
                             ->with('lingueSub', $sottotitoli);
             } else{
-                return view('errors.404'); //->with('messagge', 'FILM ID SBAGLIATO!')
+                return view('errors.404')->with('messagge', 'FILM ID SBAGLIATO!');
             }
         }
 
@@ -135,16 +135,26 @@
             return Redirect::to(route('film.index'));
         }
 
-        public function confirmDestroy(string $id){
+        public function confirmDestroy(string $id) {
             $dl = new DataLayer();
             $film = $dl->findFilmById($id);
-
+        
             if ($film !== null) {
+                // Verifica se ci sono proiezioni associate al film
+                $proiezioni = $film->proiezioni;
+                
+                if (count($proiezioni) !== 0) {
+                    // Se ci sono proiezioni associate, mostra un messaggio o reindirizza
+                    return view('errors.404')->with('message', 'Stai provando a cancellare un Film CON PROIEZIONI ASSOCIATE!');
+                }
+        
+                // Se non ci sono proiezioni associate, permetti l'eliminazione del film
                 return view('film.deleteFilm')->with('film', $film);
             } else {
-                return view('errors.404'); //->with('message','Wrong book ID has been used!');
+                return view('errors.404')->with('message', 'Film ID sbagliato!');
             }
         }
+        
 
 
         public function ajaxCheckFilm(Request $request){
