@@ -131,7 +131,7 @@
                             <a class="nav-link active" data-bs-toggle="tab" href="#login-tab">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#register-tab">Register</a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#register-tab">Registrati</a>
                         </li>
                     </ul>
                 </div>
@@ -174,27 +174,27 @@
                         <form id="register-form" action="{{ route('user.register') }}" method="post">
                             @csrf
                             <div class="form-group mb-3">
-                                <input type="text" name="name" class="form-control" placeholder="Your name..."/>
+                                <input type="text" name="name" class="form-control" placeholder="Il tuo nome..."/>
                             </div>
                             <span class="invalid-input" id="invalid-name"></span>
 
                             <div class="form-group mb-3">
-                                <input type="text" name="registration-email" class="form-control" placeholder="Your email..."/>
+                                <input type="text" name="registration-email" class="form-control" placeholder="La tua email..."/>
                             </div>
                             <span class="invalid-input" id="invalid-registrationEmail"></span>
 
                             <div class="form-group mb-3">
-                                <input type="password" name="registration-password" class="form-control" placeholder="Type password..."/>
+                                <input type="password" name="registration-password" class="form-control" placeholder="Digita password..."/>
                             </div>
                             <span class="invalid-input" id="invalid-registrationPassword"></span>
 
                             <div class="form-group mb-3">
-                                <input type="password" name="confirm-password" class="form-control" placeholder="Re-type password..."/>
+                                <input type="password" name="confirm-password" class="form-control" placeholder="Re-inserisci password..."/>
                             </div>
                             <span class="invalid-input" id="invalid-confirmPassword"></span>
 
                             <div class="form-group text-center mb-3">
-                                <label for="register-submit" class="btn btn-primary w-100"><i class="bi bi-person-plus"></i> Register</label>
+                                <label for="register-submit" class="btn btn-primary w-100"><i class="bi bi-person-plus"></i> Registrati</label>
                                 <input id="register-submit" class="d-none" type="submit" value="Register">
                             </div>
                         </form>
