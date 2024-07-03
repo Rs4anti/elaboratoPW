@@ -82,7 +82,6 @@
             $sottotitoli = $dl -> listLingue();
 
             if($film !== null){
-                //VIEW per modifica $film
                 return view('film.editFilm')
                             ->with('film', $film)
                             ->with('registi', $registi)
@@ -144,11 +143,10 @@
                 $proiezioni = $film->proiezioni;
                 
                 if (count($proiezioni) !== 0) {
-                    // Se ci sono proiezioni associate, mostra un messaggio o reindirizza
+                    // Se ci sono proiezioni associate, mostro un messaggio o reindirizza
                     return view('errors.404')->with('message', 'Stai provando a cancellare un Film CON PROIEZIONI ASSOCIATE!');
                 }
         
-                // Se non ci sono proiezioni associate, permetti l'eliminazione del film
                 return view('film.deleteFilm')->with('film', $film);
             } else {
                 return view('errors.404')->with('message', 'Film ID sbagliato!');

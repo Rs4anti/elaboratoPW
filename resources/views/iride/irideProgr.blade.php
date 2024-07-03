@@ -23,7 +23,7 @@
 
                     <!-- Locandina del Film -->
                     <div class="col-md-4">
-                        <img src="{{($film->path_locandina)}}" class="img-fluid rounded-start" alt="Locandina Scarface">
+                        <img src="{{($film->path_locandina)}}" class="img-fluid rounded-start" alt="Locandina Film">
                     </div>
 
                     <!-- Informazioni del Film -->
