@@ -1,6 +1,6 @@
 # Cinema Management Website
 
-Questa repository contiene il codice sorgente per la realizzazione di un sito web dedicato alla gestione di due cinema. Il sito web attuale è disponibile all'indirizzo [multisalegarden-iride.it](https://www.multisalegarden-iride.it/).
+Questa repository contiene il codice sorgente per la realizzazione di un sito web dedicato alla gestione di due multisala. Il sito web attuale è disponibile all'indirizzo [multisalegarden-iride.it](https://www.multisalegarden-iride.it/).
 
 ## Tecnologie Utilizzate
 
